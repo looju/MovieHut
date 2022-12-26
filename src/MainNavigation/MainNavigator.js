@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { Home } from "../Features/Home";
+import { HomeNavigator } from "../HomeNavigator/HomeNavigator";
 import { Settings } from "../Features/Settings";
 import { Search } from "../Features/Search";
 
@@ -15,7 +15,7 @@ export const MainNavigator = () => {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === "Home") {
+          if (route.name === "HomeNavigator") {
             iconName = "movie-open-plus";
             color = focused ? "#A020F0" : "#808080";
           } else if (route.name === "Search") {
@@ -34,8 +34,8 @@ export const MainNavigator = () => {
         tabBarInactiveTintColor: "gray",
       })}
     >
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Search" component={Search} />
+      <Tab.Screen name="HomeNavigator" component={HomeNavigator} options={{headerShown:false}}/>
+      <Tab.Screen name="Search" component={Search} options={{headerShown:false}}/>
       <Tab.Screen name="Settings" component={Settings} />
     </Tab.Navigator>
   );

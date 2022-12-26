@@ -1,12 +1,11 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
 
-export const Home = () => {
+export const MovieDetail = () => {
   return (
     <View>
       <Text style={{ alignItems: "center", justifyContent: "center" }}>
-        Home screen
+        Movie detail screen
       </Text>
     </View>
   );
