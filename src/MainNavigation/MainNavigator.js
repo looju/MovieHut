@@ -16,14 +16,13 @@ export const MainNavigator = () => {
           let iconName;
 
           if (route.name === "Home") {
-            iconName = focused
-              ? "ios-information-circle"
-              : "ios-information-circle-outline";
+            iconName = "movie-open-plus";
+            color = focused ? "#A020F0" : "#808080";
           } else if (route.name === "Search") {
-            iconName = focused ? "ios-list" : "ios-list-outline";
+            iconName = "text-search";
             color = focused ? "#A020F0" : "#808080";
           } else if (route.name === "Settings") {
-            iconName = focused ? "ios-list" : "ios-list-outline";
+            iconName = "cog-outline";
             color = focused ? "#A020F0" : "#808080";
           }
 
