@@ -1,30 +1,22 @@
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { PopularService } from "../Services/Core/Popular";
+import { HighlyRated } from "../Components/HighlyRated";
 
 export const Home = () => {
-
-const [popular, setPopular]=useState([])
-const [comingSooon, setComingSoon]=useState([])
-const [topRated, setTopRated]=useState([])
-
-
-useEffect(()=>{
-   PopularService()
-   .then((response)=>{
-    console.log(response)
-   })
-   
-})
-
   return (
-    <View>
-      <Text style={{ alignItems: "center", justifyContent: "center" }}>
-        Home screen
-      </Text>
+    <View style={styles.container}>
+      <HighlyRated />
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#000",
+  },
+  ratedContainer: {
+    height: 200,
+    backgroundColor: "#ff0",
+  },
+});
