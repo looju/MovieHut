@@ -1,29 +1,36 @@
 import React from "react";
-import { View, StyleSheet, FlatList, Text, Image } from "react-native";
-import { ComingSoon } from "../Services/Core/ComingSoon";
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Text,
+  Image,
+  TouchableOpacity,
+} from "react-native";
+import { Popular } from "../Services/Core/Popular";
 
-export const ComingSoonComponent = () => {
+export const PopularComponent = () => {
   const renderItem = ({ item }) => (
-    <View>
-      <View style={styles.ImageView}>
-        <Image
-          style={styles.ImageStyle}
-          source={{ uri: `${item.thumbnail}` }}
-        />
+    <TouchableOpacity>
+      <View>
+        <View style={styles.ImageView}>
+          <Image style={styles.ImageStyle} source={{ uri: `${item.img}` }} resizeMethod="resize"/>
+        </View>
+        <View style={styles.titleView}>
+          <Text style={styles.titleStyle}>{item.title}</Text>
+        </View>
       </View>
-      <View style={styles.titleView}>
-        <Text style={styles.titleStyle}>{item.title}</Text>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 
   return (
+
     <View style={styles.container}>
       <View style={styles.headerView}>
-        <Text style={styles.headerText}> Coming soon to Cinemas</Text>
+        <Text style={styles.headerText}> Most popular</Text>
       </View>
       <FlatList
-        data={ComingSoon}
+        data={Popular}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         horizontal
@@ -36,7 +43,7 @@ const styles = StyleSheet.create({
   container: {
     height: 300,
     maxHeight: 300,
-    marginTop: 15,
+    marginTop: 10,
   },
   headerView: {
     marginVertical: 10,
@@ -57,24 +64,24 @@ const styles = StyleSheet.create({
     fontSize: 32,
   },
   ImageView: {
-    backgroundColor: "#fff",
+  
     marginVertical: 10,
     marginHorizontal: 10,
     height: 200,
-    width: 300,
-    alignItems: "center",
-    justifyContents: "center",
+    width: 200,
+   
   },
   ImageStyle: {
-    width: 300,
+    width: 180,
     height: 200,
   },
   titleView: {
     marginVertical: 10,
-    maxWidth:300
+    maxWidth: 300,
+    marginLeft:5
   },
   titleStyle: {
     fontFamily: "Griffy_400Regular",
-    color:"#fff",
+    color: "#fff",
   },
 });

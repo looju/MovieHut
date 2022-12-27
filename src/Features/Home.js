@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { ComingSoonComponent } from "../Components/ComingSoonComponent";
+import { PopularComponent } from "../Components/PopularComponent";
 
 export const Home = () => {
   return (
     <View style={styles.container}>
-      <ComingSoonComponent />
+      <ScrollView>
+        <PopularComponent />
+        <ComingSoonComponent />
+      </ScrollView>
     </View>
   );
 };

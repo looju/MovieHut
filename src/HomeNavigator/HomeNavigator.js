@@ -5,6 +5,7 @@ import {
   TransitionPresets,
 } from "@react-navigation/stack";
 import { MovieDetail } from "../Features/MovieDetails";
+import { PopularMovieDetails } from "../Features/PopularMovieDetails";
 import { Home } from "../Features/Home";
 const Stack = createStackNavigator();
 
@@ -32,6 +33,15 @@ export const HomeNavigator = () => {
       <Stack.Screen
         name="MovieDetail"
         component={MovieDetail}
+        options={{
+          ...TransitionPresets.RevealFromBottomAndroid,
+          ...TransitionPresets.ModalSlideFromBottomIOS,
+          headerShown: false,
+        }}
+      />
+       <Stack.Screen
+        name="PopularMovieDetails"
+        component={PopularMovieDetails}
         options={{
           ...TransitionPresets.RevealFromBottomAndroid,
           ...TransitionPresets.ModalSlideFromBottomIOS,
