@@ -21,7 +21,8 @@ export default function App() {
     Lato_400Regular,
     Griffy_400Regular,
     Tangerine_400Regular,
-    Arizonia_400Regular
+    Arizonia_400Regular,
+  
   });
 
   if (!fontsLoaded) {

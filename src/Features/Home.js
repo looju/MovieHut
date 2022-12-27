@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text } from "react-native";
-import { HighlyRated } from "../Components/HighlyRated";
+import { ComingSoonComponent } from "../Components/ComingSoonComponent";
 
 export const Home = () => {
   return (
     <View style={styles.container}>
-      <HighlyRated />
+      <ComingSoonComponent />
     </View>
   );
 };
