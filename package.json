@@ -17,6 +17,7 @@
     "expo": "~47.0.9",
     "expo-status-bar": "~1.4.2",
     "lottie-react-native": "5.1.4",
+    "movie-trailer": "^3.0.0",
     "react": "18.1.0",
     "react-content-loader": "^6.2.0",
     "react-native": "0.70.5",

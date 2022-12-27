@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { HomeNavigator } from "../HomeNavigator/HomeNavigator";
-import { Settings } from "../Features/Settings";
+import {Trailer } from "../Features/Trailer";
 import { Search } from "../Features/Search";
 
 const Tab = createBottomTabNavigator();
@@ -15,14 +15,14 @@ export const MainNavigator = () => {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === "HomeNavigator") {
+          if (route.name === "Home") {
             iconName = "movie-open-plus";
             color = focused ? "#A020F0" : "#808080";
           } else if (route.name === "Search") {
             iconName = "text-search";
             color = focused ? "#A020F0" : "#808080";
-          } else if (route.name === "Settings") {
-            iconName = "cog-outline";
+          } else if (route.name === "Trailers") {
+            iconName = "clipboard-play-multiple";
             color = focused ? "#A020F0" : "#808080";
           }
 
@@ -34,9 +34,9 @@ export const MainNavigator = () => {
         tabBarInactiveTintColor: "gray",
       })}
     >
-      <Tab.Screen name="HomeNavigator" component={HomeNavigator} options={{headerShown:false}}/>
+      <Tab.Screen name="Home" component={HomeNavigator} options={{headerShown:false}}/>
       <Tab.Screen name="Search" component={Search} options={{headerShown:false}}/>
-      <Tab.Screen name="Settings" component={Settings} />
+      <Tab.Screen name="Trailers" component={Trailer}  options={{headerShown:false}}/>
     </Tab.Navigator>
   );
 };

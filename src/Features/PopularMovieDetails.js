@@ -7,6 +7,7 @@ import {
   Image,
   TouchableOpacity,
   Linking,
+  ScrollView,
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 export const PopularMovieDetails = ({ route }) => {
@@ -21,45 +22,42 @@ export const PopularMovieDetails = ({ route }) => {
           style={styles.imageStyle}
         />
       </View>
-      <View style={styles.detailsView}>
-        <View style={styles.titleAndLinkView}>
-          <View style={styles.titleView}>
-            <Text style={styles.titleStyle}>{data.title}</Text>
+     
+        <View style={styles.detailsView}>
+          <View style={styles.titleAndLinkView}>
+            <View style={styles.titleView}>
+              <Text style={styles.titleStyle}>{data.title}</Text>
+            </View>
+            <View style={styles.linkView}>
+              <TouchableOpacity
+                onPress={() => {
+                  Linking.openURL(`${data.url}`);
+                }}
+              >
+                <MaterialCommunityIcons
+                  name="open-in-new"
+                  color="#A020F0"
+                  size={30}
+                />
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={styles.linkView}>
-            <TouchableOpacity
-              onPress={() => {
-                Linking.openURL(`${data.url}`);
-              }}
-            >
-              <MaterialCommunityIcons
-                name="open-in-new"
-                color="#A020F0"
-                size={30}
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={styles.ratingView}>
+          <View style={styles.ratingView}>
             <Text style={styles.ratingStyle}>⭐{data.rating}/10 IMDB</Text>
-        </View>
-        <View style={styles.languageView}>
-            <Text style={styles.languageStyle}>Language</Text>
-            <Text style={styles.languageDescStyle}>{data.languge}</Text>
-        </View>
-        <View style={styles.languageView}>
+          </View>
+          <View style={styles.languageView}>
             <Text style={styles.languageStyle}>Description</Text>
             <Text style={styles.languageDescStyle}>{data.description}</Text>
-        </View>
-        <View style={styles.languageView}>
+          </View>
+          <View style={styles.languageView}>
             <Text style={styles.languageStyle}>Starring</Text>
             <Text style={styles.languageDescStyle}>{data.starring}</Text>
-        </View>
-        <View style={styles.languageView}>
+          </View>
+          <View style={styles.languageView}>
             <Text style={styles.languageStyle}>Directed By</Text>
             <Text style={styles.languageDescStyle}>{data.directedBy}</Text>
+          </View>
         </View>
-      </View>
       
     </View>
   );
@@ -102,27 +100,27 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     justifyContent: "flex-end",
   },
-  ratingView:{
-   bottom:45,
-   alignItems: "center",
-   justifyContent: "center",
-   marginTop:5
+  ratingView: {
+    bottom: 45,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 5,
   },
-  ratingStyle:{
-    fontStyle:"Lato_400Regular",
-    fontWeight:"bold"
+  ratingStyle: {
+    fontStyle: "Lato_400Regular",
+    fontWeight: "bold",
   },
-  languageView:{
-    bottom:45,
-    marginTop:10
-   },
-   languageStyle:{
-    fontStyle:"Lato_400Regular",
-    fontWeight:"bold",
-    fontSize:17
+  languageView: {
+    bottom: 45,
+    marginTop: 10,
   },
-  languageDescStyle:{
-    fontSize:17,
-    fontStyle:"Lusitana_400Regular",
-  }
+  languageStyle: {
+    fontStyle: "Lato_400Regular",
+    fontWeight: "bold",
+    fontSize: 17,
+  },
+  languageDescStyle: {
+    fontSize: 17,
+    fontStyle: "Lusitana_400Regular",
+  },
 });

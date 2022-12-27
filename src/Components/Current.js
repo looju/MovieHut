@@ -5,42 +5,38 @@ import {
   FlatList,
   Text,
   Image,
-  TouchableOpacity,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
-import { Popular } from "../Services/Core/Popular";
+import { HaveYouSeen } from "../Services/Core/HaveYouSeen";
 
-export const PopularComponent = ({ navigation }) => {
+export const Current = () => {
   const renderItem = ({ item }) => (
-    <TouchableOpacity
-      onPress={() => navigation.navigate("PopularMovieDetails", { data: item })}
-    >
-      <View>
-        <View style={styles.ImageView}>
+    <View>
+      <View style={styles.ImageView}>
+        <TouchableOpacity>
           <Image
             style={styles.ImageStyle}
-            source={{ uri: `${item.img}` }}
-            resizeMethod="resize"
+            source={{ uri: `${item.posterUrl}` }}
           />
-        </View>
-        <View style={styles.titleView}>
-          <Text style={styles.titleStyle}>{item.title}</Text>
-        </View>
+        </TouchableOpacity>
       </View>
-    </TouchableOpacity>
+      <View style={styles.titleView}>
+        <Text style={styles.titleStyle}>{item.title}</Text>
+      </View>
+    </View>
   );
 
   return (
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.headerView}>
-          <Text style={styles.headerText}> Popular movies of this year</Text>
+          <Text style={styles.headerText}> Based on popular interest</Text>
         </View>
         <FlatList
-          data={Popular}
+          data={HaveYouSeen}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
-          horizontal
         />
       </ScrollView>
     </View>
@@ -51,7 +47,7 @@ const styles = StyleSheet.create({
   container: {
     height: 300,
     maxHeight: 300,
-    marginTop: 10,
+    marginTop: 15,
   },
   headerView: {
     marginVertical: 10,
@@ -72,19 +68,21 @@ const styles = StyleSheet.create({
     fontSize: 32,
   },
   ImageView: {
+    backgroundColor: "#fff",
     marginVertical: 10,
     marginHorizontal: 10,
     height: 200,
-    width: 200,
+    width: 300,
+    alignItems: "center",
+    justifyContents: "center",
   },
   ImageStyle: {
-    width: 180,
+    width: 300,
     height: 200,
   },
   titleView: {
     marginVertical: 10,
     maxWidth: 300,
-    marginLeft: 5,
   },
   titleStyle: {
     fontFamily: "Griffy_400Regular",

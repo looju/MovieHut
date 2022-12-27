@@ -10,8 +10,7 @@ import {
   Griffy_400Regular,
   Tangerine_400Regular,
   Arizonia_400Regular,
-  jost_400Regular,
-  Lusitana_400Regular,
+
 } from "@expo-google-fonts/dev";
 
 const Stack = createStackNavigator();
@@ -23,8 +22,7 @@ export default function App() {
     Griffy_400Regular,
     Tangerine_400Regular,
     Arizonia_400Regular,
-    jost_400Regular,
-    Lusitana_400Regular,
+ 
   });
 
   if (!fontsLoaded) {

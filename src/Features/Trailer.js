@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 
-export const Settings = () => {
+export const Trailer = () => {
   return (
     <View>
       <Text style={{ alignItems: "center", justifyContent: "center" }}>
@@ -11,4 +11,6 @@ export const Settings = () => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  
+});

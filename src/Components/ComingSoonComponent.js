@@ -1,5 +1,12 @@
 import React from "react";
-import { View, StyleSheet, FlatList, Text, Image } from "react-native";
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Text,
+  Image,
+  ScrollView,
+} from "react-native";
 import { ComingSoon } from "../Services/Core/ComingSoon";
 
 export const ComingSoonComponent = () => {
@@ -19,15 +26,17 @@ export const ComingSoonComponent = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.headerView}>
-        <Text style={styles.headerText}> Coming soon to Cinemas</Text>
-      </View>
-      <FlatList
-        data={ComingSoon}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        horizontal
-      />
+      <ScrollView>
+        <View style={styles.headerView}>
+          <Text style={styles.headerText}> Coming soon to Cinemas</Text>
+        </View>
+        <FlatList
+          data={ComingSoon}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          horizontal
+        />
+      </ScrollView>
     </View>
   );
 };
@@ -71,10 +80,10 @@ const styles = StyleSheet.create({
   },
   titleView: {
     marginVertical: 10,
-    maxWidth:300
+    maxWidth: 300,
   },
   titleStyle: {
     fontFamily: "Griffy_400Regular",
-    color:"#fff",
+    color: "#fff",
   },
 });
