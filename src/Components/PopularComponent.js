@@ -29,7 +29,7 @@ export const PopularComponent = ({navigation}) => {
 
     <View style={styles.container}>
       <View style={styles.headerView}>
-        <Text style={styles.headerText}> Most popular</Text>
+        <Text style={styles.headerText}> Popular movies of this year</Text>
       </View>
       <FlatList
         data={Popular}
