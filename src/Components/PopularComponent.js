@@ -9,9 +9,11 @@ import {
 } from "react-native";
 import { Popular } from "../Services/Core/Popular";
 
-export const PopularComponent = () => {
+export const PopularComponent = ({navigation}) => {
+
+
   const renderItem = ({ item }) => (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={()=>navigation.navigate("PopularMovieDetails")}>
       <View>
         <View style={styles.ImageView}>
           <Image style={styles.ImageStyle} source={{ uri: `${item.img}` }} resizeMethod="resize"/>

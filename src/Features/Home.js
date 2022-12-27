@@ -3,12 +3,12 @@ import { View, StyleSheet, ScrollView } from "react-native";
 import { ComingSoonComponent } from "../Components/ComingSoonComponent";
 import { PopularComponent } from "../Components/PopularComponent";
 
-export const Home = () => {
+export const Home = ({navigation}) => {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <PopularComponent />
-        <ComingSoonComponent />
+        <PopularComponent navigation={navigation}/>
+        <ComingSoonComponent/>
       </ScrollView>
     </View>
   );
