@@ -13,7 +13,7 @@ export const PopularComponent = ({navigation}) => {
 
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity onPress={()=>navigation.navigate("PopularMovieDetails")}>
+    <TouchableOpacity onPress={()=>navigation.navigate("PopularMovieDetails", {data:item})}>
       <View>
         <View style={styles.ImageView}>
           <Image style={styles.ImageStyle} source={{ uri: `${item.img}` }} resizeMethod="resize"/>
