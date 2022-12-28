@@ -52,8 +52,13 @@ export const Trailer = () => {
             await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.DEFAULT)
           },
         }}
+        mute={{
+          enterMute: () => setIsMute(!isMute),
+          exitMute: () => setIsMute(!isMute),
+          isMute,
+        }}
         style={{
-          videoBackgroundColor: 'black',
+          videoBackgroundColor: '#A020F0',
           height: inFullscreen2 ? Dimensions.get('window').width : 250,
           width: inFullscreen2 ? Dimensions.get('window').height : 400,
         }}
@@ -75,12 +80,8 @@ export const Trailer = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#ff0",
-    marginTop:100,
+    backgroundColor: "#000",
     flex:1,
-   
-    alignItems: "center",
-    justifyContent: "center",
   },
   contentContainer: {
     alignItems: "center",
