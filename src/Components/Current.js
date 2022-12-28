@@ -15,7 +15,7 @@ export const Current = () => {
     <View>
       <View style={styles.ImageView}>
         <TouchableOpacity>
-          <Image style={styles.ImageStyle} source={{ uri: `${item.Poster}` }} />
+          <Image style={styles.ImageStyle} source={{ uri: `${item.Poster}` }} resizeMode="cover"/>
         </TouchableOpacity>
       </View>
       <View style={styles.titleView}>

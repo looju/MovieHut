@@ -23,10 +23,10 @@ export const HomeNavigator = () => {
           headerLeft: () => (
             <Image
               source={require("../../assets/display.png")}
-              style={{ width: 50, height: 50, borderRadius: 25 }}
+              style={{ width: 50, height: 50,  }}
             />
           ),
-          headerLeftContainerStyle: { width: 50, height: 50, borderRadius: 25, left:20 },
+          headerLeftContainerStyle: { width: 50, height: 50, left:20 },
           headerStyle:{backgroundColor:"#000"}
         }}
       />
