@@ -8,22 +8,23 @@ import { Searchbar } from "react-native-paper";
 import movieTrailer from "movie-trailer";
 
 export const Trailer = () => {
-  const [video, setVideo] = useState("BigBuckBunny");
-  const [videoURL, setVideoURL] = useState("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4");
+  const [video, setVideo] = useState("Up");
+  const [videoURL, setVideoURL] = useState(
+    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+  );
   const [inFullscreen2, setInFullsreen2] = useState(false);
   const [isMute, setIsMute] = useState(false);
   const refVideo2 = useRef(null);
   const refScrollView = useRef(null);
 
-  const handleSearch = (video) => {
-    movieTrailer(video
-      ).then((res) => {
-      setVideoURL(res);
-      
-    })
-    .catch(error=>{
-      console.log("error with movie trailer: " + error)
-    })
+  const handleSearch = (value) => {
+    movieTrailer(value)
+      .then((res) => {
+        setVideoURL(res);
+      })
+      .catch((error) => {
+        console.log("error with movie trailer: " + error);
+      });
   };
 
   useEffect(() => {
@@ -45,6 +46,7 @@ export const Trailer = () => {
         <Searchbar
           placeholder="Search movie trailers"
           onChangeText={(text) => setVideo(text)}
+          onSubmitEditing={() => handleSearch(video)}
           value={video}
           style={{ backgroundColor: "#808080" }}
           inputStyle={{ color: "#fff" }}
@@ -114,14 +116,14 @@ const styles = StyleSheet.create({
     marginTop: 36,
     marginBottom: 12,
   },
-  titleView:{
-    alignItems:"center",
-    justifyContent:"center",
-    paddingBottom:10
+  titleView: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingBottom: 10,
   },
-  titleStyle:{
+  titleStyle: {
     color: "#fff",
-    fontSize:15,
-    fontFamily:"Lato_400Regular" 
-  }
+    fontSize: 15,
+    fontFamily: "Lato_400Regular",
+  },
 });

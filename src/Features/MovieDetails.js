@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import {
   View,
   StyleSheet,
@@ -8,54 +8,45 @@ import {
   TouchableOpacity,
   Linking,
   ScrollView,
+  Dimensions,
 } from "react-native";
+import { List } from "react-native-paper";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+
+
 export const MovieDetail = ({ route }) => {
   const { data } = route.params;
+  const [expanded, setExpanded] = useState(false);
+
+  const Details = () => {
+    return <Text>hiiiiiii</Text>;
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.imageView}>
         <Image
           resizeMethod="scale"
-          source={{ uri: `${data.img}` }}
+          source={{ uri: `${data.Images[1]}` }}
           style={styles.imageStyle}
         />
       </View>
 
       <View style={styles.detailsView}>
-        <View style={styles.titleAndLinkView}>
-          <View style={styles.titleView}>
-            <Text style={styles.titleStyle}>{data.title}</Text>
-          </View>
-          <View style={styles.linkView}>
-            <TouchableOpacity
-              onPress={() => {
-                Linking.openURL(`${data.url}`);
-              }}
-            >
-              <MaterialCommunityIcons
-                name="open-in-new"
-                color="#A020F0"
-                size={30}
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={styles.ratingView}>
-          <Text style={styles.ratingStyle}>⭐{data.rating}/10 IMDB</Text>
-        </View>
-        <View style={styles.languageView}>
-          <Text style={styles.languageStyle}>Description</Text>
-          <Text style={styles.languageDescStyle}>{data.description}</Text>
-        </View>
-        <View style={styles.languageView}>
-          <Text style={styles.languageStyle}>Starring</Text>
-          <Text style={styles.languageDescStyle}>{data.starring}</Text>
-        </View>
-        <View style={styles.languageView}>
-          <Text style={styles.languageStyle}>Directed By</Text>
-          <Text style={styles.languageDescStyle}>{data.directedBy}</Text>
+        <View style={styles.mainInfoView}>
+          <TouchableOpacity
+            onPress={() => {
+              return <Text>hiiiiiii</Text>;
+            }}
+          >
+            <Text style={styles.infoStyle}>Details</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.infoStyle}>Cast</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.infoStyle}>More</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -68,9 +59,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#000",
   },
   imageView: {
-    width: "50%",
+    width: "100%",
     height: "45%",
-    marginLeft: "25%",
   },
   imageStyle: {
     width: "100%",
@@ -82,44 +72,15 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
   },
-  titleAndLinkView: {
-    marginVertical: 10,
-  },
-  titleStyle: {
-    color: "#000",
-    fontSize: 40,
-    fontFamily: "Tangerine_400Regular",
-  },
-  titleView: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  linkView: {
-    bottom: 35,
-    alignItems: "flex-end",
-    justifyContent: "flex-end",
-  },
-  ratingView: {
-    bottom: 45,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 5,
-  },
-  ratingStyle: {
-    fontStyle: "Lato_400Regular",
-    fontWeight: "bold",
-  },
-  languageView: {
-    bottom: 45,
+  mainInfoView: {
     marginTop: 10,
+    width: Dimensions.get("screen").width,
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
   },
-  languageStyle: {
-    fontStyle: "Lato_400Regular",
-    fontWeight: "bold",
-    fontSize: 17,
-  },
-  languageDescStyle: {
-    fontSize: 17,
-    fontStyle: "Lusitana_400Regular",
+  infoStyle: {
+    fontSize: 25,
+    fontFamily: "Oswald_400Regular",
   },
 });

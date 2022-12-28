@@ -7,6 +7,7 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  Dimensions
 } from "react-native";
 import { HaveYouSeen } from "../Services/Core/HaveYouSeen";
 
@@ -80,12 +81,12 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: 10,
     height: 200,
-    width: 300,
+    width: Dimensions.get("screen").width,
     alignItems: "center",
     justifyContents: "center",
   },
   ImageStyle: {
-    width: 300,
+    width: Dimensions.get("screen").width,
     height: 200,
   },
   titleView: {
