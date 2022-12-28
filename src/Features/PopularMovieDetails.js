@@ -78,16 +78,18 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   detailsView: {
-    backgroundColor: "#fff",
+    backgroundColor: "#000",
     flex: 1,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
+    borderTopColor:"#fff",
+    borderTopWidth: 2,
   },
   titleAndLinkView: {
     marginVertical: 10,
   },
   titleStyle: {
-    color: "#000",
+    color: "#fff",
     fontSize: 40,
     fontFamily: "Tangerine_400Regular",
   },
@@ -109,6 +111,7 @@ const styles = StyleSheet.create({
   ratingStyle: {
     fontStyle: "Lato_400Regular",
     fontWeight: "bold",
+    color: "#fff",
   },
   languageView: {
     bottom: 45,
@@ -118,9 +121,11 @@ const styles = StyleSheet.create({
     fontStyle: "Lato_400Regular",
     fontWeight: "bold",
     fontSize: 17,
+    color: "#fff",
   },
   languageDescStyle: {
     fontSize: 17,
     fontStyle: "Lusitana_400Regular",
+    color: "#fff",
   },
 });

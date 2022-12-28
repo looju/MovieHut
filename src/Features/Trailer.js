@@ -1,5 +1,5 @@
 import * as ScreenOrientation from "expo-screen-orientation";
-import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Dimensions, ImageBackground, ScrollView, StyleSheet, Text, View } from "react-native";
 import { ResizeMode } from "expo-av";
 import { setStatusBarHidden } from "expo-status-bar";
 import React, { useRef, useState, useEffect } from "react";
@@ -32,6 +32,7 @@ export const Trailer = () => {
   }, [video]);
 
   return (
+    <ImageBackground source={require('../../assets/movie.jpg')} style={styles.container} resizeMode="cover">
     <ScrollView
       scrollEnabled={!inFullscreen2}
       ref={refScrollView}
@@ -100,12 +101,12 @@ export const Trailer = () => {
         />
       </View>
     </ScrollView>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#000",
     flex: 1,
   },
   searchBarView: {
