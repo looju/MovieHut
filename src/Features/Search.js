@@ -1,16 +1,24 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, ImageBackground } from "react-native";
+import { Searchbar } from 'react-native-paper';
+
 
 export const Search = () => {
   return (
-    <View>
-      <Text style={{ alignItems: "center", justifyContent: "center" }}>
-      
-        Search screen
-      </Text>
-    </View>
+    <ImageBackground style={styles.container} source={require("../../assets/cinema.jpg")} resizeMode="cover">
+      <View style={styles.searchView}>
+      <Searchbar/>
+      </View>
+    </ImageBackground>
   );
 };
 
-const styles = StyleSheet.create({});
-
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  searchView:{
+    backgroundColor:"#ff0",
+    marginTop:10
+  }
+});

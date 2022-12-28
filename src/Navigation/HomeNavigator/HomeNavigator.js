@@ -4,9 +4,9 @@ import {
   createStackNavigator,
   TransitionPresets,
 } from "@react-navigation/stack";
-import { MovieDetail } from "../Features/MovieDetails";
-import { PopularMovieDetails } from "../Features/PopularMovieDetails";
-import { Home } from "../Features/Home";
+import { MovieDetail } from "../../Features/MovieDetails";
+import { PopularMovieDetails } from "../../Features/PopularMovieDetails";
+import { Home } from "../../Features/Home";
 const Stack = createStackNavigator();
 
 export const HomeNavigator = () => {
@@ -22,7 +22,7 @@ export const HomeNavigator = () => {
           headerTitleStyle: { color: "#A020F0" },
           headerLeft: () => (
             <Image
-              source={require("../../assets/display.png")}
+              source={require("../../../assets/display.png")}
               style={{ width: 50, height: 50,  }}
             />
           ),

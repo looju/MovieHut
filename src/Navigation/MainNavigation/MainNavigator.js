@@ -1,10 +1,9 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { HomeNavigator } from "../HomeNavigator/HomeNavigator";
-import {Trailer } from "../Features/Trailer";
-import { Search } from "../Features/Search";
+import {Trailer } from "../../Features/Trailer";
+import {Search} from "../../Features/Search"
 
 const Tab = createBottomTabNavigator();
 
@@ -42,11 +41,3 @@ export const MainNavigator = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

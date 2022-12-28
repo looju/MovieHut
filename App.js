@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { Carousel } from "./src/Carousel/Carousel";
-import { MainNavigator } from "./src/MainNavigation/MainNavigator";
+import { MainNavigator } from "./src/Navigation/MainNavigation/MainNavigator";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import {
@@ -10,7 +10,6 @@ import {
   Griffy_400Regular,
   Tangerine_400Regular,
   Arizonia_400Regular,
-
 } from "@expo-google-fonts/dev";
 
 const Stack = createStackNavigator();
@@ -22,7 +21,6 @@ export default function App() {
     Griffy_400Regular,
     Tangerine_400Regular,
     Arizonia_400Regular,
- 
   });
 
   if (!fontsLoaded) {
