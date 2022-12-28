@@ -13,7 +13,7 @@ export const Home = ({ navigation }) => {
         </ScrollView>
       </View>
       <View style={styles.verticalContainer}>
-        <Current />
+        <Current navigation={navigation} />
       </View>
     </View>
   );

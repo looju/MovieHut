@@ -10,12 +10,12 @@ import {
 } from "react-native";
 import { HaveYouSeen } from "../Services/Core/HaveYouSeen";
 
-export const Current = () => {
+export const Current = ({navigation}) => {
   const renderItem = ({ item }) => (
     <View>
       <View style={styles.ImageView}>
-        <TouchableOpacity>
-          <Image style={styles.ImageStyle} source={{ uri: `${item.Poster}` }} resizeMode="cover"/>
+        <TouchableOpacity onPress={()=>navigation.navigate("MovieDetail",{data:item})}>
+          <Image style={styles.ImageStyle} source={{ uri: `${item.Images[0]}` }} resizeMode="cover"/>
         </TouchableOpacity>
       </View>
       <View style={styles.titleView}>

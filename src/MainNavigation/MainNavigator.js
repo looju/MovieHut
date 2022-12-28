@@ -32,6 +32,7 @@ export const MainNavigator = () => {
         },
         tabBarActiveTintColor: "tomato",
         tabBarInactiveTintColor: "gray",
+        tabBarStyle:{backgroundColor:"#000"}
       })}
     >
       <Tab.Screen name="Home" component={HomeNavigator} options={{headerShown:false}}/>

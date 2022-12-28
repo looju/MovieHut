@@ -8,17 +8,22 @@ import { Searchbar } from "react-native-paper";
 import movieTrailer from "movie-trailer";
 
 export const Trailer = () => {
-  const [video, setVideo] = useState("inception");
-  const [videoURL, setVideoURL] = useState("https://youtu.be/sa9l-dTv9Gk");
+  const [video, setVideo] = useState("BigBuckBunny");
+  const [videoURL, setVideoURL] = useState("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4");
   const [inFullscreen2, setInFullsreen2] = useState(false);
   const [isMute, setIsMute] = useState(false);
   const refVideo2 = useRef(null);
   const refScrollView = useRef(null);
 
   const handleSearch = (video) => {
-    movieTrailer(video).then((res) => {
+    movieTrailer(video
+      ).then((res) => {
       setVideoURL(res);
-    });
+      
+    })
+    .catch(error=>{
+      console.log("error with movie trailer: " + error)
+    })
   };
 
   useEffect(() => {
@@ -39,7 +44,7 @@ export const Trailer = () => {
       <View style={styles.searchBarView}>
         <Searchbar
           placeholder="Search movie trailers"
-          onChangeText={(text) => handleSearch(text)}
+          onChangeText={(text) => setVideo(text)}
           value={video}
           style={{ backgroundColor: "#808080" }}
           inputStyle={{ color: "#fff" }}
@@ -56,7 +61,7 @@ export const Trailer = () => {
             shouldPlay: false,
             resizeMode: ResizeMode.COVER,
             source: {
-              uri: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              uri: `${videoURL}`,
             },
             ref: refVideo2,
           }}
