@@ -3,7 +3,7 @@ import { View, Text, ScrollView } from "react-native";
 
 export const ShowMore = ({ data }) => {
   return (
-    <ScrollView>
+    <ScrollView style={{flex:1}}>
           <View style={{ marginVertical: 10, flexDirection: "row" }}>
         <Text
           style={{

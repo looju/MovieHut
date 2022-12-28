@@ -5,19 +5,39 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  ScrollView,
   Dimensions,
 } from "react-native";
+import LottieView from "lottie-react-native"
 import { ShowDetails } from "../Components/ShowDetails";
 import { ShowCast } from "../Components/ShowCast";
 import { ShowMore } from "../Components/ShowMore";
 
 export const MovieDetail = ({ route }) => {
   const { data } = route.params;
-  const [details, setDetailsExpanded] = useState(true);
-  const [cast, setCastExpanded] = useState(false);
-  const [more, setMoreExpanded] = useState(false);
+  const [selectedTab, setSelectedTab] = useState('');
 
+
+  const Lottie=()=>{
+  return(
+    <View style={{alignItems:"center", justifyContent:"center"}}>
+       <LottieView style={{width:40, height:40}} source={require('../../assets/movie.json')}/>
+       </View>
+        
+  )
+  }
+
+    const SelectedTab = () => {
+        switch(selectedTab){
+            case 'A':
+                return <ShowDetails data={data}/>
+            case 'B':
+                return <ShowCast data={data}/>
+            case 'C':
+                return <ShowMore data={data}/>
+            default:
+                return <Lottie/>
+    }
+  }
   return (
     <View style={styles.container}>
       <View style={styles.imageView}>
@@ -30,19 +50,21 @@ export const MovieDetail = ({ route }) => {
 
       <View style={styles.detailsView}>
         <View style={styles.mainInfoView}>
-          <TouchableOpacity onPress={() => setDetailsExpanded(!details)}>
-            <Text style={styles.infoStyle}>Details</Text>
+          <TouchableOpacity onPress={() => setSelectedTab('A')}>
+            <Text style={[styles.infoStyle, {color:selectedTab=="A"?"#A020F0":"#fff"}]}>Details</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setCastExpanded(!cast)}>
-            <Text style={styles.infoStyle}>Cast</Text>
+          <TouchableOpacity onPress={() => setSelectedTab('B')}>
+            <Text
+              style={[styles.infoStyle,{ color:selectedTab=="B"?"#A020F0":"#fff"}]}
+            >
+              Cast
+            </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setMoreExpanded(!more)}>
-            <Text style={styles.infoStyle}>More</Text>
+          <TouchableOpacity onPress={() => setSelectedTab('C')}>
+            <Text style={[styles.infoStyle, {color:selectedTab=="C"?"#A020F0":"#fff"}]}>More</Text>
           </TouchableOpacity>
         </View>
-        {details && <ShowDetails data={data} />}
-        {cast && <ShowCast data={data} />}
-        {more && <ShowMore data={data} />}
+        {SelectedTab()}
       </View>
     </View>
   );
@@ -78,7 +100,6 @@ const styles = StyleSheet.create({
   },
   infoStyle: {
     fontSize: 25,
-    fontFamily: "Oswald_400Regular",
-    color: "#fff",
+    fontFamily: "Oswald_400Regular"
   },
 });

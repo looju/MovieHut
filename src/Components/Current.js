@@ -45,7 +45,7 @@ export const Current = ({navigation}) => {
         <FlatList
           data={HaveYouSeen}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.Plot}
         />
       </ScrollView>
     </View>
