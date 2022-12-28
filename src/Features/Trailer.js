@@ -4,12 +4,12 @@ import { ResizeMode } from "expo-av";
 import { setStatusBarHidden } from "expo-status-bar";
 import React, { useRef, useState } from "react";
 import VideoPlayer from "expo-video-player";
+import {SearchBar} from 'react-native-paper'
 
 export const Trailer = () => {
-  const [inFullscreen, setInFullsreen] = useState(false);
+  const [movieTrailer, setMovieTrailer] = useState(false);
   const [inFullscreen2, setInFullsreen2] = useState(false);
   const [isMute, setIsMute] = useState(false);
-  const refVideo = useRef(null);
   const refVideo2 = useRef(null);
   const refScrollView = useRef(null);
 
@@ -80,7 +80,7 @@ export const Trailer = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#000",
+    backgroundColor: "#808080",
     flex:1,
   },
   contentContainer: {

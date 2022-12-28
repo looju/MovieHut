@@ -15,14 +15,22 @@ export const Current = () => {
     <View>
       <View style={styles.ImageView}>
         <TouchableOpacity>
-          <Image
-            style={styles.ImageStyle}
-            source={{ uri: `${item.posterUrl}` }}
-          />
+          <Image style={styles.ImageStyle} source={{ uri: `${item.Poster}` }} />
         </TouchableOpacity>
       </View>
       <View style={styles.titleView}>
-        <Text style={styles.titleStyle}>{item.title}</Text>
+        <Text style={styles.titleStyle}>{item.Title}</Text>
+      </View>
+      <View style={styles.OtherView}>
+        <View style={styles.otherDetailsView}>
+          <Text style={styles.titleStyle}> {item.Genre}</Text>
+        </View>
+        <View style={styles.otherDetailsView}>
+          <Text style={styles.titleStyle}>📽  {item.Year}</Text>
+        </View>
+        <View style={styles.otherDetailsView}>
+          <Text style={styles.titleStyle}> ⌚️  {item.Runtime}</Text>
+        </View>
       </View>
     </View>
   );
@@ -87,5 +95,20 @@ const styles = StyleSheet.create({
   titleStyle: {
     fontFamily: "Griffy_400Regular",
     color: "#fff",
+  },
+  OtherView: {
+    marginVertical: 10,
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+  },
+  otherDetailsView: {
+    marginHorizontal: 10,
+    backgroundColor: "#A020F0",
+    width: 100,
+    height: 50,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

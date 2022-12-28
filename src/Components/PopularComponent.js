@@ -26,6 +26,9 @@ export const PopularComponent = ({ navigation }) => {
         <View style={styles.titleView}>
           <Text style={styles.titleStyle}>{item.title}</Text>
         </View>
+        <View style={styles.otherDetailsView}>
+          <Text style={styles.titleStyle}>🌟 {item.rating}</Text>
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -49,8 +52,8 @@ export const PopularComponent = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 300,
-    maxHeight: 300,
+    height: 370,
+    maxHeight: 400,
     marginTop: 10,
   },
   headerView: {
@@ -89,5 +92,13 @@ const styles = StyleSheet.create({
   titleStyle: {
     fontFamily: "Griffy_400Regular",
     color: "#fff",
+  },
+  otherDetailsView: {
+    backgroundColor: "#A020F0",
+    width: 70,
+    height: 50,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
