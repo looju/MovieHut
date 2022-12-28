@@ -2,39 +2,21 @@ import React, { useState } from "react";
 import {
   View,
   StyleSheet,
-  FlatList,
   Text,
   Image,
   TouchableOpacity,
-  Linking,
   ScrollView,
   Dimensions,
 } from "react-native";
-import { List } from "react-native-paper";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { ShowDetails } from "../Components/ShowDetails";
+import { ShowCast } from "../Components/ShowCast";
+import { ShowMore } from "../Components/ShowMore";
 
 export const MovieDetail = ({ route }) => {
   const { data } = route.params;
-  const [expanded, setExpanded] = useState(true);
+  const [details, setDetailsExpanded] = useState(true);
   const [cast, setCastExpanded] = useState(false);
-  const handlePress = () => setExpanded(!expanded);
-
-  const Details = () => {
-    return (
-      <View
-        style={{
-          backgroundColor: "#ff0",
-          width: 300,
-          height: 200,
-          bottom: 100,
-        }}
-      >
-        <TouchableOpacity>
-          <Text style={styles.infoStyle}>More</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  };
+  const [more, setMoreExpanded] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -48,105 +30,19 @@ export const MovieDetail = ({ route }) => {
 
       <View style={styles.detailsView}>
         <View style={styles.mainInfoView}>
-          <TouchableOpacity onPress={() => setExpanded(!expanded)}>
+          <TouchableOpacity onPress={() => setDetailsExpanded(!details)}>
             <Text style={styles.infoStyle}>Details</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => setCastExpanded(!cast)}>
             <Text style={styles.infoStyle}>Cast</Text>
-            {cast && (
-              <View>
-                <Text style={{ color: "white" }}>hooooooooi</Text>
-              </View>
-            )}
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => setMoreExpanded(!more)}>
             <Text style={styles.infoStyle}>More</Text>
           </TouchableOpacity>
         </View>
-        {expanded && (
-          <View>
-            <View style={{ marginVertical: 10, flexDirection: "row" }}>
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: 20,
-                  fontFamily: "Lato_400Regular",
-                }}
-              >
-                Title:{" "}
-              </Text>
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: 20,
-                  fontFamily: "Griffy_400Regular",
-                }}
-              >
-                {data.Title}
-              </Text>
-            </View>
-            <View style={{ marginVertical: 10, flexDirection: "row" }}>
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: 20,
-                  fontFamily: "Lato_400Regular",
-                }}
-              >
-                Language:{" "}
-              </Text>
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: 20,
-                  fontFamily: "Griffy_400Regular",
-                }}
-              >
-                {data.Language}
-              </Text>
-            </View>
-            <View style={{ marginVertical: 10, flexDirection: "row" }}>
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: 20,
-                  fontFamily: "Lato_400Regular",
-                }}
-              >
-                Genre:{" "}
-              </Text>
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: 20,
-                  fontFamily: "Griffy_400Regular",
-                }}
-              >
-                {data.Genre}
-              </Text>
-            </View>
-            <View style={{ marginVertical: 10, flexDirection: "row" }}>
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: 20,
-                  fontFamily: "Lato_400Regular",
-                }}
-              >
-                Plot:{" "}
-              </Text>
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: 20,
-                  fontFamily: "Griffy_400Regular",
-                }}
-              >
-                {data.Plot}
-              </Text>
-            </View>
-          </View>
-        )}
+        {details && <ShowDetails data={data} />}
+        {cast && <ShowCast data={data} />}
+        {more && <ShowMore data={data} />}
       </View>
     </View>
   );
