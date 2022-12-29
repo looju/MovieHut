@@ -9,7 +9,6 @@ export const Home = ({ navigation }) => {
       <View style={styles.container}>
         <ScrollView>
           <PopularComponent navigation={navigation} />
-          <ComingSoonComponent />
         </ScrollView>
       </View>
       <View style={styles.verticalContainer}>
@@ -27,9 +26,9 @@ const styles = StyleSheet.create({
   verticalContainer: {
     flex:1,
     backgroundColor: "#000",
-    borderTopColor:"#A020F0",
     borderTopWidth:5,
     borderTopLeftRadius:10,
     borderTopRightRadius:10,
+    marginTop:15
   },
 });

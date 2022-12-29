@@ -7,73 +7,66 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
+  FlatList,
 } from "react-native";
 import { Searchbar } from "react-native-paper";
-import { SearchAPI } from "../Services/Calls/SearchAPI";
 
 export const Search = ({ navigation }) => {
-  const [movieData, setMovieData] = useState("");
+  const [movieData, setMovieData] = useState("naruto");
   const [movieInfo, setMovieInfo] = useState([]);
 
-  const SearchAPI = async (search = "naruto") => {
-    await fetch(`https://api.jikan.moe/v4/anime?q=${search}&sfw`).then((res) =>
-      res.json()
-    );
-    //  .then((data)=>console.log(data))
-  };
-
-  const SearchMovies = (value) => {
-    SearchAPI(value)
-      .then((res) => {
-        console.log(res);
-        setMovieInfo(res);
-      })
+  const SearchAPI = async (search) => {
+    await fetch(`https://api.jikan.moe/v4/anime?q=${search}&sfw`)
+      .then((res) => res.json())
+      .then((data) => setMovieInfo(data))
       .catch((error) => {
         console.log("error at Search.js " + error);
       });
   };
 
   useEffect(() => {
-    SearchAPI();
-  });
+    SearchAPI(movieData);
+  }, []);
+
+  const renderItems = ({ item }) => (
+    <View style={styles.ImageView}>
+      <View>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("MovieDetail", { data: item })}
+        >
+          <Image
+            style={styles.ImageStyle}
+            source={{ uri: `${item.images.jpg.image_url}` }}
+            resizeMode="cover"
+          />
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.detailView}>
+        <View style={styles.titleView}>
+          <Text style={styles.titleStyle}> {item.title}</Text>
+        </View>
+        <View style={styles.ratingView}>
+          <Text style={styles.ratingStyle}>{item.score}</Text>
+        </View>
+      </View>
+    </View>
+  );
 
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.searchView}>
         <Searchbar
-          placeholder="Search for movies"
+          placeholder="Search for animes"
+          value={movieData}
           onChangeText={(text) => setMovieData(text)}
           onSubmitEditing={() => {
-            SearchMovies(movieData);
+            SearchAPI(movieData);
           }}
         />
       </View>
       <View>
-        <View style={styles.ImageView}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("MovieDetail", { data: item })}
-          >
-            <Image
-              style={styles.ImageStyle}
-              source={require("../../assets/movie.jpg")}
-              resizeMode="cover"
-            />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.titleView}>
-          <Text style={styles.titleStyle}>{movieData.Plot}</Text>
-        </View>
-        <View style={styles.OtherView}>
-          <View style={styles.otherDetailsView}>
-            <Text style={styles.titleStyle}> {movieInfo.Title}</Text>
-          </View>
-          <View style={styles.otherDetailsView}>
-            <Text style={styles.titleStyle}>📽 HII</Text>
-          </View>
-          <View style={styles.otherDetailsView}>
-            <Text style={styles.titleStyle}> ⌚️ HII</Text>
-          </View>
-        </View>
+        <FlatList data={movieInfo.data} renderItem={renderItems} />
       </View>
     </View>
   );
@@ -82,61 +75,44 @@ export const Search = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#000",
   },
   searchView: {
-    backgroundColor: "#ff0",
     marginTop: 15,
   },
 
-  headerView: {
+  ImageView: {
+    backgroundColor: "#000",
+    height: 200,
+    width: Dimensions.get("screen").width * 0.5,
+    flexDirection: "row",
+    alignItems: "center",
     marginVertical: 10,
   },
-  headerText: {
-    fontFamily: "Lato_400Regular",
-    fontSize: 20,
-    color: "#fff",
-    fontWeight: "bold",
-  },
-  item: {
-    backgroundColor: "#f9c2ff",
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
-  title: {
-    fontSize: 32,
-  },
-  ImageView: {
-    backgroundColor: "#fff",
-    marginTop: 50,
-    height: 200,
-    width: Dimensions.get("screen").width,
-    alignItems: "center",
-    justifyContents: "center",
-  },
   ImageStyle: {
-    width: Dimensions.get("screen").width,
+    width: Dimensions.get("screen").width * 0.5,
     height: 200,
   },
   titleView: {
-    marginVertical: 10,
-    maxWidth: 300,
+    marginVertical: 15,
   },
   titleStyle: {
-    fontFamily: "Griffy_400Regular",
+    color: "#fff",
+    fontSize: 20,
+    fontFamily: "Lato_400Regular",
+  },
+  ratingStyle: {
     color: "#fff",
   },
-  OtherView: {
-    marginVertical: 10,
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
+  detailView: {
+    marginLeft: 5,
   },
-  otherDetailsView: {
+  ratingView: {
+    paddingTop: 15,
     backgroundColor: "#A020F0",
-    width: 100,
+    width: 70,
     height: 50,
-    borderRadius: 20,
+    borderRadius: 25,
     alignItems: "center",
     justifyContent: "center",
   },
