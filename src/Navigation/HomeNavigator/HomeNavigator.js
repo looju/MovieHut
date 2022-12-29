@@ -6,6 +6,7 @@ import {
 } from "@react-navigation/stack";
 import { MovieDetail } from "../../Features/MovieDetails";
 import { PopularMovieDetails } from "../../Features/PopularMovieDetails";
+import { AnimeDetails } from "../../Features/AnimeDetails";
 import { Home } from "../../Features/Home";
 const Stack = createStackNavigator();
 
@@ -44,6 +45,15 @@ export const HomeNavigator = () => {
         component={PopularMovieDetails}
         options={{
           ...TransitionPresets.RevealFromBottomAndroid,
+          ...TransitionPresets.ModalSlideFromBottomIOS,
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="AnimeDetails"
+        component={AnimeDetails}
+        options={{
+          ...TransitionPresets.ModalTransition,
           ...TransitionPresets.ModalSlideFromBottomIOS,
           headerShown: false,
         }}

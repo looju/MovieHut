@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { Searchbar } from "react-native-paper";
 
-export const Search = ({ navigation }) => {
+export const Anime = ({ navigation }) => {
   const [movieData, setMovieData] = useState("naruto");
   const [movieInfo, setMovieInfo] = useState([]);
 
@@ -32,7 +32,7 @@ export const Search = ({ navigation }) => {
     <View style={styles.ImageView}>
       <View>
         <TouchableOpacity
-          onPress={() => navigation.navigate("MovieDetail", { data: item })}
+          onPress={() => navigation.navigate("AnimeDetails", { data: item })}
         >
           <Image
             style={styles.ImageStyle}
@@ -47,7 +47,7 @@ export const Search = ({ navigation }) => {
           <Text style={styles.titleStyle}> {item.title}</Text>
         </View>
         <View style={styles.ratingView}>
-          <Text style={styles.ratingStyle}>{item.score}</Text>
+          <Text style={styles.ratingStyle}>⭐{item.score}</Text>
         </View>
       </View>
     </View>

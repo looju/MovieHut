@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { HomeNavigator } from "../HomeNavigator/HomeNavigator";
 import {Trailer } from "../../Features/Trailer";
-import {Search} from "../../Features/Search"
+import {Anime} from "../../Features/Anime"
 
 const Tab = createBottomTabNavigator();
 
@@ -17,8 +17,8 @@ export const MainNavigator = () => {
           if (route.name === "Home") {
             iconName = "movie-open-plus";
             color = focused ? "#A020F0" : "#808080";
-          } else if (route.name === "Search") {
-            iconName = "text-search";
+          } else if (route.name === "Anime") {
+            iconName = "filmstrip-box-multiple";
             color = focused ? "#A020F0" : "#808080";
           } else if (route.name === "Trailers") {
             iconName = "clipboard-play-multiple";
@@ -35,7 +35,7 @@ export const MainNavigator = () => {
       })}
     >
       <Tab.Screen name="Home" component={HomeNavigator} options={{headerShown:false}}/>
-      <Tab.Screen name="Search" component={Search} options={{headerShown:false}}/>
+      <Tab.Screen name="Anime" component={Anime} options={{headerShown:false}}/>
       <Tab.Screen name="Trailers" component={Trailer}  options={{headerShown:false}}/>
     </Tab.Navigator>
   );
