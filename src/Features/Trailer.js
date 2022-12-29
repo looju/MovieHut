@@ -1,22 +1,28 @@
 import * as ScreenOrientation from "expo-screen-orientation";
-import { Dimensions, ImageBackground, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Dimensions,
+  FlatList,
+  ImageBackground,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { ResizeMode } from "expo-av";
 import { setStatusBarHidden } from "expo-status-bar";
 import React, { useRef, useState, useEffect } from "react";
 import VideoPlayer from "expo-video-player";
 import { Searchbar } from "react-native-paper";
 import movieTrailer from "movie-trailer";
-
+import { Trailers } from "../Services/Core/Trailers";
 
 export const SearchAPI = async (searchgifted) => {
-
   const value = await fetch(
     `http://www.omdbapi.com/?t=${search}&apikey=e13597d5`
   );
   let result = value.json();
-  return result
+  return result;
 };
-
 
 export const Trailer = () => {
   const [video, setVideo] = useState("Up");
@@ -28,11 +34,6 @@ export const Trailer = () => {
   const refVideo2 = useRef(null);
   const refScrollView = useRef(null);
 
-
- 
-  
-
-
   const handleSearch = (value) => {
     movieTrailer(value)
       .then((res) => {
@@ -43,90 +44,96 @@ export const Trailer = () => {
       });
   };
 
+  const renderItem = ({ item }) => (
+    <View style={styles.container}>
+      <VideoPlayer
+        videoProps={{
+          shouldPlay: false,
+          resizeMode: ResizeMode.COVER,
+          source: {
+            uri: `${item.video}`,
+          },
+          ref: refVideo2,
+        }}
+        fullscreen={{
+          inFullscreen: inFullscreen2,
+          enterFullscreen: async () => {
+            setStatusBarHidden(true, "fade");
+            setInFullsreen2(!inFullscreen2);
+            await ScreenOrientation.lockAsync(
+              ScreenOrientation.OrientationLock.LANDSCAPE_LEFT
+            );
+            refVideo2.current.setStatusAsync({
+              shouldPlay: true,
+            });
+          },
+          exitFullscreen: async () => {
+            setStatusBarHidden(false, "fade");
+            setInFullsreen2(!inFullscreen2);
+            await ScreenOrientation.lockAsync(
+              ScreenOrientation.OrientationLock.DEFAULT
+            );
+          },
+        }}
+        mute={{
+          enterMute: () => setIsMute(!isMute),
+          exitMute: () => setIsMute(!isMute),
+          isMute,
+        }}
+        style={{
+          videoBackgroundColor: "#ffff",
+          height: inFullscreen2 ? Dimensions.get("window").width : 250,
+          width: inFullscreen2 ? Dimensions.get("window").height : 400,
+        }}
+      />
+      <View style={styles.titleView}>
+        <Text style={styles.titleStyle}>{video.toLocaleUpperCase()}</Text>
+      </View>
+    </View>
+  );
+
   useEffect(() => {
     handleSearch(video);
   }, [video]);
 
   return (
-    <ImageBackground source={require('../../assets/movie.jpg')} style={styles.container} resizeMode="cover">
-    <ScrollView
-      scrollEnabled={!inFullscreen2}
-      ref={refScrollView}
-      onContentSizeChange={() => {
-        if (inFullscreen2) {
-          refScrollView.current.scrollToEnd({ animated: true });
-        }
-      }}
-      style={styles.container}
-    >
-      <View style={styles.searchBarView}>
-        <Searchbar
-          placeholder="Search movie trailers"
-          onChangeText={(text) => setVideo(text)}
-          onSubmitEditing={() => handleSearch(video)}
-          value={video}
-          style={{ backgroundColor: "#808080" }}
-          inputStyle={{ color: "#fff" }}
-        />
-      </View>
-
-      <View style={styles.container}>
-        <View style={styles.titleView}>
-          <Text style={styles.titleStyle}>{video.toLocaleUpperCase()}</Text>
+    <View style={styles.container}>
+      <ScrollView
+        scrollEnabled={!inFullscreen2}
+        ref={refScrollView}
+        onContentSizeChange={() => {
+          if (inFullscreen2) {
+            refScrollView.current.scrollToEnd({ animated: true });
+          }
+        }}
+        style={styles.container}
+      >
+        <View style={styles.searchBarView}>
+          <Searchbar
+            placeholder="Search movie trailers"
+            onChangeText={(text) => setVideo(text)}
+            onSubmitEditing={() => handleSearch(video)}
+            value={video}
+            style={{ backgroundColor: "#808080" }}
+            inputStyle={{ color: "#fff" }}
+          />
         </View>
-
-        <VideoPlayer
-          videoProps={{
-            shouldPlay: false,
-            resizeMode: ResizeMode.COVER,
-            source: {
-              uri: `${videoURL}`,
-            },
-            ref: refVideo2,
-          }}
-          fullscreen={{
-            inFullscreen: inFullscreen2,
-            enterFullscreen: async () => {
-              setStatusBarHidden(true, "fade");
-              setInFullsreen2(!inFullscreen2);
-              await ScreenOrientation.lockAsync(
-                ScreenOrientation.OrientationLock.LANDSCAPE_LEFT
-              );
-              refVideo2.current.setStatusAsync({
-                shouldPlay: true,
-              });
-            },
-            exitFullscreen: async () => {
-              setStatusBarHidden(false, "fade");
-              setInFullsreen2(!inFullscreen2);
-              await ScreenOrientation.lockAsync(
-                ScreenOrientation.OrientationLock.DEFAULT
-              );
-            },
-          }}
-          mute={{
-            enterMute: () => setIsMute(!isMute),
-            exitMute: () => setIsMute(!isMute),
-            isMute,
-          }}
-          style={{
-            videoBackgroundColor: "#ffff",
-            height: inFullscreen2 ? Dimensions.get("window").width : 250,
-            width: inFullscreen2 ? Dimensions.get("window").height : 400,
-          }}
+        <FlatList
+          data={Trailers}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
         />
-      </View>
-    </ScrollView>
-    </ImageBackground>
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#000",
   },
   searchBarView: {
-    marginBottom: "40%",
     marginTop: 20,
   },
   text: {
