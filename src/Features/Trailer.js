@@ -2,7 +2,6 @@ import * as ScreenOrientation from "expo-screen-orientation";
 import {
   Dimensions,
   FlatList,
-  ImageBackground,
   ScrollView,
   StyleSheet,
   Text,
@@ -13,35 +12,29 @@ import { setStatusBarHidden } from "expo-status-bar";
 import React, { useRef, useState, useEffect } from "react";
 import VideoPlayer from "expo-video-player";
 import { Searchbar } from "react-native-paper";
-import movieTrailer from "movie-trailer";
 import { Trailers } from "../Services/Core/Trailers";
-
-export const SearchAPI = async (searchgifted) => {
-  const value = await fetch(
-    `http://www.omdbapi.com/?t=${search}&apikey=e13597d5`
-  );
-  let result = value.json();
-  return result;
-};
+import * as VideoThumbnails from "expo-video-thumbnails";
 
 export const Trailer = () => {
   const [video, setVideo] = useState("Up");
-  const [videoURL, setVideoURL] = useState(
-    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-  );
   const [inFullscreen2, setInFullsreen2] = useState(false);
   const [isMute, setIsMute] = useState(false);
+  const [thumbnail, setThumbnail] = useState(null);
   const refVideo2 = useRef(null);
   const refScrollView = useRef(null);
 
-  const handleSearch = (value) => {
-    movieTrailer(value)
-      .then((res) => {
-        setVideoURL(res);
-      })
-      .catch((error) => {
-        console.log("error with movie trailer: " + error);
-      });
+  const generateThumbnail = async () => {
+    try {
+      const { uri } = await VideoThumbnails.getThumbnailAsync(
+        `${Trailers.video}`,
+        {
+          time: 15000,
+        }
+      );
+      setThumbnail(uri);
+    } catch (e) {
+      console.warn(e);
+    }
   };
 
   const renderItem = ({ item }) => (
@@ -93,8 +86,8 @@ export const Trailer = () => {
   );
 
   useEffect(() => {
-    handleSearch(video);
-  }, [video]);
+    generateThumbnail();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -113,7 +106,7 @@ export const Trailer = () => {
             placeholder="Search movie trailers"
             onChangeText={(text) => setVideo(text)}
             onSubmitEditing={() => handleSearch(video)}
-            value={video}
+            value={"Black Panther"}
             style={{ backgroundColor: "#808080" }}
             inputStyle={{ color: "#fff" }}
           />
@@ -135,6 +128,7 @@ const styles = StyleSheet.create({
   },
   searchBarView: {
     marginTop: 20,
+    marginBottom: 10,
   },
   text: {
     marginTop: 36,
