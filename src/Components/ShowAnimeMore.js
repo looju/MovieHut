@@ -21,7 +21,7 @@ export const ShowAnimeMore = ({ data }) => {
             fontFamily: "Griffy_400Regular",
           }}
         >
-          {data.Type}
+          {data.themes[0].type}, {data.themes[0].name}
         </Text>
       </View>
       <View style={{ marginVertical: 10, flexDirection: "row" }}>
@@ -32,7 +32,7 @@ export const ShowAnimeMore = ({ data }) => {
             fontFamily: "Lato_400Regular",
           }}
         >
-          Released:{" "}
+          Episodes:{" "}
         </Text>
         <Text
           style={{
@@ -41,7 +41,7 @@ export const ShowAnimeMore = ({ data }) => {
             fontFamily: "Griffy_400Regular",
           }}
         >
-          {data.Released}
+          {data.episodes}
         </Text>
       </View>
       <View style={{ marginVertical: 10, flexDirection: "row" }}>
@@ -61,7 +61,7 @@ export const ShowAnimeMore = ({ data }) => {
             fontFamily: "Griffy_400Regular",
           }}
         >
-          {data.Runtime}
+          {data.duration}
         </Text>
       </View>
       <View style={{ marginVertical: 10, flexDirection: "row" }}>
@@ -72,7 +72,7 @@ export const ShowAnimeMore = ({ data }) => {
             fontFamily: "Lato_400Regular",
           }}
         >
-          Region:{" "}
+          Anime Rank:{" "}
         </Text>
         <Text
           style={{
@@ -81,7 +81,27 @@ export const ShowAnimeMore = ({ data }) => {
             fontFamily: "Griffy_400Regular",
           }}
         >
-          {data.Country}
+          {data.rank}
+        </Text>
+      </View>
+      <View style={{ marginVertical: 10, flexDirection: "row" }}>
+        <Text
+          style={{
+            color: "#A020F0",
+            fontSize: 20,
+            fontFamily: "Lato_400Regular",
+          }}
+        >
+          Ranked by:{" "}
+        </Text>
+        <Text
+          style={{
+            color: "white",
+            fontSize: 20,
+            fontFamily: "Griffy_400Regular",
+          }}
+        >
+          {data.scored_by} people
         </Text>
       </View>
       <View style={{ marginVertical: 10, flexDirection: "row" }}>
@@ -112,7 +132,7 @@ export const ShowAnimeMore = ({ data }) => {
             fontFamily: "Lato_400Regular",
           }}
         >
-          IMDB Score:{" "}
+          Fun fact:{" "}
         </Text>
         <Text
           style={{
@@ -121,29 +141,10 @@ export const ShowAnimeMore = ({ data }) => {
             fontFamily: "Griffy_400Regular",
           }}
         >
-          {data.imdbRating}
+          {data.background}
         </Text>
       </View>
-      <View style={{ marginVertical: 10, flexDirection: "row" }}>
-        <Text
-          style={{
-            color: "#A020F0",
-            fontSize: 20,
-            fontFamily: "Lato_400Regular",
-          }}
-        >
-          MetaScore :{" "}
-        </Text>
-        <Text
-          style={{
-            color: "white",
-            fontSize: 20,
-            fontFamily: "Griffy_400Regular",
-          }}
-        >
-          {data.Metascore}
-        </Text>
-      </View>
+      
     </ScrollView>
   );
 };

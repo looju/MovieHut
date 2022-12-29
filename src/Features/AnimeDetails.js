@@ -8,7 +8,7 @@ import {
   Dimensions,
 } from "react-native";
 import LottieView from "lottie-react-native";
-import { ShowAnimeCast } from "../Components/ShowAnimeCast";
+import { ShowAnimeTrailer } from "../Components/ShowAnimeTrailer";
 import { ShowAnimeDetails } from "../Components/ShowAnimeDetails";
 import { ShowAnimeMore } from "../Components/ShowAnimeMore";
 
@@ -21,9 +21,9 @@ export const AnimeDetails = ({ route }) => {
       case "A":
         return <ShowAnimeDetails data={data} />;
       case "B":
-        return <ShowAnimeCast data={data} />;
-      case "C":
         return <ShowAnimeMore data={data} />;
+      case "C":
+        return <ShowAnimeTrailer data={data} />;
       default:
         return <View></View>;
     }
@@ -57,7 +57,7 @@ export const AnimeDetails = ({ route }) => {
                 { color: selectedTab == "B" ? "#A020F0" : "#fff" },
               ]}
             >
-              Cast
+            More
             </Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => setSelectedTab("C")}>
@@ -67,7 +67,7 @@ export const AnimeDetails = ({ route }) => {
                 { color: selectedTab == "C" ? "#A020F0" : "#fff" },
               ]}
             >
-              More
+             Trailer
             </Text>
           </TouchableOpacity>
         </View>

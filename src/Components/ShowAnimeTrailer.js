@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, ScrollView } from "react-native";
 
-export const ShowAnimeCast = ({ data }) => {
+export const ShowAnimeTrailer = ({ data }) => {
   return (
     <ScrollView>
       <View style={{ marginVertical: 10, flexDirection: "row" }}>
@@ -12,7 +12,7 @@ export const ShowAnimeCast = ({ data }) => {
             fontFamily: "Lato_400Regular",
           }}
         >
-          Actors:{" "}
+          More:{" "}
         </Text>
         <Text
           style={{
@@ -21,7 +21,7 @@ export const ShowAnimeCast = ({ data }) => {
             fontFamily: "Griffy_400Regular",
           }}
         >
-          {data.Actors}
+        
         </Text>
       </View>
       <View style={{ marginVertical: 10, flexDirection: "row" }}>
@@ -32,7 +32,7 @@ export const ShowAnimeCast = ({ data }) => {
             fontFamily: "Lato_400Regular",
           }}
         >
-          Written by:{" "}
+          Studio:{" "}
         </Text>
         <Text
           style={{
@@ -41,7 +41,6 @@ export const ShowAnimeCast = ({ data }) => {
             fontFamily: "Griffy_400Regular",
           }}
         >
-          {data.Writer}
         </Text>
       </View>
       <View style={{ marginVertical: 10, flexDirection: "row" }}>
