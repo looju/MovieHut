@@ -7,6 +7,17 @@ import VideoPlayer from "expo-video-player";
 import { Searchbar } from "react-native-paper";
 import movieTrailer from "movie-trailer";
 
+
+export const SearchAPI = async (searchgifted) => {
+
+  const value = await fetch(
+    `http://www.omdbapi.com/?t=${search}&apikey=e13597d5`
+  );
+  let result = value.json();
+  return result
+};
+
+
 export const Trailer = () => {
   const [video, setVideo] = useState("Up");
   const [videoURL, setVideoURL] = useState(
@@ -16,6 +27,11 @@ export const Trailer = () => {
   const [isMute, setIsMute] = useState(false);
   const refVideo2 = useRef(null);
   const refScrollView = useRef(null);
+
+
+ 
+  
+
 
   const handleSearch = (value) => {
     movieTrailer(value)

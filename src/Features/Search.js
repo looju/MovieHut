@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   StyleSheet,
@@ -9,16 +9,44 @@ import {
   Image,
 } from "react-native";
 import { Searchbar } from "react-native-paper";
+import { SearchAPI } from "../Services/Calls/SearchAPI";
 
-export const Search = ({navigation}) => {
+export const Search = ({ navigation }) => {
+  const [movieData, setMovieData] = useState("");
+  const [movieInfo, setMovieInfo] = useState([]);
+
+  const SearchAPI = async (search = "naruto") => {
+    await fetch(`https://api.jikan.moe/v4/anime?q=${search}&sfw`).then((res) =>
+      res.json()
+    );
+    //  .then((data)=>console.log(data))
+  };
+
+  const SearchMovies = (value) => {
+    SearchAPI(value)
+      .then((res) => {
+        console.log(res);
+        setMovieInfo(res);
+      })
+      .catch((error) => {
+        console.log("error at Search.js " + error);
+      });
+  };
+
+  useEffect(() => {
+    SearchAPI();
+  });
+
   return (
-    <ImageBackground
-      style={styles.container}
-      source={require("../../assets/cinema.jpg")}
-      resizeMode="cover"
-    >
+    <View>
       <View style={styles.searchView}>
-        <Searchbar placeholder="Search for movies" />
+        <Searchbar
+          placeholder="Search for movies"
+          onChangeText={(text) => setMovieData(text)}
+          onSubmitEditing={() => {
+            SearchMovies(movieData);
+          }}
+        />
       </View>
       <View>
         <View style={styles.ImageView}>
@@ -33,11 +61,11 @@ export const Search = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View style={styles.titleView}>
-          <Text style={styles.titleStyle}>HII</Text>
+          <Text style={styles.titleStyle}>{movieData.Plot}</Text>
         </View>
         <View style={styles.OtherView}>
           <View style={styles.otherDetailsView}>
-            <Text style={styles.titleStyle}> HII</Text>
+            <Text style={styles.titleStyle}> {movieInfo.Title}</Text>
           </View>
           <View style={styles.otherDetailsView}>
             <Text style={styles.titleStyle}>📽 HII</Text>
@@ -47,7 +75,7 @@ export const Search = ({navigation}) => {
           </View>
         </View>
       </View>
-    </ImageBackground>
+    </View>
   );
 };
 
@@ -59,7 +87,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#ff0",
     marginTop: 15,
   },
- 
+
   headerView: {
     marginVertical: 10,
   },
