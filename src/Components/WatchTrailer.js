@@ -27,13 +27,14 @@ export const WatchTrailer = ({ route }) => {
         >
           <VideoPlayer
             videoProps={{
-              shouldPlay: false,
+              shouldPlay: true,
+              isLooping:true,
               resizeMode: ResizeMode.COVER,
               visible: true,
               defaultControlsVisible:true,
               timeVisible:true,
               source: {
-                uri: `https://www.youtube.com/embed/+${data.contentDetails.videoId}`,
+                uri: 'https://www.youtube.com/embed/UkRBLb7xn0E',
               },
               ref: refVideo2,
             }}
@@ -63,7 +64,7 @@ export const WatchTrailer = ({ route }) => {
               isMute,
             }}
             style={{
-              videoBackgroundColor: "#ffff",
+              videoBackgroundColor: "#808080",
               height: inFullscreen2 ? Dimensions.get("window").width : 250,
               width: inFullscreen2 ? Dimensions.get("window").height : 400,
             }}
