@@ -16,6 +16,7 @@ import VideoPlayer from "expo-video-player";
 import { Searchbar } from "react-native-paper";
 import { Trailers } from "../Services/Core/Trailers";
 import * as VideoThumbnails from "expo-video-thumbnails";
+import LottieView from "lottie-react-native";
 
 export const Trailer = ({ navigation }) => {
   const [video, setVideo] = useState("Up");
@@ -27,7 +28,7 @@ export const Trailer = ({ navigation }) => {
 
   const fetchPlayListData = async () => {
     await fetch(
-      "https://www.googleapis.com/youtube/v3/playlistItems?playlistId=PLTovKDoAy18KZ6sUQcmK2RDQeYkm2xUNt&maxResults=4&part=snippet%2CcontentDetails&key=AIzaSyADfJEcp593ixdIiy9LNEePFBRb9akgkIY",
+      "https://www.googleapis.com/youtube/v3/playlistItems?playlistId=PLTovKDoAy18KZ6sUQcmK2RDQeYkm2xUNt&maxResults=10&part=snippet%2CcontentDetails&key=AIzaSyADfJEcp593ixdIiy9LNEePFBRb9akgkIY",
       {
         method: "GET",
         headers: {
@@ -58,6 +59,16 @@ export const Trailer = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      {playList.length == 0 && (
+        <View style={styles.lottie}>
+          <LottieView
+            source={require("../../assets/movie2.json")}
+            style={styles.lottieStyle}
+            autoPlay
+            loop
+          />
+        </View>
+      )}
       <ScrollView
         scrollEnabled={!inFullscreen2}
         ref={refScrollView}
@@ -125,6 +136,15 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 200,
+  },
+  lottie: {
+    height: Dimensions.get("screen").height,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  lottieStyle: {
+    height: 200,
+    width: 200,
   },
 });
 
