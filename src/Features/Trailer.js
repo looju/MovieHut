@@ -59,16 +59,6 @@ export const Trailer = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {playList.length == 0 && (
-        <View style={styles.lottie}>
-          <LottieView
-            source={require("../../assets/movie2.json")}
-            style={styles.lottieStyle}
-            autoPlay
-            loop
-          />
-        </View>
-      )}
       <ScrollView
         scrollEnabled={!inFullscreen2}
         ref={refScrollView}
@@ -87,6 +77,16 @@ export const Trailer = ({ navigation }) => {
             inputStyle={{ color: "#fff" }}
           />
         </View>
+        {playList.length == 0 && (
+          <View style={styles.lottie}>
+            <LottieView
+              source={require("../../assets/movie2.json")}
+              style={styles.lottieStyle}
+              autoPlay
+              loop
+            />
+          </View>
+        )}
         <View>
           <FlatList
             data={playList.items}

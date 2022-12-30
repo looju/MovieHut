@@ -65,6 +65,16 @@ export const Anime = ({ navigation }) => {
           }}
         />
       </View>
+      {movieInfo.length == 0 && (
+          <View style={styles.lottie}>
+            <LottieView
+              source={require("../../assets/movie2.json")}
+              style={styles.lottieStyle}
+              autoPlay
+              loop
+            />
+          </View>
+        )}
       <View>
         <FlatList data={movieInfo.data} renderItem={renderItems} />
       </View>
