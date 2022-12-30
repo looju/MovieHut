@@ -3,13 +3,13 @@ import {
   View,
   StyleSheet,
   Text,
-  ImageBackground,
   Dimensions,
   TouchableOpacity,
   Image,
   FlatList,
 } from "react-native";
 import { Searchbar } from "react-native-paper";
+import LottieView from "lottie-react-native"
 
 export const Anime = ({ navigation }) => {
   const [movieData, setMovieData] = useState("naruto");
