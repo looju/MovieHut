@@ -32,7 +32,7 @@ export const WatchTrailer = ({ route }) => {
           }}
         />
         <ScrollView>
-          <View style={{ marginVertical: 10, flexDirection: "row", flex:1 }}>
+          <View style={{ marginVertical: 10, flexDirection: "row", flex: 1 }}>
             <Text
               style={{
                 color: "#A020F0",
@@ -46,32 +46,36 @@ export const WatchTrailer = ({ route }) => {
             <Text
               style={{
                 color: "white",
-                fontSize: 20,
+                fontSize: 15,
                 fontFamily: "Griffy_400Regular",
               }}
             >
               {data.snippet.title}
             </Text>
           </View>
-          <View style={{ marginVertical: 10, flexDirection: "row", flex:1 }}>
-            <Text
-              style={{
-                color: "#A020F0",
-                fontSize: 20,
-                fontFamily: "Lato_400Regular",
-              }}
-            >
-              Description:{" "}
-            </Text>
-            <Text
-              style={{
-                color: "white",
-                fontSize: 20,
-                fontFamily: "Griffy_400Regular",
-              }}
-            >
-              {data.snippet.description}
-            </Text>
+          <View style={{ marginVertical: 5, flexDirection: "row", flex: 1, paddingRight:25 }}>
+            <View style={{ flex: 0.4 }}>
+              <Text
+                style={{
+                  color: "#A020F0",
+                  fontSize: 20,
+                  fontFamily: "Lato_400Regular",
+                }}
+              >
+                Description:{" "}
+              </Text>
+            </View>
+            <View style={{ flex: 0.6 }}>
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 15,
+                  fontFamily: "Griffy_400Regular",
+                }}
+              >
+                {data.snippet.description}
+              </Text>
+            </View>
           </View>
         </ScrollView>
       </View>
