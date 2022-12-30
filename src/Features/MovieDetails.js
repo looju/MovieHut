@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import LottieView from "lottie-react-native";
 import { ShowDetails } from "../Components/ShowDetails";
 import { ShowCast } from "../Components/ShowCast";
 import { ShowMore } from "../Components/ShowMore";

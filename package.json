@@ -32,7 +32,9 @@
     "react-native-screens": "~3.18.0",
     "react-native-svg": "13.4.0",
     "react-native-vector-icons": "^9.2.0",
-    "react-native-video": "^6.0.0-alpha.4"
+    "react-native-video": "^6.0.0-alpha.4",
+    "react-native-webview": "11.23.1",
+    "react-native-youtube-iframe": "^2.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

@@ -1,75 +1,41 @@
 import React, { useRef, useState } from "react";
 import { View, StyleSheet, Dimensions, Text, ScrollView } from "react-native";
-import VideoPlayer from "expo-video-player";
-import { ResizeMode } from "expo-av";
-import * as ScreenOrientation from "expo-screen-orientation";
+import YoutubePlayer from "react-native-youtube-iframe";
 
 export const WatchTrailer = ({ route }) => {
   const { data } = route.params;
+  const [playing, setPlaying] = useState(false);
 
-  const [inFullscreen2, setInFullsreen2] = useState(false);
-  const refScrollView = useRef(null);
-  const refVideo2 = useRef(null);
-  const [isMute, setIsMute] = useState(false);
+  const togglePlaying = () => {
+    setPlaying((prev) => !prev);
+  };
 
+  const onStateChange = (state) => {
+    if (state === "ended") {
+      setPlaying(false);
+
+      Alert.alert("Want to watch another trailer?!");
+    }
+  };
+
+  
   return (
     <View style={styles.container}>
       <View style={styles.video}>
-        <ScrollView
-          scrollEnabled={!inFullscreen2}
-          ref={refScrollView}
-          onContentSizeChange={() => {
-            if (inFullscreen2) {
-              refScrollView.current.scrollToEnd({ animated: true });
-            }
+        <YoutubePlayer
+          height={Dimensions.get("screen").height * 0.3}
+          play={true}
+          videoId={"84WIaK3bl_s"}
+          onChangeState={onStateChange}
+          webViewProps={{
+            injectedJavaScript: `
+              var element = document.getElementsByClassName('container')[0];
+              element.style.position = 'unset';
+              element.style.paddingBottom = 'unset';
+              true;
+            `,
           }}
-          style={styles.container}
-        >
-          <VideoPlayer
-            videoProps={{
-              shouldPlay: true,
-              isLooping:true,
-              resizeMode: ResizeMode.COVER,
-              visible: true,
-              defaultControlsVisible:true,
-              timeVisible:true,
-              source: {
-                uri: 'https://www.youtube.com/embed/UkRBLb7xn0E',
-              },
-              ref: refVideo2,
-            }}
-            fullscreen={{
-              inFullscreen: inFullscreen2,
-              enterFullscreen: async () => {
-                setStatusBarHidden(true, "fade");
-                setInFullsreen2(!inFullscreen2);
-                await ScreenOrientation.lockAsync(
-                  ScreenOrientation.OrientationLock.LANDSCAPE_LEFT
-                );
-                refVideo2.current.setStatusAsync({
-                  shouldPlay: true,
-                });
-              },
-              exitFullscreen: async () => {
-                setStatusBarHidden(false, "fade");
-                setInFullsreen2(!inFullscreen2);
-                await ScreenOrientation.lockAsync(
-                  ScreenOrientation.OrientationLock.DEFAULT
-                );
-              },
-            }}
-            mute={{
-              enterMute: () => setIsMute(!isMute),
-              exitMute: () => setIsMute(!isMute),
-              isMute,
-            }}
-            style={{
-              videoBackgroundColor: "#808080",
-              height: inFullscreen2 ? Dimensions.get("window").width : 250,
-              width: inFullscreen2 ? Dimensions.get("window").height : 400,
-            }}
-          />
-        </ScrollView>
+        />
       </View>
       <View>
         <View style={{ marginVertical: 10, flexDirection: "row" }}>
@@ -126,7 +92,78 @@ const styles = StyleSheet.create({
   },
   video: {
     width: Dimensions.get("screen").width,
-    height: Dimensions.get("screen").height * 0.5,
-    backgroundColor: "#ff0",
+    height: Dimensions.get("screen").height * 0.35,
+    backgroundColor: "#000",
   },
 });
+
+// import VideoPlayer from "expo-video-player";
+// import { ResizeMode } from "expo-av";
+// import * as ScreenOrientation from "expo-screen-orientation";
+
+// const [inFullscreen2, setInFullsreen2] = useState(false);
+//   const refScrollView = useRef(null);
+//   const refVideo2 = useRef(null);
+//   const [isMute, setIsMute] = useState(false);
+
+{
+  /* <ScrollView
+          scrollEnabled={!inFullscreen2}
+          ref={refScrollView}
+          onContentSizeChange={() => {
+            if (inFullscreen2) {
+              refScrollView.current.scrollToEnd({ animated: true });
+            }
+          }}
+          style={styles.container}
+        >
+         
+        </ScrollView> */
+}
+
+{
+  /* <VideoPlayer
+videoProps={{
+  shouldPlay: false,
+  isLooping:true,
+  resizeMode: ResizeMode.COVER,
+  visible: true,
+  defaultControlsVisible:true,
+  timeVisible:true,
+  source: {
+    uri: 'https://www.youtube.com/embed/UkRBLb7xn0E',
+  },
+  ref: refVideo2,
+}}
+fullscreen={{
+  inFullscreen: inFullscreen2,
+  enterFullscreen: async () => {
+    setStatusBarHidden(true, "fade");
+    setInFullsreen2(!inFullscreen2);
+    await ScreenOrientation.lockAsync(
+      ScreenOrientation.OrientationLock.LANDSCAPE_LEFT
+    );
+    refVideo2.current.setStatusAsync({
+      shouldPlay: true,
+    });
+  },
+  exitFullscreen: async () => {
+    setStatusBarHidden(false, "fade");
+    setInFullsreen2(!inFullscreen2);
+    await ScreenOrientation.lockAsync(
+      ScreenOrientation.OrientationLock.DEFAULT
+    );
+  },
+}}
+mute={{
+  enterMute: () => setIsMute(!isMute),
+  exitMute: () => setIsMute(!isMute),
+  isMute,
+}}
+style={{
+  videoBackgroundColor: "#808080",
+  height: inFullscreen2 ? Dimensions.get("window").width : 250,
+  width: inFullscreen2 ? Dimensions.get("window").height : 400,
+}}
+/> */
+}

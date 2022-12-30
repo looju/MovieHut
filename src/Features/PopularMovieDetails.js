@@ -2,12 +2,10 @@ import React from "react";
 import {
   View,
   StyleSheet,
-  FlatList,
   Text,
   Image,
   TouchableOpacity,
   Linking,
-  ScrollView,
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 export const PopularMovieDetails = ({ route }) => {
@@ -22,43 +20,42 @@ export const PopularMovieDetails = ({ route }) => {
           style={styles.imageStyle}
         />
       </View>
-     
-        <View style={styles.detailsView}>
-          <View style={styles.titleAndLinkView}>
-            <View style={styles.titleView}>
-              <Text style={styles.titleStyle}>{data.title}</Text>
-            </View>
-            <View style={styles.linkView}>
-              <TouchableOpacity
-                onPress={() => {
-                  Linking.openURL(`${data.url}`);
-                }}
-              >
-                <MaterialCommunityIcons
-                  name="open-in-new"
-                  color="#A020F0"
-                  size={30}
-                />
-              </TouchableOpacity>
-            </View>
+
+      <View style={styles.detailsView}>
+        <View style={styles.titleAndLinkView}>
+          <View style={styles.titleView}>
+            <Text style={styles.titleStyle}>{data.title}</Text>
           </View>
-          <View style={styles.ratingView}>
-            <Text style={styles.ratingStyle}>⭐{data.rating}/10 IMDB</Text>
-          </View>
-          <View style={styles.languageView}>
-            <Text style={styles.languageStyle}>Description</Text>
-            <Text style={styles.languageDescStyle}>{data.description}</Text>
-          </View>
-          <View style={styles.languageView}>
-            <Text style={styles.languageStyle}>Starring</Text>
-            <Text style={styles.languageDescStyle}>{data.starring}</Text>
-          </View>
-          <View style={styles.languageView}>
-            <Text style={styles.languageStyle}>Directed By</Text>
-            <Text style={styles.languageDescStyle}>{data.directedBy}</Text>
+          <View style={styles.linkView}>
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL(`${data.url}`);
+              }}
+            >
+              <MaterialCommunityIcons
+                name="open-in-new"
+                color="#A020F0"
+                size={30}
+              />
+            </TouchableOpacity>
           </View>
         </View>
-      
+        <View style={styles.ratingView}>
+          <Text style={styles.ratingStyle}>⭐{data.rating}/10 IMDB</Text>
+        </View>
+        <View style={styles.languageView}>
+          <Text style={styles.languageStyle}>Description</Text>
+          <Text style={styles.languageDescStyle}>{data.description}</Text>
+        </View>
+        <View style={styles.languageView}>
+          <Text style={styles.languageStyle}>Starring</Text>
+          <Text style={styles.languageDescStyle}>{data.starring}</Text>
+        </View>
+        <View style={styles.languageView}>
+          <Text style={styles.languageStyle}>Directed By</Text>
+          <Text style={styles.languageDescStyle}>{data.directedBy}</Text>
+        </View>
+      </View>
     </View>
   );
 };
@@ -82,7 +79,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
-    borderTopColor:"#fff",
+    borderTopColor: "#fff",
     borderTopWidth: 2,
   },
   titleAndLinkView: {

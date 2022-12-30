@@ -17,7 +17,7 @@ export const Trailer = ({ navigation }) => {
 
   const fetchPlayListData = async () => {
     await fetch(
-      "https://www.googleapis.com/youtube/v3/playlistItems?playlistId=PLTovKDoAy18KZ6sUQcmK2RDQeYkm2xUNt&maxResults=4&part=snippet%2CcontentDetails&key=AIzaSyADfJEcp593ixdIiy9LNEePFBRb9akgkIY",
+      "https://www.googleapis.com/youtube/v3/playlistItems?playlistId=PL3kx5h2TrYGwsSKUoJ2u_YpxNXQSkTfPQ&maxResults=4&part=snippet%2CcontentDetails&key=AIzaSyADfJEcp593ixdIiy9LNEePFBRb9akgkIY",
       {
         method: "GET",
         headers: {

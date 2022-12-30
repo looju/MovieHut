@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
-import { FadeInView } from "../Animation/Animation";
 import { PopularComponent } from "../Components/PopularComponent";
 import { Current } from "../Components/Current";
 export const Home = ({ navigation }) => {
