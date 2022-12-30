@@ -14,10 +14,13 @@ import { FadeInView } from "../Animation/Animation";
 
 export const Trailer = ({ navigation }) => {
   const [playList, setPlayList] = useState([]);
+  const [searchKeyword, setSearchKeyword] = useState("Fences");
 
-  const fetchPlayListData = async () => {
+  const onChangeSearch = (query) => setSearchKeyword(query);
+
+  const searchVideos = async (value) => {
     await fetch(
-      "https://www.googleapis.com/youtube/v3/playlistItems?playlistId=PL3kx5h2TrYGwsSKUoJ2u_YpxNXQSkTfPQ&maxResults=300&part=snippet%2CcontentDetails&key=AIzaSyADfJEcp593ixdIiy9LNEePFBRb9akgkIY",
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=300&q=${value}&type=video&key=AIzaSyADfJEcp593ixdIiy9LNEePFBRb9akgkIY`,
       {
         method: "GET",
         headers: {
@@ -27,11 +30,13 @@ export const Trailer = ({ navigation }) => {
     )
       .then((response) => response.json())
       .then((data) => setPlayList(data))
-      .catch((error) => console.log("Error fetching youtube data" + error));
+      .catch((error) => {
+        console.log("Error getting user request at Trailer.js: " + error);
+      });
   };
 
   useEffect(() => {
-    fetchPlayListData();
+   searchVideos(searchKeyword);
   }, []);
 
   const renderItem = ({ item }) => (
@@ -50,15 +55,20 @@ export const Trailer = ({ navigation }) => {
     </View>
   );
 
+
+console.log(playList)
+
   return (
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.searchBarView}>
           <Searchbar
             placeholder="Search movie trailers"
-            value={"Trailer"}
             style={{ backgroundColor: "#808080" }}
             inputStyle={{ color: "#fff" }}
+            value={searchKeyword}
+            onChangeText={onChangeSearch}
+            onSubmitEditting={searchVideos(searchKeyword)}
           />
         </View>
         {playList.length == 0 && (
@@ -133,6 +143,7 @@ const styles = StyleSheet.create({
     width: 200,
   },
 });
+
 
 // const generateThumbnail = async () => {
 //   try {
@@ -244,4 +255,20 @@ const styles = StyleSheet.create({
         <Text style={styles.titleStyle}>{video.toLocaleUpperCase()}</Text>
       </View>
     </View> */
+
+
+  // const fetchPlayListData = async () => {
+  //   await fetch(
+  //     "https://www.googleapis.com/youtube/v3/playlistItems?playlistId=PL3kx5h2TrYGwsSKUoJ2u_YpxNXQSkTfPQ&maxResults=300&part=snippet%2CcontentDetails&key=AIzaSyADfJEcp593ixdIiy9LNEePFBRb9akgkIY",
+  //     {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     }
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => setPlayList(data))
+  //     .catch((error) => console.log("Error fetching youtube data" + error));
+  // };
 }

@@ -20,7 +20,7 @@ export const WatchTrailer = ({ route }) => {
           height={Dimensions.get("screen").height * 0.65}
           width={Dimensions.get("screen").width}
           play={true}
-          videoId={`${data.contentDetails.videoId}`}
+          videoId={`${data.id.videoId}`}
           onChangeState={onStateChange}
           webViewProps={{
             injectedJavaScript: `
@@ -53,7 +53,7 @@ export const WatchTrailer = ({ route }) => {
               {data.snippet.title}
             </Text>
           </View>
-          <View style={{ marginVertical: 5, flexDirection: "row", flex: 1, paddingRight:25 }}>
+          <View style={{ marginVertical: 5, flexDirection: "row", flex: 1, paddingRight:15 }}>
             <View style={{ flex: 0.4 }}>
               <Text
                 style={{

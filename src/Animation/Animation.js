@@ -30,7 +30,7 @@ export const SlideInView = ({ duration, ...props }) => {
       toValue: 5,
       duration: duration,
       useNativeDriver: true,
-      easing: Easing.elastic
+      easing: Easing.bounce
     }).start();
   }, [slideAnim, duration]);
   return (
