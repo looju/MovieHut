@@ -1,30 +1,19 @@
-import * as ScreenOrientation from "expo-screen-orientation";
 import {
   Dimensions,
   FlatList,
   ScrollView,
   StyleSheet,
-  Text,
   View,
   Image,
   TouchableOpacity,
 } from "react-native";
-import { ResizeMode } from "expo-av";
-import { setStatusBarHidden } from "expo-status-bar";
-import React, { useRef, useState, useEffect } from "react";
-import VideoPlayer from "expo-video-player";
+import React, { useState, useEffect } from "react";
 import { Searchbar } from "react-native-paper";
-import { Trailers } from "../Services/Core/Trailers";
-import * as VideoThumbnails from "expo-video-thumbnails";
 import LottieView from "lottie-react-native";
+import { FadeInView } from "../Animation/Animation";
 
 export const Trailer = ({ navigation }) => {
-  const [video, setVideo] = useState("Up");
-  const [inFullscreen2, setInFullsreen2] = useState(false);
-  const [isMute, setIsMute] = useState(false);
   const [playList, setPlayList] = useState([]);
-  const refVideo2 = useRef(null);
-  const refScrollView = useRef(null);
 
   const fetchPlayListData = async () => {
     await fetch(
@@ -45,9 +34,13 @@ export const Trailer = ({ navigation }) => {
     fetchPlayListData();
   }, []);
 
+  console.log(playList);
+
   const renderItem = ({ item }) => (
     <View style={styles.GridViewContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate("WatchTrailer")}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("WatchTrailer", { data: item })}
+      >
         <Image
           style={styles.image}
           source={{ uri: `${item.snippet.thumbnails.medium.url}` }}
@@ -59,16 +52,7 @@ export const Trailer = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView
-        scrollEnabled={!inFullscreen2}
-        ref={refScrollView}
-        onContentSizeChange={() => {
-          if (inFullscreen2) {
-            refScrollView.current.scrollToEnd({ animated: true });
-          }
-        }}
-        style={styles.container}
-      >
+      <ScrollView>
         <View style={styles.searchBarView}>
           <Searchbar
             placeholder="Search movie trailers"
@@ -167,8 +151,11 @@ const styles = StyleSheet.create({
   /* <View style={styles.container}>
 <VideoPlayer
   videoProps={{
-    shouldPlay: false,
-    resizeMode: ResizeMode.COVER,
+    shouldPlay: false
+    resizeMode: ResizeMode.COVER
+    visible:true
+    defaultControlsVisible
+   timeVisible
     source: {
       uri: `${item.video}`,
     },
