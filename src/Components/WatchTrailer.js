@@ -2,13 +2,9 @@ import React, { useRef, useState } from "react";
 import { View, StyleSheet, Dimensions, Text, ScrollView } from "react-native";
 import YoutubePlayer from "react-native-youtube-iframe";
 
+
 export const WatchTrailer = ({ route }) => {
   const { data } = route.params;
-  const [playing, setPlaying] = useState(false);
-
-  const togglePlaying = () => {
-    setPlaying((prev) => !prev);
-  };
 
   const onStateChange = (state) => {
     if (state === "ended") {
@@ -18,12 +14,12 @@ export const WatchTrailer = ({ route }) => {
     }
   };
 
-  
   return (
     <View style={styles.container}>
       <View style={styles.video}>
         <YoutubePlayer
-          height={Dimensions.get("screen").height * 0.3}
+          height={Dimensions.get("screen").height * 0.9}
+          width={Dimensions.get("screen").width}
           play={true}
           videoId={"84WIaK3bl_s"}
           onChangeState={onStateChange}
@@ -36,8 +32,7 @@ export const WatchTrailer = ({ route }) => {
             `,
           }}
         />
-      </View>
-      <View>
+
         <View style={{ marginVertical: 10, flexDirection: "row" }}>
           <Text
             style={{
@@ -59,28 +54,6 @@ export const WatchTrailer = ({ route }) => {
           </Text>
         </View>
       </View>
-      <View>
-        <View style={{ marginVertical: 10, flexDirection: "row" }}>
-          <Text
-            style={{
-              color: "#A020F0",
-              fontSize: 20,
-              fontFamily: "Lato_400Regular",
-            }}
-          >
-            Source:{" "}
-          </Text>
-          <Text
-            style={{
-              color: "white",
-              fontSize: 20,
-              fontFamily: "Griffy_400Regular",
-            }}
-          >
-            {data.snippet.channelTitle}
-          </Text>
-        </View>
-      </View>
     </View>
   );
 };
@@ -92,8 +65,13 @@ const styles = StyleSheet.create({
   },
   video: {
     width: Dimensions.get("screen").width,
-    height: Dimensions.get("screen").height * 0.35,
+    height: Dimensions.get("screen").height * 0.9,
     backgroundColor: "#000",
+    marginBottom: 20,
+  },
+  controlContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
 });
 
