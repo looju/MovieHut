@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#000",
   },
   searchView: {
-    marginTop: 15,
+    marginTop:Dimensions.get("screen").width * 0.10,
   },
 
   ImageView: {

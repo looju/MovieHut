@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import { View, StyleSheet, Dimensions, Text, ScrollView } from "react-native";
 import YoutubePlayer from "react-native-youtube-iframe";
 
-
 export const WatchTrailer = ({ route }) => {
   const { data } = route.params;
 
@@ -18,10 +17,10 @@ export const WatchTrailer = ({ route }) => {
     <View style={styles.container}>
       <View style={styles.video}>
         <YoutubePlayer
-          height={Dimensions.get("screen").height * 0.9}
+          height={Dimensions.get("screen").height * 0.65}
           width={Dimensions.get("screen").width}
           play={true}
-          videoId={"84WIaK3bl_s"}
+          videoId={`${data.contentDetails.videoId}`}
           onChangeState={onStateChange}
           webViewProps={{
             injectedJavaScript: `
@@ -32,27 +31,49 @@ export const WatchTrailer = ({ route }) => {
             `,
           }}
         />
-
-        <View style={{ marginVertical: 10, flexDirection: "row" }}>
-          <Text
-            style={{
-              color: "#A020F0",
-              fontSize: 20,
-              fontFamily: "Lato_400Regular",
-            }}
-          >
-            Title:{" "}
-          </Text>
-          <Text
-            style={{
-              color: "white",
-              fontSize: 20,
-              fontFamily: "Griffy_400Regular",
-            }}
-          >
-            {data.snippet.title}
-          </Text>
-        </View>
+        <ScrollView>
+          <View style={{ marginVertical: 10, flexDirection: "row", flex:1 }}>
+            <Text
+              style={{
+                color: "#A020F0",
+                fontSize: 20,
+                fontFamily: "Lato_400Regular",
+              }}
+              numberOfLines={2}
+            >
+              Title:{" "}
+            </Text>
+            <Text
+              style={{
+                color: "white",
+                fontSize: 20,
+                fontFamily: "Griffy_400Regular",
+              }}
+            >
+              {data.snippet.title}
+            </Text>
+          </View>
+          <View style={{ marginVertical: 10, flexDirection: "row", flex:1 }}>
+            <Text
+              style={{
+                color: "#A020F0",
+                fontSize: 20,
+                fontFamily: "Lato_400Regular",
+              }}
+            >
+              Description:{" "}
+            </Text>
+            <Text
+              style={{
+                color: "white",
+                fontSize: 20,
+                fontFamily: "Griffy_400Regular",
+              }}
+            >
+              {data.snippet.description}
+            </Text>
+          </View>
+        </ScrollView>
       </View>
     </View>
   );
@@ -65,7 +86,7 @@ const styles = StyleSheet.create({
   },
   video: {
     width: Dimensions.get("screen").width,
-    height: Dimensions.get("screen").height * 0.9,
+    height: Dimensions.get("screen").height,
     backgroundColor: "#000",
     marginBottom: 20,
   },

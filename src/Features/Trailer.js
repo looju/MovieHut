@@ -10,7 +10,7 @@ import {
 import React, { useState, useEffect } from "react";
 import { Searchbar } from "react-native-paper";
 import LottieView from "lottie-react-native";
-import { FadeInView } from "../Animation/Animation";
+import ContentLoader, { Rect, Circle, Path } from "react-content-loader/native"
 
 export const Trailer = ({ navigation }) => {
   const [playList, setPlayList] = useState([]);
@@ -34,7 +34,6 @@ export const Trailer = ({ navigation }) => {
     fetchPlayListData();
   }, []);
 
-  console.log(playList);
 
   const renderItem = ({ item }) => (
     <View style={styles.GridViewContainer}>
