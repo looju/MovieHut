@@ -10,7 +10,7 @@ import {
 import React, { useState, useEffect } from "react";
 import { Searchbar } from "react-native-paper";
 import LottieView from "lottie-react-native";
-
+import { FadeInView } from "../Animation/Animation";
 
 export const Trailer = ({ navigation }) => {
   const [playList, setPlayList] = useState([]);
@@ -34,18 +34,19 @@ export const Trailer = ({ navigation }) => {
     fetchPlayListData();
   }, []);
 
-
   const renderItem = ({ item }) => (
     <View style={styles.GridViewContainer}>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("WatchTrailer", { data: item })}
-      >
-        <Image
-          style={styles.image}
-          source={{ uri: `${item.snippet.thumbnails.medium.url}` }}
-          resizeMode="cover"
-        />
-      </TouchableOpacity>
+      <FadeInView duration={2500}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("WatchTrailer", { data: item })}
+        >
+          <Image
+            style={styles.image}
+            source={{ uri: `${item.snippet.thumbnails.medium.url}` }}
+            resizeMode="cover"
+          />
+        </TouchableOpacity>
+      </FadeInView>
     </View>
   );
 
@@ -70,14 +71,16 @@ export const Trailer = ({ navigation }) => {
             />
           </View>
         )}
-        <View>
-          <FlatList
-            data={playList.items}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-            numColumns={2}
-          />
-        </View>
+        <FadeInView duration={2500}>
+          <View>
+            <FlatList
+              data={playList.items}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.id}
+              numColumns={2}
+            />
+          </View>
+        </FadeInView>
       </ScrollView>
     </View>
   );
