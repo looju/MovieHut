@@ -9,6 +9,7 @@ import {
   ScrollView,
 } from "react-native";
 import { Popular } from "../Services/Core/Popular";
+import { FadeInView } from "../Animation/Animation";
 
 export const PopularComponent = ({ navigation }) => {
   const renderItem = ({ item }) => (
@@ -35,17 +36,19 @@ export const PopularComponent = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <View style={styles.headerView}>
-          <Text style={styles.headerText}> Popular movies of this year</Text>
-        </View>
-        <FlatList
-          data={Popular}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          horizontal
-        />
-      </ScrollView>
+      <FadeInView duration={2500}>
+        <ScrollView>
+          <View style={styles.headerView}>
+            <Text style={styles.headerText}> Popular movies of this year</Text>
+          </View>
+          <FlatList
+            data={Popular}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            horizontal
+          />
+        </ScrollView>
+      </FadeInView>
     </View>
   );
 };

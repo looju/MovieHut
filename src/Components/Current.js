@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
+import { FadeInView } from "../Animation/Animation";
 import { HaveYouSeen } from "../Services/Core/HaveYouSeen";
 
 export const Current = ({ navigation }) => {
@@ -45,14 +46,16 @@ export const Current = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <View style={styles.headerView}>
-          <Text style={styles.headerText}> Based on popular interest</Text>
-        </View>
-        <FlatList
-          data={HaveYouSeen}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.Plot}
-        />
+        <FadeInView duration={2500}>
+          <View style={styles.headerView}>
+            <Text style={styles.headerText}> Based on popular interest</Text>
+          </View>
+          <FlatList
+            data={HaveYouSeen}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.Plot}
+          />
+        </FadeInView>
       </ScrollView>
     </View>
   );

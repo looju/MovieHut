@@ -9,7 +9,8 @@ import {
   FlatList,
 } from "react-native";
 import { Searchbar } from "react-native-paper";
-import LottieView from "lottie-react-native"
+import LottieView from "lottie-react-native";
+import { FadeInView } from "../Animation/Animation";
 
 export const Anime = ({ navigation }) => {
   const [movieData, setMovieData] = useState("naruto");
@@ -29,28 +30,30 @@ export const Anime = ({ navigation }) => {
   }, []);
 
   const renderItems = ({ item }) => (
-    <View style={styles.ImageView}>
-      <View>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("AnimeDetails", { data: item })}
-        >
-          <Image
-            style={styles.ImageStyle}
-            source={{ uri: `${item.images.jpg.image_url}` }}
-            resizeMode="cover"
-          />
-        </TouchableOpacity>
-      </View>
+    <FadeInView duration={2500}>
+      <View style={styles.ImageView}>
+        <View>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("AnimeDetails", { data: item })}
+          >
+            <Image
+              style={styles.ImageStyle}
+              source={{ uri: `${item.images.jpg.image_url}` }}
+              resizeMode="cover"
+            />
+          </TouchableOpacity>
+        </View>
 
-      <View style={styles.detailView}>
-        <View style={styles.titleView}>
-          <Text style={styles.titleStyle}> {item.title}</Text>
-        </View>
-        <View style={styles.ratingView}>
-          <Text style={styles.ratingStyle}>⭐{item.score}</Text>
+        <View style={styles.detailView}>
+          <View style={styles.titleView}>
+            <Text style={styles.titleStyle}> {item.title}</Text>
+          </View>
+          <View style={styles.ratingView}>
+            <Text style={styles.ratingStyle}>⭐{item.score}</Text>
+          </View>
         </View>
       </View>
-    </View>
+    </FadeInView>
   );
 
   return (
@@ -66,15 +69,16 @@ export const Anime = ({ navigation }) => {
         />
       </View>
       {movieInfo.length == 0 && (
-          <View style={styles.lottie}>
-            <LottieView
-              source={require("../../assets/movie2.json")}
-              style={styles.lottieStyle}
-              autoPlay
-              loop
-            />
-          </View>
-        )}
+        <View style={styles.lottie}>
+          <LottieView
+            source={require("../../assets/movie2.json")}
+            style={styles.lottieStyle}
+            autoPlay
+            loop
+          />
+        </View>
+      )}
+
       <View>
         <FlatList data={movieInfo.data} renderItem={renderItems} />
       </View>
@@ -125,5 +129,14 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     alignItems: "center",
     justifyContent: "center",
+  },
+  lottie: {
+    height: Dimensions.get("screen").height,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  lottieStyle: {
+    height: 200,
+    width: 200,
   },
 });
