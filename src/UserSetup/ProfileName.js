@@ -1,9 +1,19 @@
-import React from "react";
+import React,{useState,useContext} from "react";
 import { View, StyleSheet, Text, Dimensions, Image } from "react-native";
 import { TextInput } from "react-native-paper";
+import { UserProfile } from "../Services/Providers/UserProfileProvider";
 
 export const ProfileName = ({ route,navigation }) => {
+  const {setUserAvatar,setUserDisplayName}=useContext(UserProfile)
   const { data } = route.params;
+  const [username,setUserName]=useState("")
+  const userSelectedAvatar=data.image
+
+  const storeData=(name,avatar)=>{
+   setUserAvatar(avatar)
+   setUserDisplayName(name)
+   navigation.navigate("MainNavigator")
+  }
 
   const Profile = () => (
     <View>
@@ -22,9 +32,9 @@ export const ProfileName = ({ route,navigation }) => {
       <View style={styles.input}>
         <TextInput
           style={styles.textInput}
-          underlineColor="#808080"
-          outlineColor="#808080"
           placeholder="Enter username"
+          onChangeText={text=>setUserName(text)}
+          onSubmitEditing={()=>storeData(username,userSelectedAvatar)}
         />
       </View>
     </View>

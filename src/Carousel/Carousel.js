@@ -80,7 +80,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   text: {
-    top:Dimensions.get("screen").height*0.85,
+    top:Dimensions.get("screen").height*0.7,
+    alignItems:"center",
   },
   image: {
     flex: 1,
