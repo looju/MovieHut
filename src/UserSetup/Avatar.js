@@ -20,9 +20,10 @@ export const Avatar = ({navigation}) => {
           <Image
             source={{ uri: `${item.image}` }}
             style={{
-              height: Dimensions.get("screen").height * 0.2,
-              width: Dimensions.get("screen").width * 0.4,
-              borderRadius: Dimensions.get("screen").height * 0.2,
+                width: 150,
+                height: 150,
+                borderRadius: 75,
+              borderColor:"#fff"
             }}
             resizeMode="cover"
           />
@@ -75,13 +76,14 @@ const styles = StyleSheet.create({
   },
   titleStyle: {
     fontSize: 25,
-    fontFamily: "Arizonia_400Regular",
+    fontFamily: "Griffy_400Regular",
     color: "#fff",
   },
   avatar: {
     backgroundColor: "#fff",
-    height: Dimensions.get("screen").height * 0.2,
-    width: Dimensions.get("screen").width * 0.4,
+    width: 150,
+    height: 150,
+    borderRadius: 75,
     left: Dimensions.get("screen").width * 0.05,
     borderRadius: Dimensions.get("screen").height * 0.2,
     marginBottom: 10,
