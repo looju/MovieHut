@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import {
   View,
   StyleSheet,
@@ -13,6 +13,29 @@ import { FadeInView } from "../Animation/Animation";
 import { HaveYouSeen } from "../Services/Core/HaveYouSeen";
 
 export const Current = ({ navigation }) => {
+const [data,setData]=useState([])
+
+  const fetchData = async () => {
+    await fetch(
+"https://api.themoviedb.org/3/movie/550?api_key=b33fee2566aa5b34a8211dd036e7a6e3",
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json;charset=utf-8",
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => {
+        console.log("Problem fetching data at PopularComponent.js: " + error);
+      });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const renderItem = ({ item }) => (
     <View>
       <View style={styles.ImageView}>

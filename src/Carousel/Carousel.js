@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, ImageBackground } from "react-native";
+import { StyleSheet, View, Text, ImageBackground, Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import AppIntroSlider from "react-native-app-intro-slider";
 
@@ -7,24 +7,15 @@ export const Carousel = ({ navigation }) => {
   const slides = [
     {
       key: "one",
-      title: "Catch up on your favourite movie",
       text: "Find all your favourite feature films",
       image: require("../../assets/film.jpg"),
       backgroundColor: "#000",
     },
     {
       key: "two",
-      title: "See movies of your best casts",
       text: "Find movies on your best actors and actresses",
       image: require("../../assets/actor.jpg"),
       backgroundColor: "#964B00",
-    },
-    {
-      key: "three",
-      title: "Find your favourite shows",
-      text: "Search for upcoming cartoons and tv shows",
-      image: require("../../assets/cartoon.jpg"),
-      backgroundColor: "#808080",
     },
   ];
 
@@ -35,19 +26,8 @@ export const Carousel = ({ navigation }) => {
         source={item.image}
         resizeMode="cover"
       >
-        <View style={styles.title}>
-          <Text
-            style={{
-              color: "#fff",
-              fontWeight: "bold",
-              fontSize: 20,
-            }}
-          >
-            {item.title}
-          </Text>
-        </View>
         <View style={styles.text}>
-          <Text style={{ color: "#fff", fontWeight: "600", fontSize: 15 }}>
+          <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 20 }}>
             {item.text}
           </Text>
         </View>
@@ -78,8 +58,8 @@ export const Carousel = ({ navigation }) => {
     <AppIntroSlider
       renderItem={renderItem}
       data={slides}
-      onDone={() => navigation.navigate("MainNavigator")}
-      onSkip={() => navigation.navigate("MainNavigator")}
+      onDone={() => navigation.navigate("Avatar")}
+      onSkip={() => navigation.navigate("Avatar")}
       renderNextButton={renderNextButton}
       renderDoneButton={renderDoneButton}
       showSkipButton
@@ -99,15 +79,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  title: {
-    marginTop: 50,
-    width: 300,
-    heigth: 100,
-  },
   text: {
-    width: 400,
-    maxHeight: 200,
-    top:"75%"
+    top:Dimensions.get("screen").height*0.85,
   },
   image: {
     flex: 1,

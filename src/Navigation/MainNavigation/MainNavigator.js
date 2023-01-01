@@ -36,7 +36,7 @@ export const MainNavigator = () => {
     >
       <Tab.Screen name="Home" component={HomeNavigator} options={{headerShown:false}}/>
       <Tab.Screen name="Anime" component={Anime} options={{headerShown:false}}/>
-      <Tab.Screen name="Trailers" component={Trailer}  options={{headerShown:false}}/>
+      <Tab.Screen name="Videos" component={Trailer}  options={{headerShown:false}}/>
     </Tab.Navigator>
   );
 };

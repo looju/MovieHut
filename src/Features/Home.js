@@ -3,19 +3,18 @@ import { View, StyleSheet, ScrollView } from "react-native";
 import { PopularComponent } from "../Components/PopularComponent";
 import { Current } from "../Components/Current";
 export const Home = ({ navigation }) => {
+ 
   return (
-   
+    <View style={styles.container}>
       <View style={styles.container}>
-        <View style={styles.container}>
-          <ScrollView>
-            <PopularComponent navigation={navigation} />
-          </ScrollView>
-        </View>
-        <View style={styles.verticalContainer}>
-          <Current navigation={navigation} />
-        </View>
+        <ScrollView>
+          <PopularComponent navigation={navigation} />
+        </ScrollView>
       </View>
-    
+      <View style={styles.verticalContainer}>
+        <Current navigation={navigation} />
+      </View>
+    </View>
   );
 };
 
