@@ -11,7 +11,7 @@ export const Home = ({ navigation }) => {
         <ScrollView>
           <PopularComponent navigation={navigation} />
           <Current navigation={navigation} />
-          <LatestComponent/>
+          <LatestComponent navigation={navigation}/>
         </ScrollView>
       </View>
      

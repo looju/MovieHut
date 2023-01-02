@@ -6,10 +6,11 @@ import {
   Text,
   Image,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import { ComingSoon } from "../Services/Core/ComingSoon";
 
-export const LatestComponent = () => {
+export const LatestComponent = ({navigation}) => {
   const [latestMovies, setLatestMovies] = useState([]);
 
   const fetchData = async () => {
@@ -33,18 +34,17 @@ export const LatestComponent = () => {
     fetchData();
   }, []);
 
-
-  
-
   const renderItem = ({ item }) => (
     <View>
       <View style={styles.ImageView}>
-        <Image
-          style={styles.ImageStyle}
-          source={{
-            uri: `https://simkl.in/posters/${item.poster}_m.jpg`,
-          }}
-        />
+        <TouchableOpacity onPress={()=>navigation.navigate("LatestDetails",{data:item})}>
+          <Image
+            style={styles.ImageStyle}
+            source={{
+              uri: `https://simkl.in/posters/${item.poster}_m.jpg`,
+            }}
+          />
+        </TouchableOpacity>
       </View>
       <View style={styles.titleView}>
         <Text style={styles.titleStyle}>{item.title}</Text>
@@ -55,7 +55,7 @@ export const LatestComponent = () => {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <View style={styles.headerView}>
+        <View stygitle={styles.headerView}>
           <Text style={styles.headerText}> Trending</Text>
         </View>
         <FlatList
