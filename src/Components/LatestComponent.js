@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -9,13 +9,41 @@ import {
 } from "react-native";
 import { ComingSoon } from "../Services/Core/ComingSoon";
 
-export const ComingSoonComponent = () => {
+export const LatestComponent = () => {
+  const [latestMovies, setLatestMovies] = useState([]);
+
+  const fetchData = async () => {
+    await fetch(
+      "https://api.simkl.com/movies/trending/?extended=overview,theater,metadata,tmdb,genres&client_id=a4a932f81c143783f6fdc6d3dbe315d441e04f4e3d63578673ef818456798b4a",
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json;charset=utf-8",
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => setLatestMovies(data))
+      .catch((error) => {
+        console.log("Problem fetching data at LatestComponent.js: " + error);
+      });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+
+  
+
   const renderItem = ({ item }) => (
     <View>
       <View style={styles.ImageView}>
         <Image
           style={styles.ImageStyle}
-          source={{ uri: `${item.thumbnail}` }}
+          source={{
+            uri: `https://simkl.in/posters/${item.poster}_m.jpg`,
+          }}
         />
       </View>
       <View style={styles.titleView}>
@@ -28,10 +56,10 @@ export const ComingSoonComponent = () => {
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.headerView}>
-          <Text style={styles.headerText}> Coming soon to Cinemas</Text>
+          <Text style={styles.headerText}> Trending</Text>
         </View>
         <FlatList
-          data={ComingSoon}
+          data={latestMovies}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
           horizontal

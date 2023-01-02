@@ -20,7 +20,7 @@ export const MainNavigator = () => {
           } else if (route.name === "Anime") {
             iconName = "filmstrip-box-multiple";
             color = focused ? "#A020F0" : "#808080";
-          } else if (route.name === "Trailers") {
+          } else if (route.name === "Watch") {
             iconName = "clipboard-play-multiple";
             color = focused ? "#A020F0" : "#808080";
           }
@@ -36,7 +36,7 @@ export const MainNavigator = () => {
     >
       <Tab.Screen name="Home" component={HomeNavigator} options={{headerShown:false}}/>
       <Tab.Screen name="Anime" component={Anime} options={{headerShown:false}}/>
-      <Tab.Screen name="Videos" component={Trailer}  options={{headerShown:false}}/>
+      <Tab.Screen name="Watch" component={Trailer}  options={{headerShown:false}}/>
     </Tab.Navigator>
   );
 };

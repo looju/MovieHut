@@ -71,7 +71,7 @@ export const Anime = ({ navigation }) => {
       {movieInfo.length == 0 && (
         <View style={styles.lottie}>
           <LottieView
-            source={require("../../assets/movie2.json")}
+            source={require("../../assets/movie.json")}
             style={styles.lottieStyle}
             autoPlay
             loop

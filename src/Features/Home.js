@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { PopularComponent } from "../Components/PopularComponent";
 import { Current } from "../Components/Current";
+import { LatestComponent } from "../Components/LatestComponent";
 export const Home = ({ navigation }) => {
  
   return (
@@ -9,11 +10,11 @@ export const Home = ({ navigation }) => {
       <View style={styles.container}>
         <ScrollView>
           <PopularComponent navigation={navigation} />
+          <Current navigation={navigation} />
+          <LatestComponent/>
         </ScrollView>
       </View>
-      <View style={styles.verticalContainer}>
-        <Current navigation={navigation} />
-      </View>
+     
     </View>
   );
 };
@@ -21,7 +22,7 @@ export const Home = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000",
+    backgroundColor: "#000"
   },
   verticalContainer: {
     flex: 1,

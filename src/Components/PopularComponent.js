@@ -17,7 +17,7 @@ const [popularData,setPopularData]=useState([])
 const fetchData=async()=>{
 await fetch("https://api.themoviedb.org/3/movie/popular?api_key=b33fee2566aa5b34a8211dd036e7a6e3&language=en-US&page=1")
 .then(response=>response.json())
-.then(data=>console.log(data))
+.then(data=>setPopularData(data))
 .catch((error)=>{console.log("Problem fetching data at PopularComponent.js: "+error)})
 }
 
