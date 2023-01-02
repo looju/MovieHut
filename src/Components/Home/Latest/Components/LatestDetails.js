@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import {
   View,
   StyleSheet,
@@ -10,10 +10,41 @@ import {
 import { ShowDetails } from "../Tabs/ShowDetails";
 import { ShowCast} from "../Tabs/ShowCast";
 import { ShowMore } from "../Tabs/ShowMore";
+import { ShowTrailer } from "../Tabs/ShowTrailer";
+
 
 export const LatestDetail = ({ route }) => {
   const { data } = route.params;
   const [selectedTab, setSelectedTab] = useState("");
+  const [trailerData, setTrailerData] = useState("");
+
+
+
+
+  const fetchData = async () => {
+    await fetch(
+      `https://api.simkl.com/movies/${data.imdbID}?extended=full&client_id=a4a932f81c143783f6fdc6d3dbe315d441e04f4e3d63578673ef818456798b4a`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json;charset=utf-8",
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => setTrailerData(data))
+      .catch((error) => {
+        console.log("Problem fetching data at LatestDetails.js: " + error);
+      });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+
+
+
 
   const SelectedTab = () => {
     switch (selectedTab) {
@@ -23,6 +54,8 @@ export const LatestDetail = ({ route }) => {
         return <ShowCast data={data} />;
       case "C":
         return <ShowMore data={data} />;
+        case "D":
+          return <ShowTrailer trailer={trailerData}/>;
       default:
         return <View></View>;
     }
@@ -67,6 +100,16 @@ export const LatestDetail = ({ route }) => {
               ]}
             >
               More
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setSelectedTab("D")}>
+            <Text
+              style={[
+                styles.infoStyle,
+                { color: selectedTab == "D" ? "#A020F0" : "#fff" },
+              ]}
+            >
+             Trailer
             </Text>
           </TouchableOpacity>
         </View>

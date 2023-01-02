@@ -2,6 +2,9 @@ import React from "react";
 import { View, Text, ScrollView } from "react-native";
 
 export const ShowMore = ({ data }) => {
+
+
+
   return (
     <ScrollView style={{flex:1}}>
           <View style={{ marginVertical: 10, flexDirection: "row" }}>
@@ -12,7 +15,7 @@ export const ShowMore = ({ data }) => {
             fontFamily: "Lato_400Regular",
           }}
         >
-          Show :{" "}
+          Country :{" "}
         </Text>
         <Text
           style={{
@@ -21,7 +24,7 @@ export const ShowMore = ({ data }) => {
             fontFamily: "Griffy_400Regular",
           }}
         >
-          {data.Type}
+          {data.country}
         </Text>
       </View>
       <View style={{ marginVertical: 10, flexDirection: "row" }}>
@@ -41,7 +44,7 @@ export const ShowMore = ({ data }) => {
             fontFamily: "Griffy_400Regular",
           }}
         >
-          {data.Released}
+          {data.theater}
         </Text>
       </View>
       <View style={{ marginVertical: 10, flexDirection: "row" }}>
@@ -61,7 +64,7 @@ export const ShowMore = ({ data }) => {
             fontFamily: "Griffy_400Regular",
           }}
         >
-          {data.Runtime}
+          {data.runtime}
         </Text>
       </View>
       <View style={{ marginVertical: 10, flexDirection: "row" }}>
@@ -72,7 +75,7 @@ export const ShowMore = ({ data }) => {
             fontFamily: "Lato_400Regular",
           }}
         >
-          Region:{" "}
+          Metadata:{" "}
         </Text>
         <Text
           style={{
@@ -81,7 +84,7 @@ export const ShowMore = ({ data }) => {
             fontFamily: "Griffy_400Regular",
           }}
         >
-          {data.Country}
+          {data.metadata}
         </Text>
       </View>
       <View style={{ marginVertical: 10, flexDirection: "row" }}>
@@ -92,7 +95,7 @@ export const ShowMore = ({ data }) => {
             fontFamily: "Lato_400Regular",
           }}
         >
-          Awards:{" "}
+        Right now:{" "}
         </Text>
         <Text
           style={{
@@ -101,7 +104,7 @@ export const ShowMore = ({ data }) => {
             fontFamily: "Griffy_400Regular",
           }}
         >
-          {data.Awards}
+          {data.plan_to_watch} people want to watch this
         </Text>
       </View>
       <View style={{ marginVertical: 10, flexDirection: "row" }}>
@@ -121,7 +124,7 @@ export const ShowMore = ({ data }) => {
             fontFamily: "Griffy_400Regular",
           }}
         >
-          {data.imdbRating}
+          {data.ratings.imdb.rating}
         </Text>
       </View>
       <View style={{ marginVertical: 10, flexDirection: "row" }}>
@@ -132,7 +135,7 @@ export const ShowMore = ({ data }) => {
             fontFamily: "Lato_400Regular",
           }}
         >
-          MetaScore :{" "}
+          SimScore :{" "}
         </Text>
         <Text
           style={{
@@ -141,7 +144,7 @@ export const ShowMore = ({ data }) => {
             fontFamily: "Griffy_400Regular",
           }}
         >
-          {data.Metascore}
+            {data.ratings.simkl.rating}
         </Text>
       </View>
     </ScrollView>
