@@ -9,10 +9,10 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import { FadeInView } from "../Animation/Animation";
-import { HaveYouSeen } from "../Services/Core/HaveYouSeen";
+import { FadeInView } from "../../../../Animation/Animation";
+import { HaveYouSeen } from "../../../../Services/Core/HaveYouSeen";
 
-export const Current = ({ navigation }) => {
+export const LatestComponent = ({ navigation }) => {
 
 
  
@@ -21,7 +21,7 @@ export const Current = ({ navigation }) => {
     <View>
       <View style={styles.ImageView}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("MovieDetail", { data: item })}
+          onPress={() => navigation.navigate("LatestDetail", { data: item })}
         >
           <Image
             style={styles.ImageStyle}

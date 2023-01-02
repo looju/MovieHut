@@ -7,22 +7,23 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import { ShowDetails } from "../Components/ShowDetails";
-import { ShowCast } from "../Components/ShowCast";
-import { ShowMore } from "../Components/ShowMore";
+import LottieView from "lottie-react-native";
+import {ShowAnimeDetails} from './ShowAnimeDetails'
+import {ShowAnimeTrailer} from './ShowAnimeTrailer'
+import { ShowAnimeMore } from "./ShowAnimeMore";
 
-export const MovieDetail = ({ route }) => {
+export const AnimeDetails = ({ route }) => {
   const { data } = route.params;
   const [selectedTab, setSelectedTab] = useState("");
 
   const SelectedTab = () => {
     switch (selectedTab) {
       case "A":
-        return <ShowDetails data={data} />;
+        return <ShowAnimeDetails data={data} />;
       case "B":
-        return <ShowCast data={data} />;
+        return <ShowAnimeMore data={data} />;
       case "C":
-        return <ShowMore data={data} />;
+        return <ShowAnimeTrailer data={data} />;
       default:
         return <View></View>;
     }
@@ -32,7 +33,7 @@ export const MovieDetail = ({ route }) => {
       <View style={styles.imageView}>
         <Image
           resizeMethod="scale"
-          source={{ uri: `${data.Images[1]}` }}
+          source={{ uri: `${data.images.jpg.large_image_url}` }}
           style={styles.imageStyle}
         />
       </View>
@@ -56,7 +57,7 @@ export const MovieDetail = ({ route }) => {
                 { color: selectedTab == "B" ? "#A020F0" : "#fff" },
               ]}
             >
-              Cast
+            More
             </Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => setSelectedTab("C")}>
@@ -66,7 +67,7 @@ export const MovieDetail = ({ route }) => {
                 { color: selectedTab == "C" ? "#A020F0" : "#fff" },
               ]}
             >
-              More
+             Trailer
             </Text>
           </TouchableOpacity>
         </View>

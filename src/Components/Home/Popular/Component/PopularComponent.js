@@ -8,32 +8,11 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import { Popular } from "../Services/Core/Popular";
-import { FadeInView } from "../Animation/Animation";
+import { Popular } from "../../../../Services/Core/Popular";
+import { FadeInView } from "../../../../Animation/Animation";
 
 export const PopularComponent = ({ navigation }) => {
-  const [trailer, setTrailer] = useState("");
-
-  const fetchData = async () => {
-    await fetch(
-      "https://api.simkl.com/movies/tt1201607?extended=full&client_id=a4a932f81c143783f6fdc6d3dbe315d441e04f4e3d63578673ef818456798b4a",
-      {
-        method: "GET",
-        headers: {
-          Accept: "application/json;charset=utf-8",
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => {
-        console.log("Problem fetching data at ShowDetails.js: " + error);
-      });
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+  
 
   const renderItem = ({ item }) => (
     <TouchableOpacity

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
-import { PopularComponent } from "../Components/PopularComponent";
-import { Current } from "../Components/Current";
-import { LatestComponent } from "../Components/LatestComponent";
+import { PopularComponent } from "../Components/Home/Popular/Component/PopularComponent";
+import { TrendingComponent } from './../Components/Home/Trending/Screen/TrendingComponent';
+import { LatestComponent } from "../Components/Home/Latest/Components/LatestComponent.js";
 export const Home = ({ navigation }) => {
  
   return (
@@ -10,8 +10,8 @@ export const Home = ({ navigation }) => {
       <View style={styles.container}>
         <ScrollView>
           <PopularComponent navigation={navigation} />
-          <Current navigation={navigation} />
-          <LatestComponent navigation={navigation}/>
+          <LatestComponent navigation={navigation} />
+          <TrendingComponent navigation={navigation}/>
         </ScrollView>
       </View>
      

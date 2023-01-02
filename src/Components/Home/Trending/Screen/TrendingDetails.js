@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -7,33 +7,58 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import LottieView from "lottie-react-native";
-import { ShowAnimeTrailer } from "../Components/ShowAnimeTrailer";
-import { ShowAnimeDetails } from "../Components/ShowAnimeDetails";
-import { ShowAnimeMore } from "../Components/ShowAnimeMore";
+import { ShowDetails } from "../Tabs/ShowDetails";
+import { ShowTrailer } from "../Tabs/ShowTrailer";
+import { ShowMore } from "../Tabs/ShowMore";
 
-export const AnimeDetails = ({ route }) => {
+export const TrendingDetails = ({ route }) => {
   const { data } = route.params;
   const [selectedTab, setSelectedTab] = useState("");
+  const [trailerData, setTrailerData] = useState("");
 
   const SelectedTab = () => {
     switch (selectedTab) {
       case "A":
-        return <ShowAnimeDetails data={data} />;
+        return <ShowDetails data={data}/>;  
       case "B":
-        return <ShowAnimeMore data={data} />;
+        return <ShowMore data={data} />;
       case "C":
-        return <ShowAnimeTrailer data={data} />;
+        return <ShowTrailer data={data} trailer={trailerData}/>;
       default:
         return <View></View>;
     }
   };
+
+  const fetchData = async () => {
+    await fetch(
+      `https://api.simkl.com/movies/${data.ids.simkl_id}?extended=full&client_id=a4a932f81c143783f6fdc6d3dbe315d441e04f4e3d63578673ef818456798b4a`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json;charset=utf-8",
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => setTrailerData(data))
+      .catch((error) => {
+        console.log("Problem fetching data at LatestDetails.js: " + error);
+      });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+
+
+
   return (
     <View style={styles.container}>
       <View style={styles.imageView}>
         <Image
-          resizeMethod="scale"
-          source={{ uri: `${data.images.jpg.large_image_url}` }}
+          resizeMode="cover"
+          source={{ uri: `https://simkl.in/fanart/${data.fanart}_mobile.jpg` }}
           style={styles.imageStyle}
         />
       </View>
@@ -57,7 +82,7 @@ export const AnimeDetails = ({ route }) => {
                 { color: selectedTab == "B" ? "#A020F0" : "#fff" },
               ]}
             >
-            More
+              More
             </Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => setSelectedTab("C")}>
@@ -67,7 +92,7 @@ export const AnimeDetails = ({ route }) => {
                 { color: selectedTab == "C" ? "#A020F0" : "#fff" },
               ]}
             >
-             Trailer
+           Trailer
             </Text>
           </TouchableOpacity>
         </View>
@@ -84,7 +109,7 @@ const styles = StyleSheet.create({
   },
   imageView: {
     width: "100%",
-    height: "45%",
+    height: "50%",
   },
   imageStyle: {
     width: "100%",

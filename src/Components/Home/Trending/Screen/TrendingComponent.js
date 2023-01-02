@@ -10,7 +10,7 @@ import {
 } from "react-native";
 
 
-export const LatestComponent = ({navigation}) => {
+export const TrendingComponent = ({navigation}) => {
   const [latestMovies, setLatestMovies] = useState([]);
 
   const fetchData = async () => {
@@ -26,7 +26,7 @@ export const LatestComponent = ({navigation}) => {
       .then((response) => response.json())
       .then((data) => setLatestMovies(data))
       .catch((error) => {
-        console.log("Problem fetching data at LatestComponent.js: " + error);
+        console.log("Problem fetching data at TrendingComponent.js: " + error);
       });
   };
 
@@ -37,7 +37,7 @@ export const LatestComponent = ({navigation}) => {
   const renderItem = ({ item }) => (
     <View>
       <View style={styles.ImageView}>
-        <TouchableOpacity onPress={()=>navigation.navigate("LatestDetails",{data:item})}>
+        <TouchableOpacity onPress={()=>navigation.navigate("TrendingDetails",{data:item})}>
           <Image
             style={styles.ImageStyle}
             source={{

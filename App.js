@@ -3,7 +3,7 @@ import { Carousel } from "./src/Carousel/Carousel";
 import { Avatar } from "./src/UserSetup/Avatar";
 import { ProfileName } from "./src/UserSetup/ProfileName";
 import { UserProfileProvider } from "./src/Services/Providers/UserProfileProvider";
-import { MainNavigator } from "./src/Navigation/MainNavigation/MainNavigator";
+import { MainNavigator } from "./src/Navigation/MainNavigator/MainNavigator";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import {

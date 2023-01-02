@@ -4,11 +4,11 @@ import {
   createStackNavigator,
   TransitionPresets,
 } from "@react-navigation/stack";
-import { MovieDetail } from "../../Features/MovieDetails";
-import { PopularMovieDetails } from "../../Features/PopularMovieDetails";
-import { AnimeDetails } from "../../Features/AnimeDetails";
-import { LatestDetails } from "../../Features/LatestDetails";
-import { WatchTrailer } from "../../Components/WatchTrailer";
+import { LatestDetail } from "../../Components/Home/Latest/Components/LatestDetails";
+import { PopularMovieDetails } from "../../Components/Home/Popular/Component/PopularMovieDetails";
+import { AnimeDetails } from "../../Components/Anime/AnimeDetails";
+import { TrendingDetails} from "../../Components/Home/Trending/Screen/TrendingDetails";
+import { WatchTrailer } from "../../Components/Watch/Screen/WatchTrailer";
 import { Home } from "../../Features/Home";
 const Stack = createStackNavigator();
 
@@ -34,8 +34,8 @@ export const HomeNavigator = () => {
         }}
       />
       <Stack.Screen
-        name="MovieDetail"
-        component={MovieDetail}
+        name="LatestDetail"
+        component={LatestDetail}
         options={{
           ...TransitionPresets.RevealFromBottomAndroid,
           ...TransitionPresets.ModalSlideFromBottomIOS,
@@ -52,8 +52,8 @@ export const HomeNavigator = () => {
         }}
       />
        <Stack.Screen
-        name="LatestDetails"
-        component={LatestDetails}
+        name="TrendingDetails"
+        component={TrendingDetails}
         options={{
           ...TransitionPresets.RevealFromBottomAndroid,
           ...TransitionPresets.ModalSlideFromBottomIOS,

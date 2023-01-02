@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
@@ -7,19 +7,18 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import { ShowDetails } from "../Components/ShowDetails";
-import { ShowCast } from "../Components/ShowCast";
-import { ShowMore } from "../Components/ShowMore";
+import { ShowDetails } from "../Tabs/ShowDetails";
+import { ShowCast} from "../Tabs/ShowCast";
+import { ShowMore } from "../Tabs/ShowMore";
 
-export const LatestDetails = ({ route }) => {
+export const LatestDetail = ({ route }) => {
   const { data } = route.params;
   const [selectedTab, setSelectedTab] = useState("");
-  const [trailerData, setTrailerData] = useState("");
 
   const SelectedTab = () => {
     switch (selectedTab) {
       case "A":
-        return <ShowDetails data={data} trailer={trailerData}/>;
+        return <ShowDetails data={data} />;
       case "B":
         return <ShowCast data={data} />;
       case "C":
@@ -28,37 +27,12 @@ export const LatestDetails = ({ route }) => {
         return <View></View>;
     }
   };
-
-  const fetchData = async () => {
-    await fetch(
-      `https://api.simkl.com/movies/${data.ids.simkl_id}?extended=full&client_id=a4a932f81c143783f6fdc6d3dbe315d441e04f4e3d63578673ef818456798b4a`,
-      {
-        method: "GET",
-        headers: {
-          Accept: "application/json;charset=utf-8",
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => setTrailerData(data))
-      .catch((error) => {
-        console.log("Problem fetching data at LatestDetails.js: " + error);
-      });
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-
-
-
   return (
     <View style={styles.container}>
       <View style={styles.imageView}>
         <Image
-          resizeMode="cover"
-          source={{ uri: `https://simkl.in/fanart/${data.fanart}_mobile.jpg` }}
+          resizeMethod="scale"
+          source={{ uri: `${data.Images[1]}` }}
           style={styles.imageStyle}
         />
       </View>
@@ -109,7 +83,7 @@ const styles = StyleSheet.create({
   },
   imageView: {
     width: "100%",
-    height: "50%",
+    height: "45%",
   },
   imageStyle: {
     width: "100%",
