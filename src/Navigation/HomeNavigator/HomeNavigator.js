@@ -9,6 +9,7 @@ import { PopularMovieDetails } from "../../Components/Home/Popular/Component/Pop
 import { AnimeDetails } from "../../Components/Anime/AnimeDetails";
 import { TrendingDetails} from "../../Components/Home/Trending/Screen/TrendingDetails";
 import { WatchTrailer } from "../../Components/Watch/Screen/WatchTrailer";
+import { SimilarMovies } from "../../Components/Home/General/SimilarMovies";
 import { Home } from "../../Features/Home";
 const Stack = createStackNavigator();
 
@@ -65,6 +66,15 @@ export const HomeNavigator = () => {
         component={AnimeDetails}
         options={{
           ...TransitionPresets.ModalTransition,
+          ...TransitionPresets.ModalSlideFromBottomIOS,
+          headerShown: false,
+        }}
+      />
+       <Stack.Screen
+        name="SimilarMovies"
+        component={SimilarMovies}
+        options={{
+          ...TransitionPresets.ScaleFromCenterAndroid,
           ...TransitionPresets.ModalSlideFromBottomIOS,
           headerShown: false,
         }}

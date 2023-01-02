@@ -11,7 +11,7 @@ import { ShowDetails } from "../Tabs/ShowDetails";
 import { ShowTrailer } from "../Tabs/ShowTrailer";
 import { ShowMore } from "../Tabs/ShowMore";
 
-export const TrendingDetails = ({ route }) => {
+export const TrendingDetails = ({ route,navigation }) => {
   const { data } = route.params;
   const [selectedTab, setSelectedTab] = useState("");
   const [trailerData, setTrailerData] = useState("");
@@ -19,11 +19,11 @@ export const TrendingDetails = ({ route }) => {
   const SelectedTab = () => {
     switch (selectedTab) {
       case "A":
-        return <ShowDetails data={data}/>;  
+        return <ShowDetails data={data} />;
       case "B":
         return <ShowMore data={data} />;
       case "C":
-        return <ShowTrailer data={data} trailer={trailerData}/>;
+        return <ShowTrailer data={data} trailer={trailerData} />;
       default:
         return <View></View>;
     }
@@ -50,9 +50,6 @@ export const TrendingDetails = ({ route }) => {
     fetchData();
   }, []);
 
-
-
-
   return (
     <View style={styles.container}>
       <View style={styles.imageView}>
@@ -61,6 +58,20 @@ export const TrendingDetails = ({ route }) => {
           source={{ uri: `https://simkl.in/fanart/${data.fanart}_mobile.jpg` }}
           style={styles.imageStyle}
         />
+        <View style={styles.imageText}>
+          <TouchableOpacity onPress={()=>navigation.navigate("SimilarMovies")}>
+            <Text
+              color="#fff"
+              style={{
+                color: "white",
+                fontSize: 20,
+                fontFamily: "Griffy_400Regular",
+              }}
+            >
+              Similar movies 🎥
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
       <View style={styles.detailsView}>
@@ -92,7 +103,7 @@ export const TrendingDetails = ({ route }) => {
                 { color: selectedTab == "C" ? "#A020F0" : "#fff" },
               ]}
             >
-           Trailer
+              Trailer
             </Text>
           </TouchableOpacity>
         </View>
@@ -114,6 +125,10 @@ const styles = StyleSheet.create({
   imageStyle: {
     width: "100%",
     height: "100%",
+  },
+  imageText: {
+    position: "absolute",
+    top: Dimensions.get("screen").height * 0.4,
   },
   detailsView: {
     backgroundColor: "#000",
