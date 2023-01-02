@@ -8,7 +8,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import { ComingSoon } from "../Services/Core/ComingSoon";
+
 
 export const LatestComponent = ({navigation}) => {
   const [latestMovies, setLatestMovies] = useState([]);
@@ -61,7 +61,7 @@ export const LatestComponent = ({navigation}) => {
         <FlatList
           data={latestMovies}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.drop_rate}
           horizontal
         />
       </ScrollView>

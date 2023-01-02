@@ -1,9 +1,11 @@
-import React from "react";
-import { View, Text , ScrollView} from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, ScrollView } from "react-native";
 
-export const ShowDetails = ({data}) => {
+export const ShowDetails = ({ data }) => {
+  
+
   return (
-    <ScrollView style={{height:800}}>
+    <ScrollView style={{ height: 800 }}>
       <View style={{ marginVertical: 10, flexDirection: "row" }}>
         <Text
           style={{
@@ -21,7 +23,7 @@ export const ShowDetails = ({data}) => {
             fontFamily: "Griffy_400Regular",
           }}
         >
-          {data.Title}
+          {data.title}
         </Text>
       </View>
       <View style={{ marginVertical: 10, flexDirection: "row" }}>
@@ -32,7 +34,7 @@ export const ShowDetails = ({data}) => {
             fontFamily: "Lato_400Regular",
           }}
         >
-          Language:{" "}
+          Released in:{" "}
         </Text>
         <Text
           style={{
@@ -41,7 +43,7 @@ export const ShowDetails = ({data}) => {
             fontFamily: "Griffy_400Regular",
           }}
         >
-          {data.Language}
+          {data.country}
         </Text>
       </View>
       <View style={{ marginVertical: 10, flexDirection: "row" }}>
@@ -61,7 +63,7 @@ export const ShowDetails = ({data}) => {
             fontFamily: "Griffy_400Regular",
           }}
         >
-          {data.Genre}
+          {data.genres[0]}, {data.genres[1]}
         </Text>
       </View>
       <View style={{ marginVertical: 10, flexDirection: "row" }}>
@@ -81,7 +83,7 @@ export const ShowDetails = ({data}) => {
             fontFamily: "Griffy_400Regular",
           }}
         >
-          {data.Plot}
+          {data.overview}
         </Text>
       </View>
     </ScrollView>
