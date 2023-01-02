@@ -76,7 +76,11 @@ export const HomeNavigator = () => {
         options={{
           ...TransitionPresets.ScaleFromCenterAndroid,
           ...TransitionPresets.ModalSlideFromBottomIOS,
-          headerShown: false,
+          headerShown: true,
+          headerTitleAlign: "center",
+          headerTitle: "Similar movies",
+          headerStyle:{backgroundColor:"#000"},
+          headerTitleStyle: { color: "#A020F0" },
         }}
       />
         <Stack.Screen

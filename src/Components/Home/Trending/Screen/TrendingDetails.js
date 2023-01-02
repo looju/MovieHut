@@ -50,6 +50,9 @@ export const TrendingDetails = ({ route,navigation }) => {
     fetchData();
   }, []);
 
+
+
+
   return (
     <View style={styles.container}>
       <View style={styles.imageView}>
@@ -59,7 +62,7 @@ export const TrendingDetails = ({ route,navigation }) => {
           style={styles.imageStyle}
         />
         <View style={styles.imageText}>
-          <TouchableOpacity onPress={()=>navigation.navigate("SimilarMovies")}>
+          <TouchableOpacity onPress={()=>navigation.navigate("SimilarMovies",{data:trailerData})}>
             <Text
               color="#fff"
               style={{

@@ -6,6 +6,8 @@ import YoutubePlayer from "react-native-youtube-iframe";
 export const ShowTrailer = ({ trailer }) => {
   
 
+
+
   const onStateChange = (state) => {
     if (state === "ended") {
       setPlaying(false);

@@ -34,6 +34,9 @@ export const TrendingComponent = ({navigation}) => {
     fetchData();
   }, []);
 
+
+
+
   const renderItem = ({ item }) => (
     <View>
       <View style={styles.ImageView}>
