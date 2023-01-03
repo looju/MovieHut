@@ -15,7 +15,7 @@ import { Documentary } from "./../Tabs/Documentary";
 import { Drama } from "./../Tabs/Drama";
 import { Family } from "./../Tabs/Family";
 import { Horror } from "./../Tabs/Horror";
-import { KDrama } from "./../Tabs/K-drama";
+import { Thriller } from "./../Tabs/Thriller";
 import { Romance } from "./../Tabs/Romance";
 
 export const HeaderComponent = () => {
@@ -40,9 +40,9 @@ export const HeaderComponent = () => {
       case "H":
         return <Horror />;
       case "I":
-        return <KDrama />;
-      case "J":
         return <Romance />;
+      case "J":
+        return <Thriller />;
       default:
         return <View></View>;
     }
@@ -139,7 +139,7 @@ export const HeaderComponent = () => {
                 { borderColor: selectedTab == "I" ? "#A020F0" : "#fff" },
               ]}
             >
-              <Text style={styles.text}>K-drama</Text>
+              <Text style={styles.text}>Romance</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => setSelectedTab("J")}>
@@ -149,11 +149,10 @@ export const HeaderComponent = () => {
                 { borderColor: selectedTab == "J" ? "#A020F0" : "#fff" },
               ]}
             >
-              <Text style={styles.text}>Romance</Text>
+              <Text style={styles.text}>Thriller</Text>
             </View>
           </TouchableOpacity>
         </ScrollView>
-       
       </View>
       {SelectedTab()}
     </View>
@@ -169,7 +168,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     justifyContent: "center",
-    flexDirection:"row",
+    flexDirection: "row",
   },
   button: {
     width: 100,

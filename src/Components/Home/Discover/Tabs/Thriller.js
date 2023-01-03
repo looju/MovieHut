@@ -10,13 +10,13 @@ import {
 import { FadeInView } from "../../../../Animation/Animation";
 
 
-export const KDrama = () => {
+export const Thriller = () => {
   const [tvData, setTvData] = useState([]);
 
 
   const fetchData = async () => {
     await fetch(
-      "https://api.simkl.com/tv/genres/korean-drama/all-years?client_id=a4a932f81c143783f6fdc6d3dbe315d441e04f4e3d63578673ef818456798b4a",
+      "https://api.simkl.com/tv/genres/thriller/all-years?client_id=a4a932f81c143783f6fdc6d3dbe315d441e04f4e3d63578673ef818456798b4a",
       {
         method: "GET",
         headers: {
@@ -27,7 +27,7 @@ export const KDrama = () => {
       .then((response) => response.json())
       .then((data) => setTvData(data))
       .catch((error) =>
-        console.log("problem fetching tv data at KDrama.js" + error)
+        console.log("problem fetching tv data at Thriller.js" + error)
       );
   };
 
