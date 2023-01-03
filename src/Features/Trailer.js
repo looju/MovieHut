@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   GridViewContainer: {
     flex: 1,
     height: 200,
-    margin: 2,
+    margin: 5,
     backgroundColor: "#000",
   },
   searchBarView: {
