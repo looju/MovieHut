@@ -60,6 +60,9 @@ export const LatestDetail = ({ route }) => {
         return <View></View>;
     }
   };
+
+
+  
   return (
     <View style={styles.container}>
       <View style={styles.imageView}>
