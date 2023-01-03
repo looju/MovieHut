@@ -5,25 +5,21 @@ import {
   FlatList,
   TouchableOpacity,
   Text,
-  Image
+  Image,
 } from "react-native";
 import { FadeInView } from "../../../Animation/Animation";
 
-export const SimilarMovies = ({ route }) => {
+export const SimilarMovies = ({ route}) => {
   const { data } = route.params;
 
   const renderItem = ({ item }) => (
     <View style={styles.GridViewContainer}>
-   <FadeInView duration={2500}>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("TrendingDetails", { data: data })}
-      >
+      <FadeInView duration={2500}>
         <Image
           style={styles.image}
           source={{ uri: `https://simkl.in/posters/${item.poster}_m.jpg` }}
           resizeMode="cover"
         />
-      </TouchableOpacity>
       </FadeInView>
     </View>
   );

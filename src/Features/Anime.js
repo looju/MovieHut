@@ -25,6 +25,8 @@ export const Anime = ({ navigation }) => {
       });
   };
 
+
+  
   useEffect(() => {
     SearchAPI(movieData);
   }, []);

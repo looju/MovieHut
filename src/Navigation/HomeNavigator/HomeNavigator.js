@@ -74,7 +74,7 @@ export const HomeNavigator = () => {
         name="SimilarMovies"
         component={SimilarMovies}
         options={{
-          ...TransitionPresets.ScaleFromCenterAndroid,
+          ...TransitionPresets.DefaultTransition,
           ...TransitionPresets.ModalSlideFromBottomIOS,
           headerShown: true,
           headerTitleAlign: "center",

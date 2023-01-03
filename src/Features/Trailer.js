@@ -14,7 +14,7 @@ import { FadeInView } from "../Animation/Animation";
 
 export const Trailer = ({ navigation }) => {
   const [playList, setPlayList] = useState([]);
-  const [searchKeyword, setSearchKeyword] = useState("Fences");
+  const [searchKeyword, setSearchKeyword] = useState("Thor");
 
   const onChangeSearch = (query) => setSearchKeyword(query);
 
@@ -63,7 +63,7 @@ console.log(playList)
       <ScrollView>
         <View style={styles.searchBarView}>
           <Searchbar
-            placeholder="Search movie trailers"
+            placeholder="Watch just about anything"
             style={{ backgroundColor: "#808080" }}
             inputStyle={{ color: "#fff" }}
             value={searchKeyword}

@@ -2,8 +2,9 @@ import { StatusBar } from "expo-status-bar";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { HomeNavigator } from "../HomeNavigator/HomeNavigator";
-import {Trailer } from "../../Features/Trailer";
-import {Anime} from "../../Features/Anime"
+import { Trailer } from "../../Features/Trailer";
+import { Anime } from "../../Features/Anime";
+import { Discover } from "../../Features/Discover";
 
 const Tab = createBottomTabNavigator();
 
@@ -24,6 +25,10 @@ export const MainNavigator = () => {
             iconName = "clipboard-play-multiple";
             color = focused ? "#A020F0" : "#808080";
           }
+          else if (route.name === "Discover") {
+            iconName = "cookie-clock";
+            color = focused ? "#A020F0" : "#808080";
+          }
 
           return (
             <MaterialCommunityIcons name={iconName} size={size} color={color} />
@@ -31,13 +36,35 @@ export const MainNavigator = () => {
         },
         tabBarActiveTintColor: "tomato",
         tabBarInactiveTintColor: "gray",
-        tabBarStyle:{backgroundColor:"#000"}
+        tabBarStyle: { backgroundColor: "#000" },
       })}
     >
-      <Tab.Screen name="Home" component={HomeNavigator} options={{headerShown:false}}/>
-      <Tab.Screen name="Anime" component={Anime} options={{headerShown:false}}/>
-      <Tab.Screen name="Watch" component={Trailer}  options={{headerShown:false}}/>
+      <Tab.Screen
+        name="Home"
+        component={HomeNavigator}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Anime"
+        component={Anime}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Discover"
+        component={Discover}
+        options={{
+          headerShown: true,
+          headerTitleAlign: "center",
+          headerTitle: "Discover",
+          headerStyle: { backgroundColor: "#000" },
+          headerTitleStyle: { color: "#A020F0" },
+        }}
+      />
+      <Tab.Screen
+        name="Watch"
+        component={Trailer}
+        options={{ headerShown: false }}
+      />
     </Tab.Navigator>
   );
 };
-
