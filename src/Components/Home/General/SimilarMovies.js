@@ -3,8 +3,6 @@ import {
   View,
   StyleSheet,
   FlatList,
-  TouchableOpacity,
-  Text,
   Image,
 } from "react-native";
 import { FadeInView } from "../../../Animation/Animation";

@@ -24,143 +24,152 @@ export const HeaderComponent = () => {
   const SelectedTab = () => {
     switch (selectedTab) {
       case "A":
-        return <Action data={data} />;
+        return <Action />;
       case "B":
-        return <Adventure data={data} />;
+        return <Adventure />;
       case "C":
-        return <Comedy data={data} />;
+        return <Comedy />;
       case "D":
-        return <Crime trailer={trailerData} />;
+        return <Crime />;
       case "E":
-        return <Documentary trailer={trailerData} />;
+        return <Documentary />;
       case "F":
-        return <Drama trailer={trailerData} />;
+        return <Drama />;
       case "G":
-        return <Family trailer={trailerData} />;
+        return <Family />;
       case "H":
-        return <Horror trailer={trailerData} />;
+        return <Horror />;
       case "I":
-        return <KDrama trailer={trailerData} />;
+        return <KDrama />;
       case "J":
-        return <Romance trailer={trailerData} />;
+        return <Romance />;
       default:
         return <View></View>;
     }
   };
 
   return (
-    <View style={styles.genreContainer}>
-      <TouchableOpacity>
-        <View
-          style={[
-            styles.button,
-            { borderColor: selectedTab == "A" ? "#A020F0" : "#fff" },
-          ]}
-        >
-          <Text style={styles.text}>Action</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View
-          style={[
-            styles.button,
-            { borderColor: selectedTab == "B" ? "#A020F0" : "#fff" },
-          ]}
-        >
-          <Text style={styles.text}>Adventure</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View
-          style={[
-            styles.button,
-            { borderColor: selectedTab == "C" ? "#A020F0" : "#fff" },
-          ]}
-        >
-          <Text style={styles.text}>Comedy</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View
-          style={[
-            styles.button,
-            { borderColor: selectedTab == "D" ? "#A020F0" : "#fff" },
-          ]}
-        >
-          <Text style={styles.text}>Crime</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View
-          style={[
-            styles.button,
-            { borderColor: selectedTab == "E" ? "#A020F0" : "#fff" },
-          ]}
-        >
-          <Text style={styles.text}>Documentary</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View
-          style={[
-            styles.button,
-            { borderColor: selectedTab == "F" ? "#A020F0" : "#fff" },
-          ]}
-        >
-          <Text style={styles.text}>Drama</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View
-          style={[
-            styles.button,
-            { borderColor: selectedTab == "G" ? "#A020F0" : "#fff" },
-          ]}
-        >
-          <Text style={styles.text}>Family</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View
-          style={[
-            styles.button,
-            { borderColor: selectedTab == "H" ? "#A020F0" : "#fff" },
-          ]}
-        >
-          <Text style={styles.text}>Horror</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View
-          style={[
-            styles.button,
-            { borderColor: selectedTab == "I" ? "#A020F0" : "#fff" },
-          ]}
-        >
-          <Text style={styles.text}>K-drama</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View
-          style={[
-            styles.button,
-            { borderColor: selectedTab == "J" ? "#A020F0" : "#fff" },
-          ]}
-        >
-          <Text style={styles.text}>Romance</Text>
-        </View>
-      </TouchableOpacity>
+    <View style={styles.container}>
+      <View style={styles.genreContainer}>
+        <ScrollView horizontal>
+          <TouchableOpacity onPress={() => setSelectedTab("A")}>
+            <View
+              style={[
+                styles.button,
+                { borderColor: selectedTab == "A" ? "#A020F0" : "#fff" },
+              ]}
+            >
+              <Text style={styles.text}>Action</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setSelectedTab("B")}>
+            <View
+              style={[
+                styles.button,
+                { borderColor: selectedTab == "B" ? "#A020F0" : "#fff" },
+              ]}
+            >
+              <Text style={styles.text}>Adventure</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setSelectedTab("C")}>
+            <View
+              style={[
+                styles.button,
+                { borderColor: selectedTab == "C" ? "#A020F0" : "#fff" },
+              ]}
+            >
+              <Text style={styles.text}>Comedy</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setSelectedTab("D")}>
+            <View
+              style={[
+                styles.button,
+                { borderColor: selectedTab == "D" ? "#A020F0" : "#fff" },
+              ]}
+            >
+              <Text style={styles.text}>Crime</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setSelectedTab("E")}>
+            <View
+              style={[
+                styles.button,
+                { borderColor: selectedTab == "E" ? "#A020F0" : "#fff" },
+              ]}
+            >
+              <Text style={styles.text}>Documentary</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setSelectedTab("F")}>
+            <View
+              style={[
+                styles.button,
+                { borderColor: selectedTab == "F" ? "#A020F0" : "#fff" },
+              ]}
+            >
+              <Text style={styles.text}>Drama</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setSelectedTab("G")}>
+            <View
+              style={[
+                styles.button,
+                { borderColor: selectedTab == "G" ? "#A020F0" : "#fff" },
+              ]}
+            >
+              <Text style={styles.text}>Family</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setSelectedTab("H")}>
+            <View
+              style={[
+                styles.button,
+                { borderColor: selectedTab == "H" ? "#A020F0" : "#fff" },
+              ]}
+            >
+              <Text style={styles.text}>Horror</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setSelectedTab("I")}>
+            <View
+              style={[
+                styles.button,
+                { borderColor: selectedTab == "I" ? "#A020F0" : "#fff" },
+              ]}
+            >
+              <Text style={styles.text}>K-drama</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setSelectedTab("J")}>
+            <View
+              style={[
+                styles.button,
+                { borderColor: selectedTab == "J" ? "#A020F0" : "#fff" },
+              ]}
+            >
+              <Text style={styles.text}>Romance</Text>
+            </View>
+          </TouchableOpacity>
+        </ScrollView>
+       
+      </View>
+      {SelectedTab()}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: "#000",
   },
   genreContainer: {
-    flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection:"row",
   },
   button: {
     width: 100,
