@@ -9,10 +9,8 @@ import {
 } from "react-native";
 import { FadeInView } from "../../../../Animation/Animation";
 
-
 export const Drama = () => {
   const [tvData, setTvData] = useState([]);
-
 
   const fetchData = async () => {
     await fetch(
@@ -53,7 +51,6 @@ export const Drama = () => {
 
   return (
     <View style={styles.container}>
-     
       <FlatList
         data={tvData}
         renderItem={renderItem}
