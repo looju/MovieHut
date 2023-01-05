@@ -47,9 +47,6 @@ export const TvShowDetails = ({ route, navigation }) => {
       });
   };
 
-
-
-
   const fetchTrailer = async () => {
     await fetch(
       `https://api.simkl.com/movies/${data.ids.simkl_id}?extended=full&client_id=a4a932f81c143783f6fdc6d3dbe315d441e04f4e3d63578673ef818456798b4a`,
@@ -69,9 +66,8 @@ export const TvShowDetails = ({ route, navigation }) => {
 
   useEffect(() => {
     fetchDetailsInfo();
-    fetchTrailer()
+    fetchTrailer();
   }, []);
-
 
   return (
     <View style={styles.container}>
@@ -82,22 +78,42 @@ export const TvShowDetails = ({ route, navigation }) => {
           style={styles.imageStyle}
         />
         <View style={styles.imageText}>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("SimilarMovies", { data: trailerData })
-            }
-          >
-            <Text
-              color="#fff"
-              style={{
-                color: "white",
-                fontSize: 20,
-                fontFamily: "Griffy_400Regular",
-              }}
+          <View style={styles.icon}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("SimilarMovies", { data: trailerData })
+              }
             >
-              Similar Movies 🎥
-            </Text>
-          </TouchableOpacity>
+              <Text
+                color="#fff"
+                style={{
+                  color: "white",
+                  fontSize: 20,
+                  fontFamily: "Griffy_400Regular",
+                }}
+              >
+                Similar Movies🎥
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("Episodes", { data: detailsInfo })
+              }
+            >
+              <Text
+                color="#fff"
+                style={{
+                  color: "white",
+                  fontSize: 20,
+                  fontFamily: "Griffy_400Regular",
+                }}
+              >
+                Episodesⓘ
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
 
@@ -148,14 +164,19 @@ const styles = StyleSheet.create({
   imageView: {
     width: "100%",
     height: "50%",
+    alignItems: "center",
   },
   imageStyle: {
     width: "100%",
     height: "100%",
   },
+  
   imageText: {
     position: "absolute",
     top: Dimensions.get("screen").height * 0.4,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   detailsView: {
     backgroundColor: "#000",
@@ -175,5 +196,8 @@ const styles = StyleSheet.create({
   infoStyle: {
     fontSize: 25,
     fontFamily: "Oswald_400Regular",
+  },
+  icon: {
+    marginRight: 50,
   },
 });

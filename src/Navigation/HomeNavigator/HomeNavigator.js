@@ -9,6 +9,7 @@ import { PopularMovieDetails } from "../../Components/Home/Popular/Component/Pop
 import { AnimeDetails } from "../../Components/Anime/AnimeDetails";
 import { TrendingDetails} from "../../Components/Home/Trending/Screen/TrendingDetails";
 import { TvShowDetails } from "../../Components/Home/Discover/Component/TvShowDetails";
+import { Episodes } from "../../Components/Home/General/Episodes";
 import { WatchTrailer } from "../../Components/Watch/Screen/WatchTrailer";
 import { SimilarMovies } from "../../Components/Home/General/SimilarMovies";
 import { Home } from "../../Features/Home";
@@ -89,6 +90,19 @@ export const HomeNavigator = () => {
           headerShown: true,
           headerTitleAlign: "center",
           headerTitle: "Similar movies",
+          headerStyle:{backgroundColor:"#000"},
+          headerTitleStyle: { color: "#A020F0" },
+        }}
+      />
+      <Stack.Screen
+        name="Episodes"
+        component={Episodes}
+        options={{
+          ...TransitionPresets.DefaultTransition,
+          ...TransitionPresets.ModalSlideFromBottomIOS,
+          headerShown: true,
+          headerTitleAlign: "center",
+          headerTitle: "Episodes",
           headerStyle:{backgroundColor:"#000"},
           headerTitleStyle: { color: "#A020F0" },
         }}
