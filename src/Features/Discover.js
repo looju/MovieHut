@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, StyleSheet,Text,  ScrollView} from 'react-native';
 import { HeaderComponent } from '../Components/Home/Discover/Component/HeaderComponent';
-export const Discover = () => {
+export const Discover = ({navigation}) => {
     return (
         <ScrollView style={styles.container}>
-           <HeaderComponent/>
+           <HeaderComponent navigation={navigation}/>
         </ScrollView>
     );
 }

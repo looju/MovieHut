@@ -9,10 +9,8 @@ import {
 } from "react-native";
 import { FadeInView } from "../../../../Animation/Animation";
 
-
-export const Crime = () => {
+export const Crime = ({ navigation }) => {
   const [tvData, setTvData] = useState([]);
-
 
   const fetchData = async () => {
     await fetch(
@@ -38,7 +36,9 @@ export const Crime = () => {
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
       <FadeInView duration={2500}>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("TrendingDetails")}
+        >
           <Image
             style={styles.image}
             source={{
@@ -53,7 +53,6 @@ export const Crime = () => {
 
   return (
     <View style={styles.container}>
-     
       <FlatList
         data={tvData}
         renderItem={renderItem}

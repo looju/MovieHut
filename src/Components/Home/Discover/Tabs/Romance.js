@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { FadeInView } from "../../../../Animation/Animation";
 
-export const Romance = () => {
+export const Romance = ({ navigation }) => {
   const [tvData, setTvData] = useState([]);
 
   const fetchData = async () => {
@@ -36,7 +36,9 @@ export const Romance = () => {
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
       <FadeInView duration={2500}>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("TrendingDetails")}
+        >
           <Image
             style={styles.image}
             source={{
@@ -86,5 +88,3 @@ const styles = StyleSheet.create({
     width: 200,
   },
 });
-
-

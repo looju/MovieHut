@@ -18,31 +18,31 @@ import { Horror } from "./../Tabs/Horror";
 import { Thriller } from "./../Tabs/Thriller";
 import { Romance } from "./../Tabs/Romance";
 
-export const HeaderComponent = () => {
+export const HeaderComponent = ({navigation}) => {
   const [selectedTab, setSelectedTab] = useState("");
 
   const SelectedTab = () => {
     switch (selectedTab) {
       case "A":
-        return <Action />;
+        return <Action navigation={navigation}/>;
       case "B":
-        return <Adventure />;
+        return <Adventure navigation={navigation}/>;
       case "C":
-        return <Comedy />;
+        return <Comedy navigation={navigation}/>;
       case "D":
-        return <Crime />;
+        return <Crime navigation={navigation}/>;
       case "E":
-        return <Documentary />;
+        return <Documentary navigation={navigation}/>;
       case "F":
-        return <Drama />;
+        return <Drama navigation={navigation}/>;
       case "G":
-        return <Family />;
+        return <Family navigation={navigation}/>;
       case "H":
-        return <Horror />;
+        return <Horror navigation={navigation}/>;
       case "I":
-        return <Romance />;
+        return <Romance navigation={navigation}/>;
       case "J":
-        return <Thriller />;
+        return <Thriller navigation={navigation}/>;
       default:
         return <View></View>;
     }
