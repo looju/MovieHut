@@ -26,7 +26,7 @@ export const ShowTrailer = ({ trailer }) => {
         }}
       >
          <YoutubePlayer
-          height={Dimensions.get("screen").height * 0.4}
+          height={Dimensions.get("screen").height}
           width={Dimensions.get("screen").width}
           play={true}
           videoId={trailer.trailers[0].youtube}

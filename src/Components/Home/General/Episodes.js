@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, FlatList, Image } from "react-native";
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Image,
+  Text,
+  Dimensions,
+} from "react-native";
 import { FadeInView } from "../../../Animation/Animation";
 
 export const Episodes = ({ route }) => {
@@ -8,7 +15,13 @@ export const Episodes = ({ route }) => {
 
   const fetchData = async () => {
     await fetch(
-      `https://api.simkl.com/tv/episodes/${data.ids.simkl}?client_id=a4a932f81c143783f6fdc6d3dbe315d441e04f4e3d63578673ef818456798b4a`
+      `https://api.simkl.com/tv/episodes/${data.ids.simkl}?client_id=a4a932f81c143783f6fdc6d3dbe315d441e04f4e3d63578673ef818456798b4a`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json;charset=utf-8",
+        },
+      }
     )
       .then((response) => response.json())
       .then((data) => setEpisodeData(data))
@@ -18,17 +31,37 @@ export const Episodes = ({ route }) => {
   };
 
 
-  useEffect(()=>{
-    fetchData()
-  },[])
+ 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const renderItem = ({ item }) => (
     <View style={styles.GridViewContainer}>
       <FadeInView duration={2500}>
-        <Image
-          style={styles.image}
-          source={{ uri: `https://simkl.in/posters/${item.poster}_m.jpg` }}
-          resizeMode="cover"
-        />
+        <View style={styles.imageView}>
+          <Image
+            style={styles.image}
+            resizeMode="cover"
+            source={{ uri: `https://simkl.in/episodes/${item.img}_w.jpg` }}
+          />
+        </View>
+        <View style={{ marginVertical: 10, flexDirection: "row" }}>
+          <Text style={styles.infoDesc}>Season: </Text>
+          <Text style={styles.detailDesc}>{item.season}</Text>
+        </View>
+        <View style={{ marginVertical: 10, flexDirection: "row" }}>
+          <Text style={styles.infoDesc}>Episode: </Text>
+          <Text style={styles.detailDesc}>{item.episode}</Text>
+        </View>
+        <View style={{ marginVertical: 10, flexDirection: "row" }}>
+          <Text style={styles.infoDesc}>Title: </Text>
+          <Text style={styles.detailDesc}>{item.title}</Text>
+        </View>
+        <View style={{ marginVertical: 10, flexDirection: "row" }}>
+          <Text style={styles.infoDesc}>Description: </Text>
+          <Text style={styles.detailDesc}>{item.description}</Text>
+        </View>
       </FadeInView>
     </View>
   );
@@ -36,9 +69,9 @@ export const Episodes = ({ route }) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={data.users_recommendations}
+        data={episodeData}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.img}
       />
     </View>
   );
@@ -50,12 +83,23 @@ const styles = StyleSheet.create({
     backgroundColor: "#000",
   },
   image: {
-    height: 200,
+    height: "100%",
+    width: "100%",
   },
-  GridViewContainer: {
-    flex: 1,
-    height: 200,
-    margin: 2,
-    backgroundColor: "#000",
+  imageView: {
+    backgroundColor: "#fff",
+    marginBottom: 10,
+    width: Dimensions.get("screen").width,
+    height: Dimensions.get("screen").height * 0.3,
+  },
+  infoDesc: {
+    color: "#A020F0",
+    fontSize: 20,
+    fontFamily: "Lato_400Regular",
+  },
+  detailDesc: {
+    color: "white",
+    fontSize: 20,
+    fontFamily: "Griffy_400Regular",
   },
 });
