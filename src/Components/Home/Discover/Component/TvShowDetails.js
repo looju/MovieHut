@@ -7,31 +7,50 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import { ShowDetails } from "../Tabs/ShowDetails";
-import { ShowTrailer } from "../Tabs/ShowTrailer";
-import { ShowMore } from "../Tabs/ShowMore";
+import { ShowDetails } from "../../Trending/Tabs/ShowDetails";
+import { ShowTrailer } from "../../Trending/Tabs/ShowTrailer";
+import { ShowMore } from "../../Trending/Tabs/ShowMore";
 
-export const TrendingDetails = ({ route,navigation }) => {
+export const TvShowDetails = ({ route, navigation }) => {
   const { data } = route.params;
   const [selectedTab, setSelectedTab] = useState("");
+  const [detailsInfo, setDetailsInfo] = useState("");
   const [trailerData, setTrailerData] = useState("");
-
-  
 
   const SelectedTab = () => {
     switch (selectedTab) {
       case "A":
-        return <ShowDetails data={data} />;
+        return <ShowDetails data={detailsInfo} />;
       case "B":
-        return <ShowMore data={data} />;
+        return <ShowMore data={detailsInfo} />;
       case "C":
-        return <ShowTrailer data={data} trailer={trailerData} />;
+        return <ShowTrailer data={detailsInfo} trailer={trailerData} />;
       default:
         return <View></View>;
     }
   };
 
-  const fetchData = async () => {
+  const fetchDetailsInfo = async () => {
+    await fetch(
+      `https://api.simkl.com/tv/${data.ids.simkl_id}?extended=full&client_id=a4a932f81c143783f6fdc6d3dbe315d441e04f4e3d63578673ef818456798b4a`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json;charset=utf-8",
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => setDetailsInfo(data))
+      .catch((error) => {
+        console.log("Problem fetching data at TvShowDetails.js: " + error);
+      });
+  };
+
+
+
+
+  const fetchTrailer = async () => {
     await fetch(
       `https://api.simkl.com/movies/${data.ids.simkl_id}?extended=full&client_id=a4a932f81c143783f6fdc6d3dbe315d441e04f4e3d63578673ef818456798b4a`,
       {
@@ -49,10 +68,9 @@ export const TrendingDetails = ({ route,navigation }) => {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchDetailsInfo();
+    fetchTrailer()
   }, []);
-
-
 
 
   return (
@@ -64,7 +82,11 @@ export const TrendingDetails = ({ route,navigation }) => {
           style={styles.imageStyle}
         />
         <View style={styles.imageText}>
-          <TouchableOpacity onPress={()=>navigation.navigate("SimilarMovies",{data:trailerData})}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("SimilarMovies", { data: trailerData })
+            }
+          >
             <Text
               color="#fff"
               style={{
@@ -73,7 +95,7 @@ export const TrendingDetails = ({ route,navigation }) => {
                 fontFamily: "Griffy_400Regular",
               }}
             >
-              Similar movies 🎥
+              Similar Movies 🎥
             </Text>
           </TouchableOpacity>
         </View>

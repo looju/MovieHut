@@ -33,11 +33,13 @@ export const Action = ({ navigation }) => {
     fetchData();
   }, []);
 
+
+
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
       <FadeInView duration={2500}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("TrendingDetails")}
+          onPress={() => navigation.navigate("TvShowDetails",{data:item})}
         >
           <Image
             style={styles.image}

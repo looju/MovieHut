@@ -37,7 +37,7 @@ export const Adventure = ({ navigation }) => {
     <View style={styles.imageView}>
       <FadeInView duration={2500}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("TrendingDetails")}
+         onPress={() => navigation.navigate("TvShowDetails",{data:item})}
         >
           <Image
             style={styles.image}

@@ -30,7 +30,7 @@ export const PopularComponent = ({ navigation }) => {
           <Text style={styles.titleStyle}>{item.title}</Text>
         </View>
         <View style={styles.otherDetailsView}>
-          <Text style={styles.titleStyle}>🌟 {item.rating}</Text>
+          <Text style={styles.titleStyle}>⭐ {item.rating}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   titleStyle: {
-    fontFamily: "Griffy_400Regular",
+    fontFamily: "Oswald_400Regular",
     color: "#fff",
   },
   otherDetailsView: {

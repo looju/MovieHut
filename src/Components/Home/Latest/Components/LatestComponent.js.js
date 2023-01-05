@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     maxWidth: 300,
   },
   titleStyle: {
-    fontFamily: "Griffy_400Regular",
+    fontFamily: "Oswald_400Regular",
     color: "#fff",
   },
   OtherView: {
