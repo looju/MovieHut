@@ -8,13 +8,13 @@ export const Carousel = ({ navigation }) => {
     {
       key: "one",
       text: "Find all your favourite feature films",
-      image: require("../../assets/film.jpg"),
+      image: require("../../../../assets/film.jpg"),
       backgroundColor: "#000",
     },
     {
       key: "two",
       text: "Find movies on your best actors and actresses",
-      image: require("../../assets/actor.jpg"),
+      image: require("../../../../assets/actor.jpg"),
       backgroundColor: "#964B00",
     },
   ];
@@ -58,8 +58,8 @@ export const Carousel = ({ navigation }) => {
     <AppIntroSlider
       renderItem={renderItem}
       data={slides}
-      onDone={() => navigation.navigate("Avatar")}
-      onSkip={() => navigation.navigate("Avatar")}
+      onDone={() => navigation.navigate("Home")}
+      onSkip={() => navigation.navigate("Home")}
       renderNextButton={renderNextButton}
       renderDoneButton={renderDoneButton}
       showSkipButton

@@ -27,7 +27,7 @@ export const ScreenDetailsNavigator = () => {
           headerTitleStyle: { color: "#A020F0" },
           headerLeft: () => (
             <Image
-              source={require("../../../assets/display.png")}
+              source={require("../../../../assets/display.png")}
               style={{ width: 50, height: 50 }}
             />
           ),
