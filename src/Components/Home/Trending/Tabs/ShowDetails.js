@@ -54,26 +54,6 @@ export const ShowDetails = ({ data }) => {
             fontFamily: "Lato_400Regular",
           }}
         >
-          Genre:{" "}
-        </Text>
-        <Text
-          style={{
-            color: "white",
-            fontSize: 20,
-            fontFamily: "Griffy_400Regular",
-          }}
-        >
-          {data.genres[0]}, {data.genres[1]}
-        </Text>
-      </View>
-      <View style={{ marginVertical: 10, flexDirection: "row" }}>
-        <Text
-          style={{
-            color: "#A020F0",
-            fontSize: 20,
-            fontFamily: "Lato_400Regular",
-          }}
-        >
           Plot:{" "}
         </Text>
         <Text

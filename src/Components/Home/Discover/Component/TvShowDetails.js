@@ -26,7 +26,7 @@ export const TvShowDetails = ({ route, navigation }) => {
       case "C":
         return <ShowTrailer data={detailsInfo} trailer={trailerData} />;
       default:
-        return <View></View>;
+        return <ShowDetails data={detailsInfo} />;
     }
   };
 
@@ -96,24 +96,6 @@ export const TvShowDetails = ({ route, navigation }) => {
               </Text>
             </TouchableOpacity>
           </View>
-          <View>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Episodes", { data: detailsInfo })
-              }
-            >
-              <Text
-                color="#fff"
-                style={{
-                  color: "white",
-                  fontSize: 20,
-                  fontFamily: "Griffy_400Regular",
-                }}
-              >
-                Episodesⓘ
-              </Text>
-            </TouchableOpacity>
-          </View>
         </View>
       </View>
 
@@ -170,7 +152,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  
+
   imageText: {
     position: "absolute",
     top: Dimensions.get("screen").height * 0.4,

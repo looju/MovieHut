@@ -6,6 +6,8 @@ import {
   ScrollView,
   TouchableOpacity,
   FlatList,
+  ActivityIndicator,
+  Dimensions,
 } from "react-native";
 import { Action } from "../Tabs/Action";
 import { Adventure } from "../Tabs/Adventure";
@@ -18,33 +20,39 @@ import { Horror } from "./../Tabs/Horror";
 import { Thriller } from "./../Tabs/Thriller";
 import { Romance } from "./../Tabs/Romance";
 
-export const HeaderComponent = ({navigation}) => {
+export const HeaderComponent = ({ navigation }) => {
   const [selectedTab, setSelectedTab] = useState("");
 
   const SelectedTab = () => {
     switch (selectedTab) {
       case "A":
-        return <Action navigation={navigation}/>;
+        return <Action navigation={navigation} />;
       case "B":
-        return <Adventure navigation={navigation}/>;
+        return <Adventure navigation={navigation} />;
       case "C":
-        return <Comedy navigation={navigation}/>;
+        return <Comedy navigation={navigation} />;
       case "D":
-        return <Crime navigation={navigation}/>;
+        return <Crime navigation={navigation} />;
       case "E":
-        return <Documentary navigation={navigation}/>;
+        return <Documentary navigation={navigation} />;
       case "F":
-        return <Drama navigation={navigation}/>;
+        return <Drama navigation={navigation} />;
       case "G":
-        return <Family navigation={navigation}/>;
+        return <Family navigation={navigation} />;
       case "H":
-        return <Horror navigation={navigation}/>;
+        return <Horror navigation={navigation} />;
       case "I":
-        return <Romance navigation={navigation}/>;
+        return <Romance navigation={navigation} />;
       case "J":
-        return <Thriller navigation={navigation}/>;
+        return <Thriller navigation={navigation} />;
       default:
-        return <View></View>;
+        return (
+          <ActivityIndicator
+            size={30}
+            color="#A020F0"
+            style={{ marginTop: Dimensions.get("screen").height * 0.4 }}
+          />
+        );
     }
   };
 

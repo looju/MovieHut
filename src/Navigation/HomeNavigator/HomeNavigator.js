@@ -7,9 +7,9 @@ import {
 import { LatestDetail } from "../../Components/Home/Latest/Components/LatestDetails";
 import { PopularMovieDetails } from "../../Components/Home/Popular/Component/PopularMovieDetails";
 import { AnimeDetails } from "../../Components/Anime/AnimeDetails";
-import { TrendingDetails} from "../../Components/Home/Trending/Screen/TrendingDetails";
+import { TrendingDetails } from "../../Components/Home/Trending/Screen/TrendingDetails";
 import { TvShowDetails } from "../../Components/Home/Discover/Component/TvShowDetails";
-import { Episodes } from "../../Components/Home/General/Episodes";
+
 import { WatchTrailer } from "../../Components/Watch/Screen/WatchTrailer";
 import { SimilarMovies } from "../../Components/Home/General/SimilarMovies";
 import { Home } from "../../Features/Home";
@@ -29,11 +29,11 @@ export const HomeNavigator = () => {
           headerLeft: () => (
             <Image
               source={require("../../../assets/display.png")}
-              style={{ width: 50, height: 50,  }}
+              style={{ width: 50, height: 50 }}
             />
           ),
-          headerLeftContainerStyle: { width: 50, height: 50, left:20 },
-          headerStyle:{backgroundColor:"#000"}
+          headerLeftContainerStyle: { width: 50, height: 50, left: 20 },
+          headerStyle: { backgroundColor: "#000" },
         }}
       />
       <Stack.Screen
@@ -45,7 +45,7 @@ export const HomeNavigator = () => {
           headerShown: false,
         }}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="PopularMovieDetails"
         component={PopularMovieDetails}
         options={{
@@ -54,7 +54,7 @@ export const HomeNavigator = () => {
           headerShown: false,
         }}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="TrendingDetails"
         component={TrendingDetails}
         options={{
@@ -63,7 +63,7 @@ export const HomeNavigator = () => {
           headerShown: false,
         }}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="TvShowDetails"
         component={TvShowDetails}
         options={{
@@ -81,7 +81,7 @@ export const HomeNavigator = () => {
           headerShown: false,
         }}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="SimilarMovies"
         component={SimilarMovies}
         options={{
@@ -90,24 +90,11 @@ export const HomeNavigator = () => {
           headerShown: true,
           headerTitleAlign: "center",
           headerTitle: "Similar movies",
-          headerStyle:{backgroundColor:"#000"},
+          headerStyle: { backgroundColor: "#000" },
           headerTitleStyle: { color: "#A020F0" },
         }}
       />
       <Stack.Screen
-        name="Episodes"
-        component={Episodes}
-        options={{
-          ...TransitionPresets.DefaultTransition,
-          ...TransitionPresets.ModalSlideFromBottomIOS,
-          headerShown: true,
-          headerTitleAlign: "center",
-          headerTitle: "Episodes",
-          headerStyle:{backgroundColor:"#000"},
-          headerTitleStyle: { color: "#A020F0" },
-        }}
-      />
-        <Stack.Screen
         name="WatchTrailer"
         component={WatchTrailer}
         options={{

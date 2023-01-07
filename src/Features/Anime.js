@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
+  ActivityIndicator
 } from "react-native";
 import { Searchbar } from "react-native-paper";
 import LottieView from "lottie-react-native";
@@ -25,8 +26,6 @@ export const Anime = ({ navigation }) => {
       });
   };
 
-
-  
   useEffect(() => {
     SearchAPI(movieData);
   }, []);
@@ -72,17 +71,16 @@ export const Anime = ({ navigation }) => {
       </View>
       {movieInfo.length == 0 && (
         <View style={styles.lottie}>
-          <LottieView
-            source={require("../../assets/movie.json")}
-            style={styles.lottieStyle}
-            autoPlay
-            loop
-          />
+          <ActivityIndicator size={30} color="#A020F0" style={styles.lottieStyle}/>
         </View>
       )}
 
       <View>
-        <FlatList data={movieInfo.data} renderItem={renderItems} />
+        <FlatList
+          data={movieInfo.data}
+          renderItem={renderItems}
+          keyExtractor={(item) => item.mal_id}
+        />
       </View>
     </View>
   );
@@ -94,7 +92,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#000",
   },
   searchView: {
-    marginTop:Dimensions.get("screen").width * 0.10,
+    marginTop: Dimensions.get("screen").width * 0.1,
   },
 
   ImageView: {
