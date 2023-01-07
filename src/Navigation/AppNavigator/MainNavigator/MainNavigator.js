@@ -1,10 +1,10 @@
-import { StatusBar } from "expo-status-bar";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { HomeNavigator } from "../HomeNavigator/HomeNavigator";
-import { Trailer } from "../../Features/Trailer";
-import { Anime } from "../../Features/Anime";
-import { Discover } from "../../Features/Discover";
+import { Trailer } from "../../../Features/Trailer";
+import { Anime } from "../../../Features/Anime";
+import { Settings } from "../../../Features/Settings";
+import { Discover } from "../../../Features/Discover";
+import { ScreenDetailsNavigator } from "../ScreenDetailsNavigator/ScreenDetailsNavigator";
 
 const Tab = createBottomTabNavigator();
 
@@ -24,9 +24,11 @@ export const MainNavigator = () => {
           } else if (route.name === "Watch") {
             iconName = "clipboard-play-multiple";
             color = focused ? "#A020F0" : "#808080";
-          }
-          else if (route.name === "Discover") {
+          } else if (route.name === "Discover") {
             iconName = "cookie-clock";
+            color = focused ? "#A020F0" : "#808080";
+          } else if (route.name === "Settings") {
+            iconName = "cog-outline";
             color = focused ? "#A020F0" : "#808080";
           }
 
@@ -41,7 +43,7 @@ export const MainNavigator = () => {
     >
       <Tab.Screen
         name="Home"
-        component={HomeNavigator}
+        component={ScreenDetailsNavigator}
         options={{ headerShown: false }}
       />
       <Tab.Screen
@@ -64,6 +66,17 @@ export const MainNavigator = () => {
         name="Watch"
         component={Trailer}
         options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          headerShown: true,
+          headerTitleAlign: "center",
+          headerTitle: "Settings",
+          headerStyle: { backgroundColor: "#000" },
+          headerTitleStyle: { color: "#A020F0" },
+        }}
       />
     </Tab.Navigator>
   );

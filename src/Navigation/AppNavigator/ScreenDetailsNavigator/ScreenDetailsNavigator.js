@@ -4,18 +4,17 @@ import {
   createStackNavigator,
   TransitionPresets,
 } from "@react-navigation/stack";
-import { LatestDetail } from "../../Components/Home/Latest/Components/LatestDetails";
-import { PopularMovieDetails } from "../../Components/Home/Popular/Component/PopularMovieDetails";
-import { AnimeDetails } from "../../Components/Anime/AnimeDetails";
-import { TrendingDetails } from "../../Components/Home/Trending/Screen/TrendingDetails";
-import { TvShowDetails } from "../../Components/Home/Discover/Component/TvShowDetails";
-
-import { WatchTrailer } from "../../Components/Watch/Screen/WatchTrailer";
-import { SimilarMovies } from "../../Components/Home/General/SimilarMovies";
-import { Home } from "../../Features/Home";
+import { LatestDetail } from "../../../Components/Home/Latest/Components/LatestDetails";
+import { PopularMovieDetails } from "../../../Components/Home/Popular/Component/PopularMovieDetails";
+import { AnimeDetails } from "../../../Components/Anime/AnimeDetails";
+import { TrendingDetails } from "../../../Components/Home/Trending/Screen/TrendingDetails";
+import { TvShowDetails } from "../../../Components/Home/Discover/Component/TvShowDetails";
+import { WatchTrailer } from "../../../Components/Watch/Screen/WatchTrailer";
+import { SimilarMovies } from "../../../Components/Home/General/SimilarMovies";
+import { Home } from "../../../Features/Home";
 const Stack = createStackNavigator();
 
-export const HomeNavigator = () => {
+export const ScreenDetailsNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen

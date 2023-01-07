@@ -15,7 +15,7 @@ export const Avatar = ({navigation}) => {
     <View style={styles.container}>
       <View style={styles.avatar}>
         <TouchableOpacity
-        onPress={()=>navigation.navigate("ProfileName",{data:item})}
+        onPress={()=>navigation.navigate("MainNavigator")}
         >
           <Image
             source={{ uri: `${item.image}` }}
