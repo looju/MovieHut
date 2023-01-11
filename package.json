@@ -21,6 +21,7 @@
     "expo-status-bar": "~1.4.2",
     "expo-video-player": "^2.2.0",
     "expo-video-thumbnails": "~7.0.0",
+    "firebase": "^9.15.0",
     "lottie-react-native": "5.1.4",
     "react": "18.1.0",
     "react-content-loader": "^6.2.0",
