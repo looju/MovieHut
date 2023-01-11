@@ -9,7 +9,7 @@ import {
 
 export const Authorization = createContext();
 
-export const AuthorizationProvider = ({children}) => {
+export const AuthorizationProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [error, setError] = useState(null);
@@ -54,19 +54,30 @@ export const AuthorizationProvider = ({children}) => {
       });
   };
 
+  const SignOut = () => {
+    setUser(null);
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        Alert.alert("Oops an error occured" + error.message);
+      });
+  };
 
-  return(
-<Authorization.Provider
-value={{
-    SignUp,
-    Login,
-    error,
-    isLoading,
-    user,
-    isAuthenticated:!!user
-}}
->
-    {children}
-</Authorization.Provider>
-  )
+  return (
+    <Authorization.Provider
+      value={{
+        SignUp,
+        Login,
+        SignOut,
+        error,
+        isLoading,
+        user,
+        isAuthenticated: !!user,
+      }}
+    >
+      {children}
+    </Authorization.Provider>
+  );
 };
