@@ -9,7 +9,7 @@ import {
 
 export const Authorization = createContext();
 
-export const AuthorizationProvider = () => {
+export const AuthorizationProvider = ({children}) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [error, setError] = useState(null);
@@ -41,7 +41,7 @@ export const AuthorizationProvider = () => {
     }
   };
 
-  const signUp = (email, password) => {
+  const SignUp = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
         setUser(userCredentials.user);
@@ -53,4 +53,20 @@ export const AuthorizationProvider = () => {
         setIsLoading(true);
       });
   };
+
+
+  return(
+<Authorization.Provider
+value={{
+    SignUp,
+    Login,
+    error,
+    isLoading,
+    user,
+    isAuthenticated:!!user
+}}
+>
+    {children}
+</Authorization.Provider>
+  )
 };
