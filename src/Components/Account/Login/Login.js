@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   StyleSheet,
@@ -6,10 +6,15 @@ import {
   ImageBackground,
   Dimensions,
   TouchableOpacity,
+  TextInput,
+  ActivityIndicator
 } from "react-native";
-import { TextInput, Button } from "react-native-paper";
+import { Authorization } from "../../../Services/Core/Auth/Auth";
+import { Button } from "react-native-paper";
 
-export const Login = ({navigation}) => {
+export const Login = ({ navigation }) => {
+  const { Login, error, isLoading } = useContext(Authorization);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -26,29 +31,37 @@ export const Login = ({navigation}) => {
           value={email}
           onChangeText={(text) => setEmail(text)}
           multiline
-          style={{ width: 200, left: 25 }}
-          left={<TextInput.Icon icon="email" />}
+          autoComplete="email"
+          style={styles.input}
         />
         <TextInput
           label="Password"
           placeholder="Enter password"
           value={password}
           onChangeText={(text) => setPassword(text)}
-          multiline
           secureTextEntry
-          style={{ width: 200, left: 25 }}
-          left={<TextInput.Icon icon="eye" />}
+          autoComplete="password"
+          blurOnSubmit
+          style={styles.input}
         />
-        <Button name="Login" icon="login">
+        <Button
+          name="Login"
+          icon="login"
+          onPress={() => Login(email, password)}
+        >
           Login
         </Button>
+        <View style={styles.errorView}>
+          {error && <Text style={styles.error}> {error}</Text>}
+          {isLoading && <ActivityIndicator size={25} color="#A020F0" />}
+        </View>
       </View>
       <View style={styles.noAccount}>
         <View style={styles.question}>
           <Text style={styles.questionText}>Dont have an account?</Text>
         </View>
         <View>
-          <TouchableOpacity onPress={()=>navigation.navigate("Register")}>
+          <TouchableOpacity onPress={() => navigation.navigate("Register")}>
             <Text style={styles.registerText}>Register</Text>
           </TouchableOpacity>
         </View>
@@ -72,18 +85,37 @@ const styles = StyleSheet.create({
   },
   noAccount: {
     flexDirection: "row",
-    alignItems:"center",
-    justifyContent:"center"
+    alignItems: "center",
+    justifyContent: "center",
   },
-  question:{
-    marginRight:10
+  question: {
+    marginRight: 10,
   },
-  questionText:{
-    color:"#fff",
-    fontWeight:"500",
+  questionText: {
+    color: "#fff",
+    fontWeight: "500",
   },
-  registerText:{
-    color:"#A020F0",
-    fontWeight:"500",
-  }
+  registerText: {
+    color: "#A020F0",
+    fontWeight: "500",
+  },
+  error: {
+    color: "#FF0000",
+    fontFamily: "Lato_400Regular",
+    fontWeight: "500",
+  },
+  errorView: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    borderColor: "#fff",
+    borderRadius: 5,
+    borderWidth: 2,
+    backgroundColor: "#fff",
+  },
 });

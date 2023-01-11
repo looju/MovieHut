@@ -1,4 +1,5 @@
 import { UserProfileProvider } from "./src/Services/Providers/UserProfileProvider";
+import { AuthorizationProvider } from "./src/Services/Core/Auth/Auth";
 import { NavigationContainer } from "@react-navigation/native";
 import { Navigation } from "./src/Navigation/index";
 import {
@@ -9,7 +10,6 @@ import {
   Tangerine_400Regular,
   Arizonia_400Regular,
 } from "@expo-google-fonts/dev";
-
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -25,9 +25,11 @@ export default function App() {
   } else {
     return (
       <NavigationContainer>
-        <UserProfileProvider>
-          <Navigation />
-        </UserProfileProvider>
+        <AuthorizationProvider>
+          <UserProfileProvider>
+            <Navigation />
+          </UserProfileProvider>
+        </AuthorizationProvider>
       </NavigationContainer>
     );
   }

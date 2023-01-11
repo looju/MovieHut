@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { MainNavigator } from "./AppNavigator/MainNavigator/MainNavigator";
 import { AccountNavigation } from "./AccountNavigator/AccountNavigation";
+import { Authorization } from "../Services/Core/Auth/Auth";
 
 export const Navigation = () => {
-  // const {isAuthenticated}=useContext(AuthenticationContext)
+  const { home } = useContext(Authorization);
 
-
-  return  <AccountNavigation />
+  return home ? <MainNavigator /> : <AccountNavigation />;
 };
