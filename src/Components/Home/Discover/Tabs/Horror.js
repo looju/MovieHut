@@ -6,8 +6,9 @@ import {
   FlatList,
   Dimensions,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
-import Animated,{PinwheelIn} from "react-native-reanimated";
+import Animated, { PinwheelIn } from "react-native-reanimated";
 
 export const Horror = ({ navigation }) => {
   const [tvData, setTvData] = useState([]);
@@ -35,9 +36,7 @@ export const Horror = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
-      <Animated.View
-        entering={PinwheelIn.duration(1500)}
-      >
+      <Animated.View entering={PinwheelIn.duration(1500)}>
         <TouchableOpacity
           onPress={() => navigation.navigate("TvShowDetails", { data: item })}
         >
@@ -55,6 +54,15 @@ export const Horror = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      {tvData.length == 0 && (
+        <View style={styles.lottie}>
+          <ActivityIndicator
+            size={30}
+            color="#A020F0"
+            style={styles.lottieStyle}
+          />
+        </View>
+      )}
       <FlatList
         data={tvData}
         renderItem={renderItem}
@@ -82,6 +90,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   lottie: {
+    height: Dimensions.get("screen").height * 0.8,
     alignItems: "center",
     justifyContent: "center",
   },

@@ -5,6 +5,7 @@ import {
   Image,
   FlatList,
   Dimensions,
+  ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
 import Animated,{RollInLeft} from "react-native-reanimated";
@@ -35,7 +36,7 @@ export const Crime = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
-       <Animated.View entering={RollInLeft.duration(1500).restSpeedThreshold(0.002)}>
+       <Animated.View entering={RollInLeft.duration(2000).restSpeedThreshold(0.002)}>
         <TouchableOpacity
            onPress={() => navigation.navigate("TvShowDetails",{data:item})}
         >
@@ -53,6 +54,15 @@ export const Crime = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      {tvData.length == 0 && (
+        <View style={styles.lottie}>
+          <ActivityIndicator
+            size={30}
+            color="#A020F0"
+            style={styles.lottieStyle}
+          />
+        </View>
+      )}
       <FlatList
         data={tvData}
         renderItem={renderItem}
@@ -80,6 +90,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   lottie: {
+    height: Dimensions.get("screen").height*0.8,
     alignItems: "center",
     justifyContent: "center",
   },

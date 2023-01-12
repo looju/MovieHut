@@ -5,6 +5,7 @@ import {
   Image,
   FlatList,
   Dimensions,
+  ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
 import Animated,{ FadeInLeft } from "react-native-reanimated";
@@ -54,6 +55,15 @@ export const Documentary = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+       {tvData.length == 0 && (
+        <View style={styles.lottie}>
+          <ActivityIndicator
+            size={30}
+            color="#A020F0"
+            style={styles.lottieStyle}
+          />
+        </View>
+      )}
       <FlatList
         data={tvData}
         renderItem={renderItem}
@@ -81,6 +91,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   lottie: {
+    height: Dimensions.get("screen").height*0.8,
     alignItems: "center",
     justifyContent: "center",
   },
