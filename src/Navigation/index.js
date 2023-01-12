@@ -6,5 +6,6 @@ import { Authorization } from "../Services/Core/Auth/Auth";
 export const Navigation = () => {
   const { home } = useContext(Authorization);
 
-  return home ? <MainNavigator /> : <AccountNavigation />;
+  // return home ? <MainNavigator /> : <AccountNavigation />;
+  return <MainNavigator/>
 };

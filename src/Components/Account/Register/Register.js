@@ -10,6 +10,7 @@ import {
   TextInput,
   Modal,
   Pressable,
+  Image,
 } from "react-native";
 import { Button } from "react-native-paper";
 import { Authorization } from "../../../Services/Core/Auth/Auth";
@@ -19,7 +20,7 @@ export const Register = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
- const [modalVisible,setModalVisible] = useState(true)
+  const [modalVisible, setModalVisible] = useState(true);
   return (
     <ImageBackground
       style={styles.container}
@@ -32,13 +33,14 @@ export const Register = ({ navigation }) => {
           transparent={true}
           visible={modalVisible}
           onDismiss={() => {
-            setModalVisible(false)
+            setModalVisible(false);
           }}
-          
         >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <Text style={styles.modalText}>Suceess! Account successfully created</Text>
+              <Text style={styles.modalText}>
+                Suceess! Account successfully created
+              </Text>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => navigation.goBack()}
@@ -97,6 +99,18 @@ export const Register = ({ navigation }) => {
           Register
         </Button>
       </View>
+      <TouchableOpacity style={styles.googleButtonContainer}>
+        <View style={styles.googleLogoContainer}>
+          <Image
+            style={styles.googleLogo}
+            resizeMethod="auto"
+            source={require("../../../../assets/googlelogo.png")}
+          />
+        </View>
+        <View style={styles.googleText}>
+          <Text style={styles.registerText}>Sign in with Google</Text>
+        </View>
+      </TouchableOpacity>
       <View style={styles.noAccount}>
         <View style={styles.question}>
           <Text style={styles.questionText}>Already have an account?</Text>
@@ -164,7 +178,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 22,
-    backgroundColor:"rgba(0,0,0,0.5)"
+    backgroundColor: "rgba(0,0,0,0.5)",
   },
   modalView: {
     margin: 20,
@@ -190,8 +204,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#F194FF",
   },
   buttonClose: {
-    borderColor:"#fff",
-    borderWidth:2
+    borderColor: "#fff",
+    borderWidth: 2,
   },
   textStyle: {
     color: "white",
@@ -202,5 +216,24 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: "center",
     color: "white",
+  },
+  googleButtonContainer: {
+    backgroundColor: "#fff",
+    marginBottom: 15,
+    marginTop:25,
+    height: 50,
+    width: 200,
+    marginLeft: Dimensions.get("screen").width * 0.25,
+    flexDirection: "row",
+    alignItems:"center",
+    borderRadius:5,
+  },
+  googleText: {
+    flex: 1,
+    paddingLeft:10
+  },
+  googleLogo: {
+    width: 45,
+    height: 45,
   },
 });

@@ -134,6 +134,8 @@ const styles = StyleSheet.create({
   imageText: {
     position: "absolute",
     top: Dimensions.get("screen").height * 0.4,
+    alignItems:"flex-start",
+    justifyContent:"flex-start"
   },
   detailsView: {
     backgroundColor: "#000",

@@ -7,10 +7,12 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  ActivityIndicator,
+  Dimensions,
 } from "react-native";
+import { FadeInView } from "../../../../Animation/Animation";
 
-
-export const MustWatchComponent = ({navigation}) => {
+export const MustWatchComponent = ({ navigation }) => {
   const [mustWatchData, setMustWatchData] = useState([]);
 
   const fetchData = async () => {
@@ -34,13 +36,12 @@ export const MustWatchComponent = ({navigation}) => {
     fetchData();
   }, []);
 
-
-
-
   const renderItem = ({ item }) => (
     <View>
       <View style={styles.ImageView}>
-        <TouchableOpacity onPress={()=>navigation.navigate("TvShowDetails",{data:item})}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("TvShowDetails", { data: item })}
+        >
           <Image
             style={styles.ImageStyle}
             source={{
@@ -61,12 +62,23 @@ export const MustWatchComponent = ({navigation}) => {
         <View stygitle={styles.headerView}>
           <Text style={styles.headerText}> Must watch</Text>
         </View>
-        <FlatList
-          data={mustWatchData}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.drop_rate}
-          horizontal
-        />
+        <FadeInView duration={2500}>
+          {mustWatchData.length == 0 && (
+            <View style={styles.lottie}>
+              <ActivityIndicator
+                size={30}
+                color="#A020F0"
+                style={styles.lottieStyle}
+              />
+            </View>
+          )}
+          <FlatList
+            data={mustWatchData}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.poster}
+            horizontal
+          />
+        </FadeInView>
       </ScrollView>
     </View>
   );
@@ -116,5 +128,14 @@ const styles = StyleSheet.create({
   titleStyle: {
     fontFamily: "Oswald_400Regular",
     color: "#fff",
+  },
+  lottie: {
+    height: Dimensions.get("screen").width*0.5,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  lottieStyle: {
+    height: 200,
+    width: 200,
   },
 });
