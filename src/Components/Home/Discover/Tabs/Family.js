@@ -7,7 +7,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-import { FadeInView } from "../../../../Animation/Animation";
+import Animated,{ZoomInEasyDown} from "react-native-reanimated"
 
 export const Family = ({ navigation }) => {
   const [tvData, setTvData] = useState([]);
@@ -35,9 +35,11 @@ export const Family = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
-      <FadeInView duration={2500}>
+      <Animated.View
+        entering={ZoomInEasyDown.duration(1500).springify().damping(12)}
+      >
         <TouchableOpacity
-          onPress={() => navigation.navigate("TvShowDetails",{data:item})}
+          onPress={() => navigation.navigate("TvShowDetails", { data: item })}
         >
           <Image
             style={styles.image}
@@ -47,7 +49,7 @@ export const Family = ({ navigation }) => {
             resizeMode="cover"
           />
         </TouchableOpacity>
-      </FadeInView>
+      </Animated.View>
     </View>
   );
 

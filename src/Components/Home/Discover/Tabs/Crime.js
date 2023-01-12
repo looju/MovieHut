@@ -7,7 +7,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-import { FadeInView } from "../../../../Animation/Animation";
+import Animated,{RollInLeft} from "react-native-reanimated";
 
 export const Crime = ({ navigation }) => {
   const [tvData, setTvData] = useState([]);
@@ -35,7 +35,7 @@ export const Crime = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
-      <FadeInView duration={2500}>
+       <Animated.View entering={RollInLeft.duration(1500).restSpeedThreshold(0.002)}>
         <TouchableOpacity
            onPress={() => navigation.navigate("TvShowDetails",{data:item})}
         >
@@ -47,7 +47,7 @@ export const Crime = ({ navigation }) => {
             resizeMode="cover"
           />
         </TouchableOpacity>
-      </FadeInView>
+      </Animated.View>
     </View>
   );
 

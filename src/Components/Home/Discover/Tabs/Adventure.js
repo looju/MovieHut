@@ -7,6 +7,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
+import Animated, { LightSpeedInLeft } from "react-native-reanimated";
 import { FadeInView } from "../../../../Animation/Animation";
 
 export const Adventure = ({ navigation }) => {
@@ -35,9 +36,9 @@ export const Adventure = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
-      <FadeInView duration={2500}>
+      <Animated.View entering={LightSpeedInLeft.duration(1500)}>
         <TouchableOpacity
-         onPress={() => navigation.navigate("TvShowDetails",{data:item})}
+          onPress={() => navigation.navigate("TvShowDetails", { data: item })}
         >
           <Image
             style={styles.image}
@@ -47,7 +48,7 @@ export const Adventure = ({ navigation }) => {
             resizeMode="cover"
           />
         </TouchableOpacity>
-      </FadeInView>
+      </Animated.View>
     </View>
   );
 

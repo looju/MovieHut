@@ -7,7 +7,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-import { FadeInView } from "../../../../Animation/Animation";
+import Animated, { BounceInUp } from "react-native-reanimated";
 
 export const Action = ({ navigation }) => {
   const [tvData, setTvData] = useState([]);
@@ -33,13 +33,11 @@ export const Action = ({ navigation }) => {
     fetchData();
   }, []);
 
-
-
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
-      <FadeInView duration={2500}>
+      <Animated.View entering={BounceInUp.duration(1500)}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("TvShowDetails",{data:item})}
+          onPress={() => navigation.navigate("TvShowDetails", { data: item })}
         >
           <Image
             style={styles.image}
@@ -49,7 +47,7 @@ export const Action = ({ navigation }) => {
             resizeMode="cover"
           />
         </TouchableOpacity>
-      </FadeInView>
+      </Animated.View>
     </View>
   );
 

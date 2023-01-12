@@ -7,6 +7,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
+import Animated,{ FadeInLeft } from "react-native-reanimated";
 import { FadeInView } from "../../../../Animation/Animation";
 
 export const Documentary = ({ navigation }) => {
@@ -35,7 +36,7 @@ export const Documentary = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
-      <FadeInView duration={2500}>
+     <Animated.View entering={FadeInLeft.duration(1500).springify().damping(12)}>
         <TouchableOpacity
            onPress={() => navigation.navigate("TvShowDetails",{data:item})}
         >
@@ -47,7 +48,7 @@ export const Documentary = ({ navigation }) => {
             resizeMode="cover"
           />
         </TouchableOpacity>
-      </FadeInView>
+      </Animated.View>
     </View>
   );
 

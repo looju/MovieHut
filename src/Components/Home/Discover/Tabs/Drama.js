@@ -8,9 +8,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { FadeInView } from "../../../../Animation/Animation";
+import Animated,{ FadeInLeft } from "react-native-reanimated";
 
 export const Drama = ({ navigation }) => {
-  const [tvData, setTvData] = useState([]);
+  const [tvData, setTvData] = useState([])
 
   const fetchData = async () => {
     await fetch(
@@ -35,9 +36,11 @@ export const Drama = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
-      <FadeInView duration={2500}>
+      <Animated.View
+        entering={FadeInLeft.duration(1500).springify().damping(12)}
+      >
         <TouchableOpacity
-        onPress={() => navigation.navigate("TvShowDetails",{data:item})}
+          onPress={() => navigation.navigate("TvShowDetails", { data: item })}
         >
           <Image
             style={styles.image}
@@ -47,7 +50,7 @@ export const Drama = ({ navigation }) => {
             resizeMode="cover"
           />
         </TouchableOpacity>
-      </FadeInView>
+      </Animated.View>
     </View>
   );
 

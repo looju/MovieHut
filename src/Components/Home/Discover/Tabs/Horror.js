@@ -7,7 +7,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-import { FadeInView } from "../../../../Animation/Animation";
+import Animated,{PinwheelIn} from "react-native-reanimated";
 
 export const Horror = ({ navigation }) => {
   const [tvData, setTvData] = useState([]);
@@ -35,9 +35,11 @@ export const Horror = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
-      <FadeInView duration={2500}>
+      <Animated.View
+        entering={PinwheelIn.duration(1500)}
+      >
         <TouchableOpacity
-          onPress={() => navigation.navigate("TvShowDetails",{data:item})}
+          onPress={() => navigation.navigate("TvShowDetails", { data: item })}
         >
           <Image
             style={styles.image}
@@ -47,7 +49,7 @@ export const Horror = ({ navigation }) => {
             resizeMode="cover"
           />
         </TouchableOpacity>
-      </FadeInView>
+      </Animated.View>
     </View>
   );
 

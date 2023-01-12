@@ -7,7 +7,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-import { FadeInView } from "../../../../Animation/Animation";
+import Animated,{StretchInY} from "react-native-reanimated";
 
 export const Comedy = ({ navigation }) => {
   const [tvData, setTvData] = useState([]);
@@ -35,9 +35,9 @@ export const Comedy = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
-      <FadeInView duration={2500}>
+      <Animated.View entering={StretchInY.duration(1500).stiffness(150)}>
         <TouchableOpacity
-           onPress={() => navigation.navigate("TvShowDetails",{data:item})}
+          onPress={() => navigation.navigate("TvShowDetails", { data: item })}
         >
           <Image
             style={styles.image}
@@ -47,7 +47,7 @@ export const Comedy = ({ navigation }) => {
             resizeMode="cover"
           />
         </TouchableOpacity>
-      </FadeInView>
+      </Animated.View>
     </View>
   );
 
