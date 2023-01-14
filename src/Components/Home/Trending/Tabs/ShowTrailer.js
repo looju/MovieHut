@@ -9,11 +9,11 @@ export const ShowTrailer = ({ trailer }) => {
         style={{
           flex: 1,
           width: Dimensions.get("screen").width,
-          height: Dimensions.get("screen").height * 0.5,
+          height: Dimensions.get("screen").height * 0.4,
         }}
       >
         <YoutubePlayer
-          height={Dimensions.get("screen").height}
+          height={Dimensions.get("screen").height*0.4}
           width={Dimensions.get("screen").width}
           play={true}
           videoId={trailer.trailers[0].youtube}

@@ -16,7 +16,7 @@ export const Authorization = createContext();
 
 export const AuthorizationProvider = ({ children }) => {
   const provider = new GoogleAuthProvider();
-  const Auth=getAuth()
+  const Auth = getAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [alert, setAlert] = useState(false);
@@ -67,7 +67,7 @@ export const AuthorizationProvider = ({ children }) => {
           } else if (error.code == "auth/email-already-exists") {
             setError("Oops! Looks like that email already exists");
           } else {
-            setError(error.message);
+            setError("An unexpected error occured");
           }
           console.log(error.code);
           setIsLoading(null);
@@ -83,9 +83,8 @@ export const AuthorizationProvider = ({ children }) => {
       const credential = provider.credentialFromResult(auth, result);
       const token = credential.accessToken;
       setToken(token);
-    }
-    else{
-      console.log(result.error)
+    } else {
+      console.log(result.error);
     }
   };
 
