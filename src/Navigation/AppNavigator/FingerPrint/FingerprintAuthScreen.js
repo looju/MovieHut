@@ -48,23 +48,17 @@ export const FingerprintAuthScreen = ({ navigation }) => {
       {bioValue && hardware ? (
         <View>
           <View style={styles.authTextView}>
-            <Text style={styles.authText}>Select a biometric scanner</Text>
+            <Text style={styles.authText}>Authenticate with biometric</Text>
           </View>
           <View style={styles.authContainer}>
             <TouchableOpacity onPress={handleAuth}>
               <MaterialCommunityIcons
                 color="#A020F0"
-                size={45}
+                size={65}
                 name="fingerprint"
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleAuth}>
-              <MaterialCommunityIcons
-                color="#A020F0"
-                size={45}
-                name="face-recognition"
-              />
-            </TouchableOpacity>
+            
           </View>
         </View>
       ) : (
@@ -92,19 +86,19 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   authTextView: {
-    width: Dimensions.get("screen").width * 0.4,
+    width: Dimensions.get("screen").width,
     alignItems: "center",
-    marginBottom: 30,
+    justifyContent:"center",
+    marginBottom: 50,
   },
   authText: {
     color: "#fff",
     fontFamily: "Oswald_400Regular",
   },
   authContainer: {
-    width: Dimensions.get("screen").width * 0.4,
+    width: Dimensions.get("screen").width ,
     heigth: Dimensions.get("screen").height * 0.4,
-    flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
+    justifyContent:"center"
   },
 });
