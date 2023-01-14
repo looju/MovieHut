@@ -15,8 +15,15 @@ import {
 import { Button } from "react-native-paper";
 import { Authorization } from "../../../Services/Core/Auth/Auth";
 
+
 export const Register = ({ navigation }) => {
-  const { error, isLoading, SignUp, alert } = useContext(Authorization);
+  const {
+    error,
+    isLoading,
+    SignUp,
+    alert,
+  } = useContext(Authorization);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -35,6 +42,7 @@ export const Register = ({ navigation }) => {
           onDismiss={() => {
             setModalVisible(false);
           }}
+          style={styles.container}
         >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
@@ -99,7 +107,9 @@ export const Register = ({ navigation }) => {
           Register
         </Button>
       </View>
-      <TouchableOpacity style={styles.googleButtonContainer}>
+      <TouchableOpacity
+        style={styles.googleButtonContainer}
+      >
         <View style={styles.googleLogoContainer}>
           <Image
             style={styles.googleLogo}
@@ -220,17 +230,17 @@ const styles = StyleSheet.create({
   googleButtonContainer: {
     backgroundColor: "#fff",
     marginBottom: 15,
-    marginTop:25,
+    marginTop: 50,
     height: 50,
     width: 200,
     marginLeft: Dimensions.get("screen").width * 0.25,
     flexDirection: "row",
-    alignItems:"center",
-    borderRadius:5,
+    alignItems: "center",
+    borderRadius: 5,
   },
   googleText: {
     flex: 1,
-    paddingLeft:10
+    paddingLeft: 10,
   },
   googleLogo: {
     width: 45,

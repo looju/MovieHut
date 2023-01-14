@@ -38,7 +38,7 @@ export const Drama = ({ navigation }) => {
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
       <Animated.View
-        entering={FadeInLeft.duration(1500).springify().damping(12)}
+        entering={FadeInLeft.duration(2500).springify().damping(12)}
       >
         <TouchableOpacity
           onPress={() => navigation.navigate("TvShowDetails", { data: item })}

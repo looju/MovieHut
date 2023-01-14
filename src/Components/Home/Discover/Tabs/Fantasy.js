@@ -8,15 +8,14 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
-import Animated,{ FadeInLeft } from "react-native-reanimated";
-import { FadeInView } from "../../../../Animation/Animation";
+import Animated, { FadeInLeft } from "react-native-reanimated";
 
-export const Documentary = ({ navigation }) => {
+export const Fantasy = ({ navigation }) => {
   const [tvData, setTvData] = useState([]);
 
   const fetchData = async () => {
     await fetch(
-      "https://api.simkl.com/tv/genres/documentary/all-years?client_id=a4a932f81c143783f6fdc6d3dbe315d441e04f4e3d63578673ef818456798b4a",
+      "https://api.simkl.com/tv/genres/fantasy/all-years?client_id=a4a932f81c143783f6fdc6d3dbe315d441e04f4e3d63578673ef818456798b4a",
       {
         method: "GET",
         headers: {
@@ -27,7 +26,7 @@ export const Documentary = ({ navigation }) => {
       .then((response) => response.json())
       .then((data) => setTvData(data))
       .catch((error) =>
-        console.log("problem fetching tv data at Documentary.js" + error)
+        console.log("problem fetching tv data at Fantasy.js" + error)
       );
   };
 
@@ -37,9 +36,11 @@ export const Documentary = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
-     <Animated.View entering={FadeInLeft.duration(1500).springify().damping(12)}>
+      <Animated.View
+        entering={FadeInLeft.duration(1500).springify().damping(12)}
+      >
         <TouchableOpacity
-           onPress={() => navigation.navigate("TvShowDetails",{data:item})}
+          onPress={() => navigation.navigate("TvShowDetails", { data: item })}
         >
           <Image
             style={styles.image}
@@ -55,7 +56,7 @@ export const Documentary = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-       {tvData.length == 0 && (
+      {tvData.length == 0 && (
         <View style={styles.lottie}>
           <ActivityIndicator
             size={30}
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   lottie: {
-    height: Dimensions.get("screen").height*0.8,
+    height: Dimensions.get("screen").height * 0.8,
     alignItems: "center",
     justifyContent: "center",
   },

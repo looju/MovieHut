@@ -36,7 +36,7 @@ export const Comedy = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
-      <Animated.View entering={StretchInY.duration(1500).stiffness(150)}>
+      <Animated.View entering={StretchInY.duration(2500).stiffness(150)}>
         <TouchableOpacity
           onPress={() => navigation.navigate("TvShowDetails", { data: item })}
         >

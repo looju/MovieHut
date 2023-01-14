@@ -5,7 +5,7 @@ import {
   Text,
   ScrollView,
   TouchableOpacity,
-  FlatList,
+ 
   ActivityIndicator,
   Dimensions,
 } from "react-native";
@@ -13,7 +13,7 @@ import { Action } from "../Tabs/Action";
 import { Adventure } from "../Tabs/Adventure";
 import { Comedy } from "../Tabs/Comedy";
 import { Crime } from "./../Tabs/Crime";
-import { Documentary } from "./../Tabs/Documentary";
+import { Fantasy } from "./../Tabs/Fantasy";
 import { Drama } from "./../Tabs/Drama";
 import { Family } from "./../Tabs/Family";
 import { Horror } from "./../Tabs/Horror";
@@ -34,11 +34,11 @@ export const HeaderComponent = ({ navigation }) => {
       case "D":
         return <Crime navigation={navigation} />;
       case "E":
-        return <Documentary navigation={navigation} />;
-      case "F":
         return <Drama navigation={navigation} />;
-      case "G":
+      case "F":
         return <Family navigation={navigation} />;
+      case "G":
+        return <Fantasy navigation={navigation} />;
       case "H":
         return <Horror navigation={navigation} />;
       case "I":
@@ -107,7 +107,7 @@ export const HeaderComponent = ({ navigation }) => {
                 { borderColor: selectedTab == "E" ? "#A020F0" : "#fff" },
               ]}
             >
-              <Text style={styles.text}>Documentary</Text>
+              <Text style={styles.text}>Drama</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => setSelectedTab("F")}>
@@ -117,7 +117,7 @@ export const HeaderComponent = ({ navigation }) => {
                 { borderColor: selectedTab == "F" ? "#A020F0" : "#fff" },
               ]}
             >
-              <Text style={styles.text}>Drama</Text>
+              <Text style={styles.text}>Family</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => setSelectedTab("G")}>
@@ -127,7 +127,7 @@ export const HeaderComponent = ({ navigation }) => {
                 { borderColor: selectedTab == "G" ? "#A020F0" : "#fff" },
               ]}
             >
-              <Text style={styles.text}>Family</Text>
+              <Text style={styles.text}>Fantasy</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => setSelectedTab("H")}>

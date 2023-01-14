@@ -1,5 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+
 import { Trailer } from "../../../Features/Trailer";
 import { Anime } from "../../../Features/Anime";
 import { Settings } from "../../../Features/Settings";

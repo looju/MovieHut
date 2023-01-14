@@ -36,7 +36,7 @@ export const Adventure = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
-      <Animated.View entering={LightSpeedInLeft.duration(1500)}>
+      <Animated.View entering={LightSpeedInLeft.duration(2500)}>
         <TouchableOpacity
           onPress={() => navigation.navigate("TvShowDetails", { data: item })}
         >

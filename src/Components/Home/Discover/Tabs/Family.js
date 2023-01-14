@@ -37,7 +37,7 @@ export const Family = ({ navigation }) => {
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
       <Animated.View
-        entering={ZoomInEasyDown.duration(1500).springify().damping(12)}
+        entering={ZoomInEasyDown.duration(2500).springify().damping(12)}
       >
         <TouchableOpacity
           onPress={() => navigation.navigate("TvShowDetails", { data: item })}

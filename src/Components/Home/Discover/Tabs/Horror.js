@@ -36,7 +36,7 @@ export const Horror = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
-      <Animated.View entering={PinwheelIn.duration(1500)}>
+      <Animated.View entering={PinwheelIn.duration(2500)}>
         <TouchableOpacity
           onPress={() => navigation.navigate("TvShowDetails", { data: item })}
         >

@@ -11,6 +11,7 @@
   "dependencies": {
     "@expo-google-fonts/dev": "^0.2.2",
     "@react-native-community/slider": "4.2.4",
+    "@react-native-google-signin/google-signin": "^9.0.2",
     "@react-native-masked-view/masked-view": "0.2.8",
     "@react-navigation/bottom-tabs": "^6.5.2",
     "@react-navigation/native": "^6.1.1",
@@ -36,7 +37,8 @@
     "react-native-vector-icons": "^9.2.0",
     "react-native-video": "^6.0.0-alpha.4",
     "react-native-webview": "11.23.1",
-    "react-native-youtube-iframe": "^2.2.2"
+    "react-native-youtube-iframe": "^2.2.2",
+    "expo-local-authentication": "~13.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

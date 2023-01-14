@@ -36,7 +36,7 @@ export const Crime = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
     <View style={styles.imageView}>
-       <Animated.View entering={RollInLeft.duration(2000).restSpeedThreshold(0.002)}>
+       <Animated.View entering={RollInLeft.duration(2500).restSpeedThreshold(0.002)}>
         <TouchableOpacity
            onPress={() => navigation.navigate("TvShowDetails",{data:item})}
         >
