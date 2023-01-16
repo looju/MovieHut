@@ -3,9 +3,9 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 
 import { Trailer } from "../../../Features/Trailer";
 import { Anime } from "../../../Features/Anime";
-import { Settings } from "../../../Features/Settings";
 import { Discover } from "../../../Features/Discover";
 import { ScreenDetailsNavigator } from "../ScreenDetailsNavigator/ScreenDetailsNavigator";
+import { SettingsNavigation } from "../SettingsNavigator/SettingsNavigation";
 
 const Tab = createBottomTabNavigator();
 
@@ -70,13 +70,10 @@ export const MainNavigator = () => {
       />
       <Tab.Screen
         name="Settings"
-        component={Settings}
+        component={SettingsNavigation}
         options={{
-          headerShown: true,
-          headerTitleAlign: "center",
-          headerTitle: "Settings",
-          headerStyle: { backgroundColor: "#000" },
-          headerTitleStyle: { color: "#A020F0" },
+          headerShown: false,
+       
         }}
       />
     </Tab.Navigator>

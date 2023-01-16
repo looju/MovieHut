@@ -12,9 +12,7 @@ import { TvShowDetails } from "../../../Components/Home/Discover/Component/TvSho
 import { WatchTrailer } from "../../../Components/Watch/Screen/WatchTrailer";
 import { SimilarMovies } from "../../../Components/Home/General/SimilarMovies";
 import { Home } from "../../../Features/Home";
-import { About } from "../../../Components/Settings/About";
-import { Legal } from "./../../../Components/Settings/Legal";
-import { Support } from "./../../../Components/Settings/Support";
+
 const Stack = createStackNavigator();
 
 export const ScreenDetailsNavigator = () => {
@@ -105,27 +103,7 @@ export const ScreenDetailsNavigator = () => {
           headerShown: false,
         }}
       />
-      <Stack.Screen
-        name="About"
-        component={About}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="Legal"
-        component={Legal}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="Support"
-        component={Support}
-        options={{
-          headerShown: false,
-        }}
-      />
+    
     </Stack.Navigator>
   );
 };

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { Avatar } from "react-native-paper";
 import {
   View,
   StyleSheet,
@@ -7,18 +8,34 @@ import {
   TouchableOpacity,
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { Authorization } from "../Services/Core/Auth/Auth";
 
-export const Settings = () => {
+export const Settings = ({ navigation }) => {
+  const { SignOut } = useContext(Authorization);
+  const [photo, setPhoto] = useState(null);
+
   return (
     <View style={styles.container}>
-      <View style={styles.pictureView}>
-        <Text>picture</Text>
-      </View>
+      <TouchableOpacity
+        style={styles.pictureView}
+        onPress={() => navigation.navigate("Camera")}
+      >
+        {photo && (
+          <Avatar.Image
+            size={180}
+            source={{ uri: photo }}
+          />
+        )}
+        {!photo && <Avatar.Icon size={180} icon="account-circle" color="#fff"  style={{backgroundColor:"#000", left:10}}/>}
+      </TouchableOpacity>
       <View style={styles.email}>
         <Text style={styles.emailText}>JohnAdeleyemi463@gmail.com</Text>
       </View>
 
-      <TouchableOpacity style={styles.settings}>
+      <TouchableOpacity
+        style={styles.settings}
+        onPress={() => navigation.navigate("About")}
+      >
         <View>
           <Text style={styles.otherText}>About</Text>
         </View>
@@ -26,7 +43,10 @@ export const Settings = () => {
           <MaterialCommunityIcons color="#fff" size={25} name="menu-right" />
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.settings}>
+      <TouchableOpacity
+        style={styles.settings}
+        onPress={() => navigation.navigate("Legal")}
+      >
         <View>
           <Text style={styles.otherText}>Legal</Text>
         </View>
@@ -34,7 +54,10 @@ export const Settings = () => {
           <MaterialCommunityIcons color="#fff" size={25} name="menu-right" />
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.settings}>
+      <TouchableOpacity
+        style={styles.settings}
+        onPress={() => navigation.navigate("Support")}
+      >
         <View>
           <Text style={styles.otherText}>Support</Text>
         </View>
@@ -47,7 +70,7 @@ export const Settings = () => {
           <Text style={styles.otherText}>SignOut</Text>
         </View>
         <View>
-      <MaterialCommunityIcons color="#fff" size={25} name="menu-right"/>
+          <MaterialCommunityIcons color="#fff" size={25} name="menu-right" />
         </View>
       </TouchableOpacity>
     </View>
@@ -93,5 +116,32 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontFamily: "Oswald_400Regular",
     fontSize: 20,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "#A020F0",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+    color: "white",
   },
 });
