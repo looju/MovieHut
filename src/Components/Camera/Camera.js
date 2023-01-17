@@ -10,14 +10,12 @@ import {
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Authorization } from "../../Services/Core/Auth/Auth";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-export const CameraScreen=({ navigation })=>{
-  const { user } = useContext(Authorization);
+export const CameraScreen = ({ navigation }) => {
   const [type, setType] = useState(CameraType.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(true);
   const cameraRef = useRef();
 
   if (!permission) {
@@ -34,20 +32,29 @@ export const CameraScreen=({ navigation })=>{
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
+            Alert.alert("Permission denied");
             setModalVisible(!modalVisible);
           }}
         >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>
-                MovieHut requires permission to access the camera
+                MovieHut wants to access the camera
               </Text>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => requestPermission()}
-              >
-                <Text style={styles.textStyle}>Grant permission</Text>
-              </Pressable>
+              <View style={styles.permissions}>
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={requestPermission}
+                >
+                  <Text style={styles.textStyle}>Grant permission</Text>
+                </Pressable>
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={() => setModalVisible(!modalVisible)}
+                >
+                  <Text style={styles.textStyle}>Deny permission</Text>
+                </Pressable>
+              </View>
             </View>
           </View>
         </Modal>
@@ -59,7 +66,8 @@ export const CameraScreen=({ navigation })=>{
     if (cameraRef) {
       const photo = await cameraRef.current.takePictureAsync();
       navigation.navigate("Settings");
-      AsyncStorage.setItem(`${user.uid}-photo`, photo.uri);
+      console.log(photo);
+      AsyncStorage.setItem("cameraphoto", photo.uri);
     }
   };
 
@@ -77,7 +85,7 @@ export const CameraScreen=({ navigation })=>{
       quality: 1,
     });
     if (!result.canceled) {
-      AsyncStorage.setItem(`${user.uid}-galleryphoto`, result.assets[0].uri);
+      AsyncStorage.setItem("galleryphoto", result.assets[0].uri);
       navigation.goBack();
     }
   };
@@ -121,7 +129,7 @@ export const CameraScreen=({ navigation })=>{
       </Camera>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -146,10 +154,11 @@ const styles = StyleSheet.create({
     color: "white",
   },
   centeredView: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     marginTop: 22,
-    backgroundColor: "#fff",
+    backgroundColor: "rgba(0,0,0,0.5)",
   },
   modalView: {
     margin: 20,
@@ -165,6 +174,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+  permissions: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignContent: "space-between",
   },
   button: {
     borderRadius: 20,

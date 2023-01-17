@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    backgroundColor: "#A020F0",
+    backgroundColor: "#fff",
     borderRadius: 20,
     padding: 35,
     alignItems: "center",
@@ -214,18 +214,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#F194FF",
   },
   buttonClose: {
-    borderColor: "#fff",
+    borderColor: "#A020F0",
     borderWidth: 2,
   },
   textStyle: {
-    color: "white",
+    color: "black",
     fontWeight: "bold",
     textAlign: "center",
   },
   modalText: {
     marginBottom: 15,
     textAlign: "center",
-    color: "white",
+    color: "black",
   },
   googleButtonContainer: {
     backgroundColor: "#fff",

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Avatar } from "react-native-paper";
 import {
   View,
@@ -7,12 +7,40 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { Authorization } from "../Services/Core/Auth/Auth";
 
 export const Settings = ({ navigation }) => {
   const { SignOut } = useContext(Authorization);
   const [photo, setPhoto] = useState(null);
+
+  const getCameraPhoto = async () => {
+    try {
+      const value = await AsyncStorage.getItem("cameraphoto");
+      if (value !== null) {
+        setPhoto(value);
+      }
+    } catch (e) {
+      console.log("problem at settings with image:" + e);
+    }
+  };
+
+  const getGalleryPhoto = async () => {
+    try {
+      const value = await AsyncStorage.getItem("galleryphoto");
+      if (value !== null) {
+        setPhoto(value);
+      }
+    } catch (e) {
+      console.log("problem at settings with gallery image:" + e);
+    }
+  };
+
+  useEffect(() => {
+    getCameraPhoto();
+    getGalleryPhoto();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -24,9 +52,17 @@ export const Settings = ({ navigation }) => {
           <Avatar.Image
             size={180}
             source={{ uri: photo }}
+            style={{alignItems:"center",left:10,top:10}}
           />
         )}
-        {!photo && <Avatar.Icon size={180} icon="account-circle" color="#fff"  style={{backgroundColor:"#000", left:10}}/>}
+        {!photo && (
+          <Avatar.Icon
+            size={180}
+            icon="account-circle"
+            color="#fff"
+            style={{ backgroundColor: "#000", left: 10 }}
+          />
+        )}
       </TouchableOpacity>
       <View style={styles.email}>
         <Text style={styles.emailText}>JohnAdeleyemi463@gmail.com</Text>
@@ -65,7 +101,7 @@ export const Settings = ({ navigation }) => {
           <MaterialCommunityIcons color="#fff" size={25} name="menu-right" />
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.settings}>
+      <TouchableOpacity style={styles.settings} onPress={()=>SignOut()}>
         <View>
           <Text style={styles.otherText}>SignOut</Text>
         </View>

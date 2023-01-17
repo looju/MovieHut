@@ -5,24 +5,15 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  GoogleAuthProvider,
-  signInWithPopup,
-  getAuth,
-  signInWithRedirect,
-  getRedirectResult,
 } from "firebase/auth";
-import { Alert } from "react-native";
 export const Authorization = createContext();
 
 export const AuthorizationProvider = ({ children }) => {
-  const provider = new GoogleAuthProvider();
-  const Auth = getAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [alert, setAlert] = useState(false);
   const [user, setUser] = useState(null);
   const [home, setHome] = useState(false);
-  const [token, setToken] = useState("");
 
   const Login = (email, password) => {
     setIsLoading(true);
@@ -75,27 +66,8 @@ export const AuthorizationProvider = ({ children }) => {
     }
   };
 
-  const SignInWithGoogle = async () => {
-    await signInWithRedirect(Auth, provider);
-    const result = await getRedirectResult(auth);
-    if (result) {
-      setUser(result.user);
-      const credential = provider.credentialFromResult(auth, result);
-      const token = credential.accessToken;
-      setToken(token);
-    } else {
-      console.log(result.error);
-    }
-  };
-
   const SignOut = () => {
-    signOut(auth)
-      .then(() => {
-        setUser(null);
-      })
-      .catch((error) => {
-        Alert.alert("Oops an error occured" + error.message);
-      });
+    setUser(null);
   };
 
   return (
@@ -103,7 +75,6 @@ export const AuthorizationProvider = ({ children }) => {
       value={{
         SignUp,
         Login,
-        SignInWithGoogle,
         SignOut,
         error,
         alert,
