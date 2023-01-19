@@ -1,3 +1,6 @@
+import { Buffer } from "buffer";
+global.Buffer = Buffer;
+
 import { UserProfileProvider } from "./src/Services/Providers/UserProfileProvider";
 import { AuthorizationProvider } from "./src/Services/Core/Auth/Auth";
 import { NavigationContainer } from "@react-navigation/native";

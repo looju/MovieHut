@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -13,21 +13,19 @@ import {
   Image,
 } from "react-native";
 import { Button } from "react-native-paper";
+
 import { Authorization } from "../../../Services/Core/Auth/Auth";
 
-
 export const Register = ({ navigation }) => {
-  const {
-    error,
-    isLoading,
-    SignUp,
-    alert,
-  } = useContext(Authorization);
+  const { error, isLoading, SignUp, alert, googleSignIn } =
+    useContext(Authorization);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [modalVisible, setModalVisible] = useState(true);
+
+ 
   return (
     <ImageBackground
       style={styles.container}
@@ -109,6 +107,7 @@ export const Register = ({ navigation }) => {
       </View>
       <TouchableOpacity
         style={styles.googleButtonContainer}
+        onPress={()=>googleSignIn()}
       >
         <View style={styles.googleLogoContainer}>
           <Image

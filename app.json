@@ -23,11 +23,13 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#000"
       },
-      "package": "com.loju.MovieHut"
+      "package": "com.loju.MovieHut",
+      "googleServicesFile": "./android/app/google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "plugins": ["@react-native-google-signin/google-signin"],
     "extra": {
       "eas": {
         "projectId": "53596a72-77f8-4762-b56b-e50eb8178317"

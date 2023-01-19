@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "722854090375",
+    "project_id": "moviehut-87624",
+    "storage_bucket": "moviehut-87624.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722854090375:android:3447508a1934a99a4dca22",
+        "android_client_info": {
+          "package_name": "com.loju.MovieHut"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "722854090375-ts6a2tmd6uo0ufb292orl727p1mssivq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.loju.MovieHut",
+            "certificate_hash": "2ddc875df559a8985d8cf15e004ab4f5e110cc80"
+          }
+        },
+        {
+          "client_id": "722854090375-8292duogupovr4n83u4moavp2b6866h1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFG8ov9ggbDaMgMG3obreug1RgUFOaCGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "722854090375-8292duogupovr4n83u4moavp2b6866h1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
