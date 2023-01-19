@@ -12,12 +12,12 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import { Authorization } from "../Services/Core/Auth/Auth";
 
 export const Settings = ({ navigation }) => {
-  const { SignOut } = useContext(Authorization);
+  const { SignOut,user } = useContext(Authorization);
   const [photo, setPhoto] = useState(null);
 
   const getCameraPhoto = async () => {
     try {
-      const value = await AsyncStorage.getItem("cameraphoto");
+      const value = await AsyncStorage.getItem(`${user.uid}-photo`);
       if (value !== null) {
         setPhoto(value);
       }
@@ -28,7 +28,7 @@ export const Settings = ({ navigation }) => {
 
   const getGalleryPhoto = async () => {
     try {
-      const value = await AsyncStorage.getItem("galleryphoto");
+      const value = await AsyncStorage.getItem(`${user.uid}-galleryphoto`);
       if (value !== null) {
         setPhoto(value);
       }
@@ -65,7 +65,7 @@ export const Settings = ({ navigation }) => {
         )}
       </TouchableOpacity>
       <View style={styles.email}>
-        <Text style={styles.emailText}>JohnAdeleyemi463@gmail.com</Text>
+        <Text style={styles.emailText}>{user.email}</Text>
       </View>
 
       <TouchableOpacity

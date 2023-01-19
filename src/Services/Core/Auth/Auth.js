@@ -9,6 +9,7 @@ import {
 import { makeRedirectUri, startAsync } from "expo-auth-session";
 import { supabase, supabaseUrl } from "../../Config/SupabaseConfig";
 
+
 export const Authorization = createContext();
 
 export const AuthorizationProvider = ({ children }) => {
@@ -17,7 +18,7 @@ export const AuthorizationProvider = ({ children }) => {
   const [alert, setAlert] = useState(false);
   const [user, setUser] = useState(null);
   const [home, setHome] = useState(false);
-  const [accessToken, setAccessToken] = useState("");
+
 
   const Login = (email, password) => {
     setIsLoading(true);
@@ -96,8 +97,7 @@ export const AuthorizationProvider = ({ children }) => {
         },
       })
         .then((response) => response.json())
-        .then((data) => setUser(data))
-        .then(setHome(true))
+        .then((data) => setUser(data.items))
         .catch((error) => {
           console.log("error fetching user auth" + error);
         });

@@ -67,7 +67,7 @@ export const CameraScreen = ({ navigation }) => {
       const photo = await cameraRef.current.takePictureAsync();
       navigation.navigate("Settings");
       console.log(photo);
-      AsyncStorage.setItem("cameraphoto", photo.uri);
+      AsyncStorage.setItem(`${user.uid}-photo`, photo.uri);
     }
   };
 
@@ -85,7 +85,7 @@ export const CameraScreen = ({ navigation }) => {
       quality: 1,
     });
     if (!result.canceled) {
-      AsyncStorage.setItem("galleryphoto", result.assets[0].uri);
+      AsyncStorage.setItem(`${user.uid}-galleryphoto`, result.assets[0].uri);
       navigation.goBack();
     }
   };
