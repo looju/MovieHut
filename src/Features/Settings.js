@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   Pressable,
   Modal,
-  Alert,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -47,86 +46,8 @@ export const Settings = ({ navigation }) => {
     getGalleryPhoto();
   }, []);
 
-  const displayWarning = () => {
-    return (
-      <View style={styles.centeredView}>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            Alert.alert("Permission denied");
-            setModalVisible(!modalVisible);
-          }}
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Text style={styles.modalText}>
-                Are you sure you want to sign out from MovieHut
-              </Text>
-              <View style={styles.permissions}>
-                <Pressable
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => SignOut()}
-                >
-                  <Text style={styles.textStyle}>Yes</Text>
-                </Pressable>
-                <Pressable
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => setModalVisible(!modalVisible)}
-                >
-                  <Text style={styles.textStyle}>No</Text>
-                </Pressable>
-              </View>
-            </View>
-          </View>
-        </Modal>
-      </View>
-    );
-  };
-
   return (
     <View style={styles.container}>
-      {warning && (
-        <View style={styles.centeredView}>
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={() => {
-              Alert.alert("Permission denied");
-              setModalVisible(!modalVisible);
-            }}
-          >
-            <View style={styles.centeredView}>
-              <View style={styles.modalView}>
-                <Text style={styles.modalText}>
-                  Are you sure you want to sign out from MovieHut?
-                </Text>
-                <View style={styles.permissions}>
-                  <View style={styles.pressable}>
-                  <Pressable
-                    style={[styles.button, styles.buttonClose]}
-                    onPress={() => SignOut()}
-                  >
-                    <Text style={styles.textStyle}>Yes</Text>
-                  </Pressable>
-                  </View>
-                
-                  <View style={styles.pressable}>
-                    <Pressable
-                      style={[styles.button, styles.buttonClose]}
-                      onPress={() => setModalVisible(!modalVisible)}
-                    >
-                      <Text style={styles.textStyle}>No</Text>
-                    </Pressable>
-                  </View>
-                </View>
-              </View>
-            </View>
-          </Modal>
-        </View>
-      )}
       <TouchableOpacity
         style={styles.pictureView}
         onPress={() => navigation.navigate("Camera")}
@@ -195,6 +116,45 @@ export const Settings = ({ navigation }) => {
           <MaterialCommunityIcons color="#fff" size={25} name="menu-right" />
         </View>
       </TouchableOpacity>
+      {warning && (
+        <View style={styles.centeredView}>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              setModalVisible(!modalVisible);
+            }}
+          >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <Text style={styles.modalText}>
+                  Are you sure you want to sign out from MovieHut?
+                </Text>
+                <View style={styles.permissions}>
+                  <View style={styles.pressable}>
+                    <Pressable
+                      style={[styles.button, styles.buttonClose]}
+                      onPress={() => SignOut()}
+                    >
+                      <Text style={styles.textStyle}>Yes</Text>
+                    </Pressable>
+                  </View>
+
+                  <View style={styles.pressable}>
+                    <Pressable
+                      style={[styles.button, styles.buttonClose]}
+                      onPress={() => setModalVisible(!modalVisible)}
+                    >
+                      <Text style={styles.textStyle}>No</Text>
+                    </Pressable>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </Modal>
+        </View>
+      )}
     </View>
   );
 };
@@ -281,9 +241,9 @@ const styles = StyleSheet.create({
   permissions: {
     flexDirection: "row",
   },
-  pressable:{
-    marginHorizontal:10,
-    width:50,
-    height:50
-  }
+  pressable: {
+    marginHorizontal: 10,
+    width: 50,
+    height: 50,
+  },
 });
