@@ -7,6 +7,6 @@ import { AuthNavigation } from "./AuthNavigator/AuthNavigation";
 export const Navigation = () => {
   const { user } = useContext(Authorization);
 
-  return user ? <AuthNavigation /> : <AccountNavigation />;
-  // return <MainNavigator/>
+  // return user ? <AuthNavigation /> : <AccountNavigation />;
+  return <MainNavigator/>
 };

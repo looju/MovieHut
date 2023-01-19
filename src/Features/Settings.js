@@ -6,14 +6,19 @@ import {
   Text,
   Dimensions,
   TouchableOpacity,
+  Pressable,
+  Modal,
+  Alert,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { Authorization } from "../Services/Core/Auth/Auth";
 
 export const Settings = ({ navigation }) => {
-  const { SignOut,user } = useContext(Authorization);
+  const { SignOut, user } = useContext(Authorization);
   const [photo, setPhoto] = useState(null);
+  const [modalVisible, setModalVisible] = useState(true);
+  const [warning, setWarning] = useState(false);
 
   const getCameraPhoto = async () => {
     try {
@@ -42,8 +47,86 @@ export const Settings = ({ navigation }) => {
     getGalleryPhoto();
   }, []);
 
+  const displayWarning = () => {
+    return (
+      <View style={styles.centeredView}>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Permission denied");
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>
+                Are you sure you want to sign out from MovieHut
+              </Text>
+              <View style={styles.permissions}>
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={() => SignOut()}
+                >
+                  <Text style={styles.textStyle}>Yes</Text>
+                </Pressable>
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={() => setModalVisible(!modalVisible)}
+                >
+                  <Text style={styles.textStyle}>No</Text>
+                </Pressable>
+              </View>
+            </View>
+          </View>
+        </Modal>
+      </View>
+    );
+  };
+
   return (
     <View style={styles.container}>
+      {warning && (
+        <View style={styles.centeredView}>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              Alert.alert("Permission denied");
+              setModalVisible(!modalVisible);
+            }}
+          >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <Text style={styles.modalText}>
+                  Are you sure you want to sign out from MovieHut?
+                </Text>
+                <View style={styles.permissions}>
+                  <View style={styles.pressable}>
+                  <Pressable
+                    style={[styles.button, styles.buttonClose]}
+                    onPress={() => SignOut()}
+                  >
+                    <Text style={styles.textStyle}>Yes</Text>
+                  </Pressable>
+                  </View>
+                
+                  <View style={styles.pressable}>
+                    <Pressable
+                      style={[styles.button, styles.buttonClose]}
+                      onPress={() => setModalVisible(!modalVisible)}
+                    >
+                      <Text style={styles.textStyle}>No</Text>
+                    </Pressable>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </Modal>
+        </View>
+      )}
       <TouchableOpacity
         style={styles.pictureView}
         onPress={() => navigation.navigate("Camera")}
@@ -52,7 +135,7 @@ export const Settings = ({ navigation }) => {
           <Avatar.Image
             size={180}
             source={{ uri: photo }}
-            style={{alignItems:"center",left:10,top:10}}
+            style={{ alignItems: "center", left: 10, top: 10 }}
           />
         )}
         {!photo && (
@@ -65,7 +148,7 @@ export const Settings = ({ navigation }) => {
         )}
       </TouchableOpacity>
       <View style={styles.email}>
-        <Text style={styles.emailText}>{user.email}</Text>
+        <Text style={styles.emailText}>john98@gmail.com</Text>
       </View>
 
       <TouchableOpacity
@@ -101,7 +184,10 @@ export const Settings = ({ navigation }) => {
           <MaterialCommunityIcons color="#fff" size={25} name="menu-right" />
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.settings} onPress={()=>SignOut()}>
+      <TouchableOpacity
+        style={styles.settings}
+        onPress={() => setWarning(true)}
+      >
         <View>
           <Text style={styles.otherText}>SignOut</Text>
         </View>
@@ -158,11 +244,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 22,
-    backgroundColor: "rgba(0,0,0,0.5)",
+    backgroundColor: "rgba(0,0,0,0.8)",
   },
   modalView: {
     margin: 20,
-    backgroundColor: "#A020F0",
+    backgroundColor: "white",
     borderRadius: 20,
     padding: 35,
     alignItems: "center",
@@ -178,6 +264,26 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
-    color: "white",
   },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonClose: {
+    backgroundColor: "#A020F0",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  permissions: {
+    flexDirection: "row",
+  },
+  pressable:{
+    marginHorizontal:10,
+    width:50,
+    height:50
+  }
 });
