@@ -1,12 +1,12 @@
 # MovieHut
 This application allows users to check out the latest movies, movie trailers, casts, anime and facts about movies. 
-Technologies used: React native, react navigation
-UI technologies:react native paper, lottie, react native reanimated,
-database:AsyncStorage
-Media: React native youtube iframe, expo camera
-State Management: Context API
-Auth:firebase
-API endpoints: Simkl API, Jikan API, YoutubeVideos API
+Technologies used: React native, react navigation <br>
+UI technologies:react native paper, lottie, react native reanimated <br>
+database:AsyncStorage <br>
+Media: React native youtube iframe, expo camera <br>
+State Management: Context API <br>
+Auth:firebase <br>
+API endpoints: Simkl API, Jikan API, YoutubeVideos API <br>
 
 Some screenshots
 
