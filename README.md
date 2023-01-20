@@ -1,17 +1,5 @@
 # MovieHut
 This application allows users to check out the latest movies, movie trailers, casts, anime and facts about movies. This application uses the Simkl API as the data endpoint and using firebase as the dedicated backend.
 Some screenshots
-![Splash screen](https://imgbox.com/B4MKTLfD)
-![Account screen](https://photos.google.com/photo/AF1QipM1VbgSkrLjuniuIygofZwS9hZOl0idB4DenYYk)
-![Sign up!](https://photos.google.com/photo/AF1QipNb2GZIZhF1tBoxXo7BLoKWbmFA1vIF7SHF5peP)
-![Google auth](https://photos.google.com/photo/AF1QipPBkk6MGQ86gTs_E4HxuDBS75uAc0KOBH42rfgB)![Screenshot (158) - Copy - Copy](https://user-images.githubusercontent.com/106563780/213592655-26335ce0-27c9-42c8-b73c-cc55dbc6c6a8.png)
 
-![Home screen](https://photos.google.com/photo/AF1QipMxodv-47Iyqc6weMNYLhIgmiJocnpaEhpX1zLn)
-![Discover by genres](http://url/to/img.png)
-![Similar movies](http://url/to/img.png)
-![Anime](http://url/to/img.png)
-![Trailers](https://photos.google.com/photo/AF1QipMdHd2jiVXH6bZ2rY6HzCPO-xNXAtNhmC-tndzV)
-![Set playback quality ](http://url/to/img.png)
-![Account screen, users can upload their pictures via camera and gallery](http://url/to/img.png)
-![Logout](https://photos.google.com/photo/AF1QipM793vKe49eHY91s_dX8GZD0fTvJyVPjDGS_fqD)
-
+![Screenshot (158) - Copy - Copy](https://user-images.githubusercontent.com/106563780/213592791-289a9de3-6345-4a3b-9974-8127a0080926.png)
