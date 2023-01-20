@@ -9,7 +9,7 @@ Some screenshots
 ![Discover by genres](http://url/to/img.png)
 ![Similar movies](http://url/to/img.png)
 ![Anime](http://url/to/img.png)
-![Trailers](https://photos.google.com/photo/AF1QipNtsNMHyzCfYHextYNwdGTtRF5GoGU9gavUL2ZL)
+![Trailers](https://photos.google.com/photo/AF1QipMdHd2jiVXH6bZ2rY6HzCPO-xNXAtNhmC-tndzV)
 ![Set playback quality ](http://url/to/img.png)
 ![Account screen, users can upload their pictures via camera and gallery](http://url/to/img.png)
 ![Logout](https://photos.google.com/photo/AF1QipM793vKe49eHY91s_dX8GZD0fTvJyVPjDGS_fqD)
